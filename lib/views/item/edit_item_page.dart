@@ -1,33 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-import 'package:rivus_supplier/common/app_style.dart';
+import 'package:get/get.dart';
 import 'package:rivus_supplier/common/custom_btn.dart';
 import 'package:rivus_supplier/constants/constants.dart';
-import 'package:rivus_supplier/controllers/foods_controller.dart';
+import 'package:rivus_supplier/controllers/items_controller.dart';
 import 'package:rivus_supplier/models/items.dart';
-import 'package:get/get.dart';
 
-class EditFoodPage extends StatefulWidget {
-  const EditFoodPage({Key? key, required this.food}) : super(key: key);
+class EditItemPage extends StatefulWidget {
+  const EditItemPage({Key? key, required this.item}) : super(key: key);
 
-  final Item food;
+  final Item item;
 
   @override
-  State<EditFoodPage> createState() => _EditFoodPageState();
+  State<EditItemPage> createState() => _EditItemPageState();
 }
 
-class _EditFoodPageState extends State<EditFoodPage> {
+class _EditItemPageState extends State<EditItemPage> {
   late TextEditingController _titleController;
   late TextEditingController _priceController;
   late TextEditingController _descriptionController;
+  late TextEditingController _unitController;
 
   @override
   void initState() {
     super.initState();
-    _titleController = TextEditingController(text: widget.food.title ?? '');
-    _priceController = TextEditingController(text: widget.food.price.toString() ?? '');
-    _descriptionController = TextEditingController(text: widget.food.description ?? '');
+    _titleController = TextEditingController(text: widget.item.title ?? '');
+    _priceController = TextEditingController(
+        text: widget.item.price == null ? '' : widget.item.price.toString());
+    _descriptionController =
+        TextEditingController(text: widget.item.description ?? '');
+    _unitController = TextEditingController(text: widget.item.unit ?? '');
   }
 
   @override
@@ -35,12 +38,13 @@ class _EditFoodPageState extends State<EditFoodPage> {
     _titleController.dispose();
     _priceController.dispose();
     _descriptionController.dispose();
+    _unitController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final foodController = Get.put(FoodsController());
+    final itemController = Get.put(ItemsController());
 
     return Scaffold(
       backgroundColor: kLightWhite,
@@ -51,7 +55,6 @@ class _EditFoodPageState extends State<EditFoodPage> {
           Stack(
             children: [
               SizedBox(height: 100.h),
-
               // Your image gallery
               // For simplicity, I'm omitting this part since it's not part of the edit functionality
               // Container(
@@ -111,24 +114,34 @@ class _EditFoodPageState extends State<EditFoodPage> {
                   ),
                 ),
                 SizedBox(height: 10.h),
+                TextFormField(
+                  controller: _unitController,
+                  decoration: InputDecoration(
+                    labelText: 'Unit',
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+                SizedBox(height: 10.h),
                 // Save button
                 CustomButton(
                   text: "Save",
                   onTap: () {
-                    final editedFood = Item(
-                      id: widget.food.id,
+                    final editedItem = Item(
+                      id: widget.item.id,
                       title: _titleController.text,
                       price: double.parse(_priceController.text),
-                      description: _descriptionController.text.isNotEmpty ? _descriptionController.text : null,
-                      imageUrl: widget.food.imageUrl,
-                      itemTags: widget.food.itemTags,
-                      code: widget.food.code,
-                      isAvailable: widget.food.isAvailable,
-                      supplier: widget.food.supplier,
-                      category: widget.food.category,
+                      description: _descriptionController.text.isNotEmpty
+                          ? _descriptionController.text
+                          : null,
+                      imageUrl: widget.item.imageUrl,
+                      itemTags: widget.item.itemTags,
+                      code: widget.item.code,
+                      unit: _unitController.text,
+                      isAvailable: widget.item.isAvailable,
+                      supplier: widget.item.supplier,
+                      category: widget.item.category,
                     );
-                   foodController.updateFood(widget.food.id, editedFood);
-                    Get.back();
+                    itemController.updateItem(widget.item.id, editedItem);
                   },
                   color: kPrimary,
                   btnWidth: width / 2.9,

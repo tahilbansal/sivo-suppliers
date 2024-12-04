@@ -18,7 +18,7 @@ class SelfDeliveries extends HookWidget {
     final isLoading = hookResult.isLoading;
 
     if (isLoading) {
-      return const FoodsListShimmer();
+      return const itemsListShimmer();
     } else if (orders!.isEmpty) {
       return const EmptyPage();
     }

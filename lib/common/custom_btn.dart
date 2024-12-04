@@ -4,7 +4,14 @@ import 'package:rivus_supplier/common/reusable_text.dart';
 import 'package:rivus_supplier/constants/constants.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key, required this.text, this.color, this.onTap, this.btnWidth, this.radius, this.btnHieght});
+  const CustomButton(
+      {super.key,
+      required this.text,
+      this.color,
+      this.onTap,
+      this.btnWidth,
+      this.radius,
+      this.btnHieght});
 
   final String text;
   final Color? color;
@@ -16,19 +23,17 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: btnWidth ?? width,
-        height: btnHieght??38,
-        decoration:  BoxDecoration(
-            color: color?? kSecondary,
-            borderRadius:  BorderRadius.all(Radius.circular(radius??12))),
-        child: Center(
-          child: ReusableText(
-              text: text,
-              style: appStyle(14,  kLightWhite, FontWeight.w500)),
-        ),
-      )
-    );
+        onTap: onTap,
+        child: Container(
+          width: btnWidth ?? width,
+          height: btnHieght ?? 38,
+          decoration: BoxDecoration(
+              color: color ?? kSecondary,
+              borderRadius: BorderRadius.all(Radius.circular(radius ?? 12))),
+          child: Center(
+            child: ReusableText(
+                text: text, style: appStyle(14, kLightWhite, FontWeight.w500)),
+          ),
+        ));
   }
 }

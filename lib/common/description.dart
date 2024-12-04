@@ -12,7 +12,8 @@ class DescriptionField extends StatelessWidget {
     this.controller,
     this.hintText,
     this.focusNode,
-    this.initialValue, this.maxLines,
+    this.initialValue,
+    this.maxLines,
   }) : super(key: key);
   final String? hintText;
   final Widget? prefixIcon;
@@ -43,7 +44,7 @@ class DescriptionField extends StatelessWidget {
         decoration: InputDecoration(
           hintText: hintText,
           isDense: true,
-          contentPadding:  EdgeInsets.all(8.h),
+          contentPadding: EdgeInsets.all(8.h),
           hintStyle: appStyle(12, kGray, FontWeight.normal),
           // contentPadding: EdgeInsets.only(left: 24),
           errorBorder: const OutlineInputBorder(

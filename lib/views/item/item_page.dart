@@ -4,27 +4,27 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:get/get.dart';
 import 'package:rivus_supplier/common/app_style.dart';
 import 'package:rivus_supplier/common/custom_btn.dart';
 import 'package:rivus_supplier/common/reusable_text.dart';
-import 'package:rivus_supplier/common/row_text.dart';
 import 'package:rivus_supplier/constants/constants.dart';
-import 'package:rivus_supplier/controllers/foods_controller.dart';
+import 'package:rivus_supplier/controllers/items_controller.dart';
 import 'package:rivus_supplier/models/items.dart';
-import 'package:get/get.dart';
+import 'package:rivus_supplier/views/home/widgets/delete_confirmation_dialog.dart';
 
-import 'edit_food_page.dart';
+import 'edit_item_page.dart';
 
-class FoodPage extends StatefulWidget {
-  const FoodPage({super.key, required this.item});
+class ItemPage extends StatefulWidget {
+  const ItemPage({super.key, required this.item});
 
   final Item item;
 
   @override
-  State<FoodPage> createState() => _FoodPageState();
+  State<ItemPage> createState() => _ItemPageState();
 }
 
-class _FoodPageState extends State<FoodPage> {
+class _ItemPageState extends State<ItemPage> {
   final PageController _pageController = PageController();
 
   @override
@@ -35,7 +35,7 @@ class _FoodPageState extends State<FoodPage> {
 
   @override
   Widget build(BuildContext context) {
-    final itemController = Get.put(FoodsController());
+    final itemController = Get.put(ItemsController());
 
     return Scaffold(
         backgroundColor: kLightWhite,
@@ -46,13 +46,14 @@ class _FoodPageState extends State<FoodPage> {
             Stack(
               children: [
                 ClipRRect(
-                  borderRadius: const BorderRadius.only(bottomRight: Radius.circular(25)),
+                  borderRadius:
+                      const BorderRadius.only(bottomRight: Radius.circular(25)),
                   child: Stack(
                     children: [
                       SizedBox(
                         height: 230.h,
                         child: PageView.builder(
-                            itemCount: widget.item.imageUrl.length,
+                            itemCount: widget.item.imageUrl!.length,
                             controller: _pageController,
                             onPageChanged: (i) {
                               itemController.currentPage(i);
@@ -64,7 +65,7 @@ class _FoodPageState extends State<FoodPage> {
                                 color: kLightWhite,
                                 child: CachedNetworkImage(
                                   fit: BoxFit.cover,
-                                  imageUrl: widget.item.imageUrl[i],
+                                  imageUrl: widget.item.imageUrl![i],
                                 ),
                               );
                             }),
@@ -75,20 +76,23 @@ class _FoodPageState extends State<FoodPage> {
                           () => Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: List.generate(
-                              widget.item.imageUrl.length,
+                              widget.item.imageUrl!.length,
                               (index) {
                                 return Padding(
                                   padding: const EdgeInsets.only(left: 8.0),
                                   child: Container(
                                     margin: EdgeInsets.all(4.h),
                                     width: itemController.currentPage == index
-                                        ? 10 : 8,
+                                        ? 10
+                                        : 8,
                                     height: itemController.currentPage == index
-                                        ? 10 : 8,
+                                        ? 10
+                                        : 8,
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                       color: itemController.currentPage == index
-                                          ? kSecondary : kGrayLight,
+                                          ? kSecondary
+                                          : kGrayLight,
                                     ),
                                   ),
                                 );
@@ -117,7 +121,6 @@ class _FoodPageState extends State<FoodPage> {
                           size: 28,
                         ),
                       ),
-                    
                     ],
                   ),
                 ),
@@ -129,11 +132,11 @@ class _FoodPageState extends State<FoodPage> {
                         radius: 30,
                         color: kPrimary,
                         onTap: () {
-                          Get.to(() => EditFoodPage(food: widget.item),
+                          Get.to(() => EditItemPage(item: widget.item),
                               transition: Transition.native,
                               duration: const Duration(seconds: 1));
                         },
-                        text: "Edit Food"))
+                        text: "Edit Item"))
               ],
             ),
             Padding(
@@ -146,10 +149,13 @@ class _FoodPageState extends State<FoodPage> {
                     children: [
                       ReusableText(
                           text: widget.item.title,
-                          style: appStyle(kFontSizeBodyLarge, kDark, FontWeight.w600)),
-                      ReusableText(
-                            text: "\$ ${widget.item.price.toString()}",
-                            style: appStyle(kFontSizeBodyLarge, kPrimary, FontWeight.w600)),
+                          style: appStyle(
+                              kFontSizeBodyLarge, kDark, FontWeight.w600)),
+                      if (widget.item.price != null)
+                        ReusableText(
+                            text: "\₹ ${widget.item.price.toString()}",
+                            style: appStyle(
+                                kFontSizeBodyLarge, kPrimary, FontWeight.w600)),
                     ],
                   ),
                   SizedBox(
@@ -163,10 +169,11 @@ class _FoodPageState extends State<FoodPage> {
                   SizedBox(
                     height: 15.h,
                   ),
-                  ReusableText(
-                      text: "Food Tags",
-                      style: appStyle(kFontSizeBodyLarge, kDark, FontWeight.w600)),
-                  
+                  if (widget.item.itemTags != null)
+                    ReusableText(
+                        text: "Item Tags",
+                        style: appStyle(
+                            kFontSizeBodyLarge, kDark, FontWeight.w600)),
                   SizedBox(
                     height: 10.h,
                   ),
@@ -189,7 +196,8 @@ class _FoodPageState extends State<FoodPage> {
                                     const EdgeInsets.symmetric(horizontal: 4.0),
                                 child: ReusableText(
                                     text: tag,
-                                    style: appStyle(10, kLightWhite, FontWeight.w400)),
+                                    style: appStyle(
+                                        10, kLightWhite, FontWeight.w400)),
                               ),
                             ),
                           );
@@ -220,18 +228,16 @@ class _FoodPageState extends State<FoodPage> {
                   //     );
                   //   }),
                   // ),
-                  
                   SizedBox(
                     height: 15.h,
                   ),
                   ReusableText(
-                      text: "Food Type",
-                      style: appStyle(kFontSizeBodyLarge, kDark, FontWeight.w600)),
-                  
+                      text: "Item Type",
+                      style:
+                          appStyle(kFontSizeBodyLarge, kDark, FontWeight.w600)),
                   SizedBox(
                     height: 10.h,
                   ),
-                  
                   // SizedBox(
                   //   height: 19.h,
                   //   child: ListView.builder(
@@ -263,14 +269,21 @@ class _FoodPageState extends State<FoodPage> {
             SizedBox(
               height: 40.h,
             ),
-
             Padding(
-              padding:  EdgeInsets.symmetric(horizontal:8.h),
-              child: CustomButton(text: "D E L E T E", onTap: () {
-                
-              },
-              color: kRed,
-              btnHieght: 35,
+              padding: EdgeInsets.symmetric(horizontal: 8.h),
+              child: CustomButton(
+                text: "D E L E T E",
+                onTap: () {
+                  showDeleteConfirmationDialog(
+                    context: context,
+                    onConfirm: () async {
+                      final itemsController = Get.put(ItemsController());
+                      await itemsController.deleteItem(widget.item.id);
+                    },
+                  );
+                },
+                color: kRed,
+                btnHieght: 35,
               ),
             )
           ],

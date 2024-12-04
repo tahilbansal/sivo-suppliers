@@ -16,12 +16,15 @@ class RowText extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        ReusableText(text: first, style: appStyle(kFontSizeBodySmall, color ?? kGray , FontWeight.w500)),
+        ReusableText(
+            text: first,
+            style:
+                appStyle(kFontSizeBodySmall, color ?? kGray, FontWeight.w500)),
         SizedBox(
-          width: width*0.6,
-          child: Text(
-              second,
-              style: appStyle(kFontSizeBodySmall, color ?? kGray, color != null ? FontWeight.w400 : FontWeight.w400)),
+          width: width * 0.6,
+          child: Text(second,
+              style: appStyle(kFontSizeBodySmall, color ?? kGray,
+                  color != null ? FontWeight.w400 : FontWeight.w400)),
         )
       ],
     );

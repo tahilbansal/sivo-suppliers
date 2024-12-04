@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -47,18 +46,17 @@ class AppPages {
     /*
     GetPage(name: AppRoutes.Message, page: () => MessagePage(), binding: MessageBinding()),
     */
-   /* GetPage(name: AppRoutes.Me,
+    /* GetPage(name: AppRoutes.Me,
         page: () => const ProfilePage(),
         binding: ProfileBinding()),
 */
-    GetPage(name: AppRoutes.Chat,
+    GetPage(
+        name: AppRoutes.Chat,
         page: () => const ChatPage(),
         binding: ChatBinding()),
-
     GetPage(
-      name: AppRoutes.Photoimgview,
-      page: () => const PhotoImageView(),
-      binding: PhotoImageViewBinding()),
+        name: AppRoutes.Photoimgview,
+        page: () => const PhotoImageView(),
+        binding: PhotoImageViewBinding()),
   ];
-
 }

@@ -12,7 +12,8 @@ class SelfDeliveredPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kLightWhite,
-      appBar: CommonAppBar(titleText: "Self delivery orders"), /*AppBar(
+      appBar: CommonAppBar(titleText: "Self delivery orders"),
+      /*AppBar(
         automaticallyImplyLeading: false,
         flexibleSpace: CustomAppBar(
           title: "View all internal deliveries and delivery earnings",

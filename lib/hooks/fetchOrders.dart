@@ -35,7 +35,8 @@ FetchHook useFetchClientOrders() {
 
     isLoading.value = true;
     try {
-      final url = Uri.parse('${Environment.appBaseUrl}/api/orders/delivery/Ready');
+      final url =
+          Uri.parse('${Environment.appBaseUrl}/api/orders/delivery/Ready');
       print("Fetching data from $url with token $accessToken");
 
       final response = await http.get(
@@ -65,7 +66,8 @@ FetchHook useFetchClientOrders() {
         }
       } else {
         print("Error: ${response.statusCode} ${response.body}");
-        error.value = Exception('Error: ${response.statusCode} ${response.body}');
+        error.value =
+            Exception('Error: ${response.statusCode} ${response.body}');
       }
     } catch (e) {
       print("Fetch error: $e");

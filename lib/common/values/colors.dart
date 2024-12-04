@@ -27,9 +27,9 @@ class AppColors {
   static const Color thirdElement = Color.fromARGB(255, 45, 45, 47);
 
   static const Color fourElementText = Color.fromARGB(255, 99, 99, 99);
+
   /// 第三种控件-文本 浅灰色2
   static const Color thirdElementText = Color.fromARGB(255, 183, 191, 202);
-
 
   // *****************************************
 
@@ -41,9 +41,7 @@ class AppColors {
   //聊天背景颜色
   static const Color chatbg = Color.fromARGB(255, 248, 248, 248);
 
-
   static const Color morenbg = Color.fromARGB(255, 250, 250, 250);
 
   //背景颜色
-
 }

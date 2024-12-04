@@ -158,12 +158,12 @@ const suppliers = [
   }
 ];
 
-List <Map<String, dynamic>> foods = [
+List<Map<String, dynamic>> items = [
   {
     "_id": "65316968f94c6496dc84f3c1",
     "title": "Tiramisu",
-    "foodTags": ["Italian", "Dessert", "Coffee", "Mascarpone", "Cocoa"],
-    "foodType": ["Dessert"],
+    "itemTags": ["Italian", "Dessert", "Coffee", "Mascarpone", "Cocoa"],
+    "itemType": ["Dessert"],
     "code": "41007428",
     "isAvailable": true,
     "supplier": "6530ea6bc9e72013e5b6592d",
@@ -179,9 +179,8 @@ List <Map<String, dynamic>> foods = [
       {"id": 4, "title": "Cocoa", "price": "0.50"},
       {"id": 5, "title": "Sugar", "price": "0.50"}
     ],
-    "imageUrl": 
-      "https://d326fntlu7tb1e.cloudfront.net/uploads/5c2a9ca8-eb07-400b-b8a6-2acfab2a9ee2-image001.webp"
-    ,
+    "imageUrl":
+        "https://d326fntlu7tb1e.cloudfront.net/uploads/5c2a9ca8-eb07-400b-b8a6-2acfab2a9ee2-image001.webp",
     "__v": 0,
     "category": "6531209dbbe4998e90af3fef",
     "time": "35 min"
@@ -189,8 +188,8 @@ List <Map<String, dynamic>> foods = [
   {
     "_id": "653168e9f94c6496dc84f3bf",
     "title": "Spaghetti Carbonara",
-    "foodTags": ["Italian", "Creamy", "Pasta", "Bacon", "Egg"],
-    "foodType": ["Main Course", "Lunch", null],
+    "itemTags": ["Italian", "Creamy", "Pasta", "Bacon", "Egg"],
+    "itemType": ["Main Course", "Lunch", null],
     "code": "41007428",
     "isAvailable": true,
     "supplier": "6530ea6bc9e72013e5b6592d",
@@ -206,9 +205,8 @@ List <Map<String, dynamic>> foods = [
       {"id": 4, "title": "Black Pepper", "price": "0.50"},
       {"id": 5, "title": "Pasta", "price": "3.00"}
     ],
-    "imageUrl": 
-      "https://d326fntlu7tb1e.cloudfront.net/uploads/5c2a9ca8-eb07-400b-b8a6-2acfab2a9ee2-image001.webp"
-    ,
+    "imageUrl":
+        "https://d326fntlu7tb1e.cloudfront.net/uploads/5c2a9ca8-eb07-400b-b8a6-2acfab2a9ee2-image001.webp",
     "__v": 2,
     "category": "6531209dbbe4998e90af3fef",
     "time": "20 min"
@@ -216,8 +214,8 @@ List <Map<String, dynamic>> foods = [
   {
     "_id": "653169a9f94c6496dc84f3c3",
     "title": "Vegan Salad Bowl",
-    "foodTags": ["Vegan", "Healthy", "Salad", "Fresh", "Organic"],
-    "foodType": ["Starter", "Lunch", "Dinner", "Health", "Vegan"],
+    "itemTags": ["Vegan", "Healthy", "Salad", "Fresh", "Organic"],
+    "itemType": ["Starter", "Lunch", "Dinner", "Health", "Vegan"],
     "code": "41007428",
     "isAvailable": true,
     "supplier": "6530ea6bc9e72013e5b6592d",
@@ -233,9 +231,8 @@ List <Map<String, dynamic>> foods = [
       {"id": 4, "title": "Cherry Tomatoes", "price": "1.00"},
       {"id": 5, "title": "Vinaigrette", "price": "0.50"}
     ],
-   "imageUrl": 
-      "https://d326fntlu7tb1e.cloudfront.net/uploads/5c2a9ca8-eb07-400b-b8a6-2acfab2a9ee2-image001.webp"
-    ,
+    "imageUrl":
+        "https://d326fntlu7tb1e.cloudfront.net/uploads/5c2a9ca8-eb07-400b-b8a6-2acfab2a9ee2-image001.webp",
     "__v": 0,
     "category": "6531209dbbe4998e90af3fef",
     "time": "55 min"
@@ -243,8 +240,8 @@ List <Map<String, dynamic>> foods = [
   {
     "_id": "65316771f94c6496dc84f3bd",
     "title": "Margherita Pizza",
-    "foodTags": ["Italian", "Cheesy", "Vegetarian"],
-    "foodType": ["Main Course"],
+    "itemTags": ["Italian", "Cheesy", "Vegetarian"],
+    "itemType": ["Main Course"],
     "code": "41007428",
     "isAvailable": true,
     "supplier": "6530ebbcc9e72013e5b65933",
@@ -258,9 +255,8 @@ List <Map<String, dynamic>> foods = [
       {"id": 2, "title": "Pepperoni", "price": "2.50"},
       {"id": 3, "title": "Ketch up", "price": "0.50"}
     ],
-    "imageUrl": 
-      "https://d326fntlu7tb1e.cloudfront.net/uploads/5c2a9ca8-eb07-400b-b8a6-2acfab2a9ee2-image001.webp"
-    ,
+    "imageUrl":
+        "https://d326fntlu7tb1e.cloudfront.net/uploads/5c2a9ca8-eb07-400b-b8a6-2acfab2a9ee2-image001.webp",
     "__v": 0,
     "category": "6531209dbbe4998e90af3fef",
     "time": "30 min"
@@ -268,8 +264,8 @@ List <Map<String, dynamic>> foods = [
   {
     "_id": "65316a01f94c6496dc84f3c7",
     "title": "Tropical Fruit Smoothie",
-    "foodTags": ["Fruit", "Smoothie", "Refreshing", "Sweet", "Cold"],
-    "foodType": ["Drink", "Breakfast", "Snack", "Dessert", "Vegan"],
+    "itemTags": ["Fruit", "Smoothie", "Refreshing", "Sweet", "Cold"],
+    "itemType": ["Drink", "Breakfast", "Snack", "Dessert", "Vegan"],
     "code": "41007428",
     "isAvailable": true,
     "supplier": "6530ea6bc9e72013e5b6592d",
@@ -285,9 +281,8 @@ List <Map<String, dynamic>> foods = [
       {"id": 4, "title": "Coconut Milk", "price": "1.50"},
       {"id": 5, "title": "Ice", "price": "0.50"}
     ],
-   "imageUrl": 
-      "https://d326fntlu7tb1e.cloudfront.net/uploads/5c2a9ca8-eb07-400b-b8a6-2acfab2a9ee2-image001.webp"
-    ,
+    "imageUrl":
+        "https://d326fntlu7tb1e.cloudfront.net/uploads/5c2a9ca8-eb07-400b-b8a6-2acfab2a9ee2-image001.webp",
     "__v": 0,
     "category": "6531209dbbe4998e90af3fef",
     "time": "25 min"
@@ -295,8 +290,8 @@ List <Map<String, dynamic>> foods = [
   {
     "_id": "653169d8f94c6496dc84f3c5",
     "title": "Mixed Grill Platter",
-    "foodTags": ["Barbecue", "Meat", "Grilled", "Spicy", "Savory"],
-    "foodType": [
+    "itemTags": ["Barbecue", "Meat", "Grilled", "Spicy", "Savory"],
+    "itemType": [
       "Main Course",
       "Dinner",
       "Grill",
@@ -318,9 +313,8 @@ List <Map<String, dynamic>> foods = [
       {"id": 4, "title": "Pork", "price": "3.50"},
       {"id": 5, "title": "Barbecue Sauce", "price": "1.00"}
     ],
-    "imageUrl": 
-      "https://d326fntlu7tb1e.cloudfront.net/uploads/5c2a9ca8-eb07-400b-b8a6-2acfab2a9ee2-image001.webp"
-    ,
+    "imageUrl":
+        "https://d326fntlu7tb1e.cloudfront.net/uploads/5c2a9ca8-eb07-400b-b8a6-2acfab2a9ee2-image001.webp",
     "__v": 0,
     "category": "6531209dbbe4998e90af3fef",
     "time": "45 min"
@@ -389,5 +383,3 @@ const choicesList = [
     "value": "recommended",
   },
 ];
-
-

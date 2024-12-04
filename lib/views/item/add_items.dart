@@ -12,7 +12,7 @@ import 'package:rivus_supplier/common/reusable_text.dart';
 import 'package:rivus_supplier/common/row_text.dart';
 import 'package:rivus_supplier/constants/constants.dart';
 import 'package:rivus_supplier/controllers/Image_upload_controller.dart';
-import 'package:rivus_supplier/controllers/foods_controller.dart';
+import 'package:rivus_supplier/controllers/items_controller.dart';
 import 'package:rivus_supplier/controllers/supplier_controller.dart';
 import 'package:rivus_supplier/models/items.dart';
 import 'package:rivus_supplier/models/foods_request.dart';
@@ -22,17 +22,18 @@ import 'package:rivus_supplier/views/home/widgets/is_available_switch.dart';
 import 'package:rivus_supplier/views/home/widgets/more_categories.dart';
 import 'package:get/get.dart';
 
-class AddFoodsPage extends StatefulWidget {
-  const AddFoodsPage({super.key});
+class AddItemsPage extends StatefulWidget {
+  const AddItemsPage({super.key});
 
   @override
-  State<AddFoodsPage> createState() => _AddFoodsPageState();
+  State<AddItemsPage> createState() => _AddItemsPageState();
 }
 
-class _AddFoodsPageState extends State<AddFoodsPage> {
+class _AddItemsPageState extends State<AddItemsPage> {
   TextEditingController _title = TextEditingController();
   TextEditingController _description = TextEditingController();
   TextEditingController _price = TextEditingController();
+  TextEditingController _unit = TextEditingController();
   TextEditingController _tags = TextEditingController();
 
   final PageController _pageController = PageController();
@@ -46,12 +47,12 @@ class _AddFoodsPageState extends State<AddFoodsPage> {
   @override
   Widget build(BuildContext context) {
     final imageUploader = Get.put(ImageUploadController());
-    final foodsController = Get.put(FoodsController());
+    final itemsController = Get.put(ItemsController());
     final supplierController = Get.put(SupplierController());
 
     return Scaffold(
       backgroundColor: kLightWhite,
-      appBar: CommonAppBar(titleText: "Make your food"),
+      appBar: CommonAppBar(titleText: "Add Item"),
       body: BackGroundContainer(
         child: ListView(
           // padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -260,12 +261,12 @@ class _AddFoodsPageState extends State<AddFoodsPage> {
                               btnHieght: 40,
                               btnWidth: width / 2.5,
                               onTap: () {
-                                if(imageUploader.images.length > 1){
-                                   _pageController.animateToPage(2,
-                                    duration: const Duration(milliseconds: 400),
-                                    curve: Curves.easeInOut);
+                                if (imageUploader.images.length >= 0) {
+                                  _pageController.animateToPage(2,
+                                      duration:
+                                          const Duration(milliseconds: 400),
+                                      curve: Curves.easeInOut);
                                 }
-
                               },
                             ),
                           ],
@@ -274,175 +275,187 @@ class _AddFoodsPageState extends State<AddFoodsPage> {
                     ),
                   ),
                   Container(
-                      padding: EdgeInsets.symmetric(horizontal: 12.w),
-                      child:
-                      //Obx(() =>
-                          ListView(
-                          children: [
-                            SizedBox(
-                              height: 20.h,
-                            ),
-                            ReusableText(
-                              text: "Add Details",
-                              style: appStyle(16, kGray, FontWeight.w600),
-                            ),
-                            ReusableText(
-                              text:
-                                  "You are required fill all the details fully with the correct information",
-                              style: appStyle(11, kGray, FontWeight.normal),
-                            ),
-                            SizedBox(
-                              height: 20.h,
-                            ),
-                            EmailTextField(
-                              hintText: "Title",
-                              controller: _title,
-                              prefixIcon: Icon(
-                                Ionicons.time_outline,
-                                color: Theme.of(context).dividerColor,
-                                size: 20.h,
-                              ),
-                              keyboardType: TextInputType.text,
-                            ),
-                            SizedBox(
-                              height: 20.h,
-                            ),
-                            DescriptionField(
-                              hintText: "Description of the item ",
-                              controller: _description,
-                              maxLines: 4,
-                              prefixIcon: Icon(
-                                Ionicons.time_outline,
-                                color: Theme.of(context).dividerColor,
-                                size: 20.h,
-                              ),
-                              keyboardType: TextInputType.text,
-                            ),
-                            SizedBox(
-                              height: 20.h,
-                            ),
-                            EmailTextField(
-                              hintText: "Price",
-                              controller: _price,
-                              prefixIcon: Icon(
-                                Ionicons.time_outline,
-                                color: Theme.of(context).dividerColor,
-                                size: 20.h,
-                              ),
-                              keyboardType: TextInputType.text,
-                            ),
-                            SizedBox(
-                              height: 20.h,
-                            ),
-                            // SizedBox(
-                            //   height: 20.h,
-                            // ),
-                            // ReusableText(
-                            //   text: "Add FoodType",
-                            //   style: appStyle(16, kGray, FontWeight.w600),
-                            // ),
-                            // ReusableText(
-                            //   text:
-                            //       "You are required fill all the details fully with the correct information",
-                            //   style: appStyle(11, kGray, FontWeight.normal),
-                            // ),
-                            // SizedBox(
-                            //   height: 20.h,
-                            // ),
-                            // EmailTextField(
-                            //   hintText: "Breakfast / Lunch / Dinner",
-                            //   controller: _type,
-                            //   prefixIcon: Icon(
-                            //     Ionicons.time_outline,
-                            //     color: Theme.of(context).dividerColor,
-                            //     size: 20.h,
-                            //   ),
-                            //   keyboardType: TextInputType.text,
-                            // ),
-                            // SizedBox(
-                            //   height: 10.h,
-                            // ),
-                            // foodsController.type.isNotEmpty
-                            //     ? Row(
-                            //         children: List.generate(
-                            //             foodsController.type.length, (index) {
-                            //           return Container(
-                            //             margin: const EdgeInsets.only(right: 5),
-                            //             decoration: BoxDecoration(
-                            //                 color: kPrimary,
-                            //                 borderRadius: BorderRadius.all(
-                            //                     Radius.circular(8.r))),
-                            //             child: Center(
-                            //               child: Padding(
-                            //                 padding: const EdgeInsets.all(2.0),
-                            //                 child: ReusableText(
-                            //                     text:
-                            //                         foodsController.type[index],
-                            //                     style: appStyle(8, kLightWhite,
-                            //                         FontWeight.w400)),
-                            //               ),
-                            //             ),
-                            //           );
-                            //         }),
-                            //       )
-                            //     : const SizedBox.shrink(),
-                            // SizedBox(
-                            //   height: 20.h,
-                            // ),
-                            // CustomButton(
-                            //   text: "A D D    T Y P E",
-                            //   btnHieght: 40,
-                            //   onTap: () {
-                            //     if (_type.text.isNotEmpty) {
-                            //       foodsController.type.add(_type.text);
-                            //
-                            //       _type.clear();
-                            //     } else {
-                            //       Get.snackbar(
-                            //           "Error", "Please enter a valid value",
-                            //           snackPosition: SnackPosition.BOTTOM);
-                            //     }
-                            //   },
-                            // ),
-                            SizedBox(
-                              height: 20.h,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                CustomButton(
-                                  text: "B A C K",
-                                  btnHieght: 40,
-                                  color: kPrimary,
-                                  btnWidth: width / 2.5,
-                                  onTap: () {
-                                    _pageController.previousPage(
-                                        duration: const Duration(milliseconds: 400),
-                                        curve: Curves.easeInOut);
-                                  },
-                                ),
-                                CustomButton(
-                                  text: "N E X T",
-                                  color: kPrimary,
-                                  btnHieght: 40,
-                                  btnWidth: width / 2.5,
-                                  onTap: () {
-                                    _pageController.nextPage(
-                                        duration: const Duration(milliseconds: 400),
-                                        curve: Curves.easeInOut);
-                                  },
-                                ),
-                              ],
-                            )
-                          ],
+                    padding: EdgeInsets.symmetric(horizontal: 12.w),
+                    child:
+                        //Obx(() =>
+                        ListView(
+                      children: [
+                        SizedBox(
+                          height: 20.h,
                         ),
-                      //)
+                        ReusableText(
+                          text: "Add Details",
+                          style: appStyle(16, kGray, FontWeight.w600),
+                        ),
+                        ReusableText(
+                          text:
+                              "You are required fill all the details fully with the correct information",
+                          style: appStyle(11, kGray, FontWeight.normal),
+                        ),
+                        SizedBox(
+                          height: 20.h,
+                        ),
+                        EmailTextField(
+                          hintText: "Title",
+                          controller: _title,
+                          prefixIcon: Icon(
+                            Ionicons.time_outline,
+                            color: Theme.of(context).dividerColor,
+                            size: 20.h,
+                          ),
+                          keyboardType: TextInputType.text,
+                        ),
+                        SizedBox(
+                          height: 20.h,
+                        ),
+                        DescriptionField(
+                          hintText: "Description of the item ",
+                          controller: _description,
+                          maxLines: 4,
+                          prefixIcon: Icon(
+                            Ionicons.time_outline,
+                            color: Theme.of(context).dividerColor,
+                            size: 20.h,
+                          ),
+                          keyboardType: TextInputType.text,
+                        ),
+                        SizedBox(
+                          height: 20.h,
+                        ),
+                        EmailTextField(
+                          hintText: "PC /KG /Pkt /Ltr /Case /Bag",
+                          controller: _unit,
+                          prefixIcon: Icon(
+                            Ionicons.time_outline,
+                            color: Theme.of(context).dividerColor,
+                            size: 20.h,
+                          ),
+                          keyboardType: TextInputType.text,
+                        ),
+                        SizedBox(
+                          height: 20.h,
+                        ),
+                        EmailTextField(
+                          hintText: "Price (Recommended)",
+                          controller: _price,
+                          prefixIcon: Icon(
+                            Ionicons.time_outline,
+                            color: Theme.of(context).dividerColor,
+                            size: 20.h,
+                          ),
+                          keyboardType: TextInputType.text,
+                        ),
+                        SizedBox(
+                          height: 20.h,
+                        ),
+                        // SizedBox(
+                        //   height: 20.h,
+                        // ),
+                        // ReusableText(
+                        //   text: "Add FoodType",
+                        //   style: appStyle(16, kGray, FontWeight.w600),
+                        // ),
+                        // ReusableText(
+                        //   text:
+                        //       "You are required fill all the details fully with the correct information",
+                        //   style: appStyle(11, kGray, FontWeight.normal),
+                        // ),
+                        // SizedBox(
+                        //   height: 20.h,
+                        // ),
+                        // EmailTextField(
+                        //   hintText: "Breakfast / Lunch / Dinner",
+                        //   controller: _type,
+                        //   prefixIcon: Icon(
+                        //     Ionicons.time_outline,
+                        //     color: Theme.of(context).dividerColor,
+                        //     size: 20.h,
+                        //   ),
+                        //   keyboardType: TextInputType.text,
+                        // ),
+                        // SizedBox(
+                        //   height: 10.h,
+                        // ),
+                        // foodsController.type.isNotEmpty
+                        //     ? Row(
+                        //         children: List.generate(
+                        //             foodsController.type.length, (index) {
+                        //           return Container(
+                        //             margin: const EdgeInsets.only(right: 5),
+                        //             decoration: BoxDecoration(
+                        //                 color: kPrimary,
+                        //                 borderRadius: BorderRadius.all(
+                        //                     Radius.circular(8.r))),
+                        //             child: Center(
+                        //               child: Padding(
+                        //                 padding: const EdgeInsets.all(2.0),
+                        //                 child: ReusableText(
+                        //                     text:
+                        //                         foodsController.type[index],
+                        //                     style: appStyle(8, kLightWhite,
+                        //                         FontWeight.w400)),
+                        //               ),
+                        //             ),
+                        //           );
+                        //         }),
+                        //       )
+                        //     : const SizedBox.shrink(),
+                        // SizedBox(
+                        //   height: 20.h,
+                        // ),
+                        // CustomButton(
+                        //   text: "A D D    T Y P E",
+                        //   btnHieght: 40,
+                        //   onTap: () {
+                        //     if (_type.text.isNotEmpty) {
+                        //       foodsController.type.add(_type.text);
+                        //
+                        //       _type.clear();
+                        //     } else {
+                        //       Get.snackbar(
+                        //           "Error", "Please enter a valid value",
+                        //           snackPosition: SnackPosition.BOTTOM);
+                        //     }
+                        //   },
+                        // ),
+                        SizedBox(
+                          height: 20.h,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            CustomButton(
+                              text: "B A C K",
+                              btnHieght: 40,
+                              color: kPrimary,
+                              btnWidth: width / 2.5,
+                              onTap: () {
+                                _pageController.previousPage(
+                                    duration: const Duration(milliseconds: 400),
+                                    curve: Curves.easeInOut);
+                              },
+                            ),
+                            CustomButton(
+                              text: "N E X T",
+                              color: kPrimary,
+                              btnHieght: 40,
+                              btnWidth: width / 2.5,
+                              onTap: () {
+                                _pageController.nextPage(
+                                    duration: const Duration(milliseconds: 400),
+                                    curve: Curves.easeInOut);
+                              },
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                    //)
                   ),
                   Container(
                       padding: EdgeInsets.symmetric(horizontal: 12.w),
-                      child:
-                      Obx(() =>
-                            ListView(
+                      child: Obx(
+                        () => ListView(
                           children: [
                             SizedBox(
                               height: 20.h,
@@ -453,7 +466,7 @@ class _AddFoodsPageState extends State<AddFoodsPage> {
                             ),
                             ReusableText(
                               text:
-                              "You are required fill all the details fully with the correct information",
+                                  "You are required fill all the details fully with the correct information",
                               style: appStyle(11, kGray, FontWeight.normal),
                             ),
                             SizedBox(
@@ -472,29 +485,29 @@ class _AddFoodsPageState extends State<AddFoodsPage> {
                             SizedBox(
                               height: 10.h,
                             ),
-                            foodsController.tags.isNotEmpty
+                            itemsController.tags.isNotEmpty
                                 ? Row(
-                              children: List.generate(
-                                  foodsController.tags.length, (index) {
-                                return Container(
-                                  margin: const EdgeInsets.only(right: 5),
-                                  decoration: BoxDecoration(
-                                      color: kPrimary,
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(8.r))),
-                                  child: Center(
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(2.0),
-                                      child: ReusableText(
-                                          text:
-                                          foodsController.tags[index],
-                                          style: appStyle(8, kLightWhite,
-                                              FontWeight.w400)),
-                                    ),
-                                  ),
-                                );
-                              }),
-                            )
+                                    children: List.generate(
+                                        itemsController.tags.length, (index) {
+                                      return Container(
+                                        margin: const EdgeInsets.only(right: 5),
+                                        decoration: BoxDecoration(
+                                            color: kPrimary,
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(8.r))),
+                                        child: Center(
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(2.0),
+                                            child: ReusableText(
+                                                text:
+                                                    itemsController.tags[index],
+                                                style: appStyle(8, kLightWhite,
+                                                    FontWeight.w400)),
+                                          ),
+                                        ),
+                                      );
+                                    }),
+                                  )
                                 : const SizedBox.shrink(),
                             SizedBox(
                               height: 20.h,
@@ -504,12 +517,8 @@ class _AddFoodsPageState extends State<AddFoodsPage> {
                               btnHieght: 40,
                               onTap: () {
                                 if (_tags.text.isNotEmpty) {
-                                  foodsController.tags.add(_tags.text);
+                                  itemsController.tags.add(_tags.text);
                                   _tags.clear();
-                                } else {
-                                  Get.snackbar(
-                                      "Error", "Please enter a valid value",
-                                      snackPosition: SnackPosition.BOTTOM);
                                 }
                               },
                             ),
@@ -542,32 +551,36 @@ class _AddFoodsPageState extends State<AddFoodsPage> {
                                   btnWidth: width / 2.5,
                                   onTap: () {
                                     if (_title.text.isEmpty ||
-                                        _description.text.isEmpty ||
-                                        _price.text.isEmpty ||
-                                        foodsController.tags.isEmpty) {
+                                        _unit.text.isEmpty) {
                                       Get.snackbar(
                                           "Error", "Please enter a valid value",
                                           snackPosition: SnackPosition.BOTTOM);
                                     } else {
                                       AddItems item = AddItems(
                                           title: _title.text,
-                                          itemTags: foodsController.tags,
-                                          isAvailable: supplierController.isAvailable,
-                                          code: supplierController.supplier!.code,
-                                          category: foodsController.category,
-                                          supplier: supplierController.supplier!.id,
+                                          itemTags: itemsController.tags,
+                                          isAvailable:
+                                              supplierController.isAvailable,
+                                          code:
+                                              supplierController.supplier!.code,
+                                          unit: _unit.text,
+                                          category: itemsController.category,
+                                          supplier:
+                                              supplierController.supplier!.id,
                                           description: _description.text,
-                                          price: double.parse(_price.text),
+                                          price: _price.text.isEmpty
+                                              ? null
+                                              : double.tryParse(_price.text),
                                           imageUrl: imageUploader.images);
+
                                       String iItem = addItemsToJson(item);
 
-
-                                      foodsController.addFood(iItem);
+                                      itemsController.addItem(iItem);
 
                                       _title.clear();
                                       _description.clear();
                                       _price.clear();
-                                      foodsController.tags.clear();
+                                      itemsController.tags.clear();
                                       imageUploader.imageOneUrl = "";
                                       imageUploader.imageTwoUrl = "";
                                       imageUploader.imageThreeUrl = "";
@@ -579,8 +592,7 @@ class _AddFoodsPageState extends State<AddFoodsPage> {
                             )
                           ],
                         ),
-                      )
-                  )
+                      ))
                 ],
               ),
             )

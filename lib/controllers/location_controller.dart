@@ -3,8 +3,8 @@
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geocoding/geocoding.dart';
-  import 'dart:math';
-  
+import 'dart:math';
+
 class UserLocationController extends GetxController {
   var _currentIndex = 0.obs;
 
@@ -33,7 +33,6 @@ class UserLocationController extends GetxController {
     update(); // Equivalent to notifyListeners()
   }
 
-
   var _userAddress = Placemark(
     name: "Central Park",
     street: "59th St to 110th St",
@@ -55,10 +54,8 @@ class UserLocationController extends GetxController {
     update(); // Equivalent to notifyListeners()
   }
 
-
-
-int generateRandomNumber(int min, int max) {
-  final _random = Random();
-  return min + _random.nextInt(max - min + 1);
-}
+  int generateRandomNumber(int min, int max) {
+    final _random = Random();
+    return min + _random.nextInt(max - min + 1);
+  }
 }

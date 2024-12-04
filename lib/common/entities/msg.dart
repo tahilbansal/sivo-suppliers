@@ -1,17 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Msg {
-   String? from_uid;
-   String? to_uid;
-   String? from_name;
-   String? to_name;
-   String? from_avatar;
-   String? to_avatar;
-   String? last_msg;
-   Timestamp? last_time;
-   int? msg_num;
-   int? to_msg_num;
-   int? from_msg_num;
+  String? from_uid;
+  String? to_uid;
+  String? from_name;
+  String? to_name;
+  String? from_avatar;
+  String? to_avatar;
+  String? last_msg;
+  Timestamp? last_time;
+  int? msg_num;
+  int? to_msg_num;
+  int? from_msg_num;
   Msg({
     this.from_uid,
     this.to_uid,
@@ -27,9 +27,9 @@ class Msg {
   });
 
   factory Msg.fromFirestore(
-      DocumentSnapshot<Map<String, dynamic>> snapshot,
-      SnapshotOptions? options,
-      ) {
+    DocumentSnapshot<Map<String, dynamic>> snapshot,
+    SnapshotOptions? options,
+  ) {
     final data = snapshot.data();
     return Msg(
       from_uid: data?['from_uid'],
@@ -42,8 +42,7 @@ class Msg {
       last_time: data?['last_time'],
       msg_num: data?['msg_num'],
       to_msg_num: data?['to_msg_num'],
-        from_msg_num: data?['from_msg_num'],
-
+      from_msg_num: data?['from_msg_num'],
     );
   }
 
@@ -58,9 +57,8 @@ class Msg {
       if (last_msg != null) "last_msg": last_msg,
       if (last_time != null) "last_time": last_time,
       if (msg_num != null) "msg_num": msg_num,
-      if (to_msg_num !=null)"to_msg_num":to_msg_num,
-      if (from_msg_num !=null)"from_msg_num":from_msg_num
-
+      if (to_msg_num != null) "to_msg_num": to_msg_num,
+      if (from_msg_num != null) "from_msg_num": from_msg_num
     };
   }
 }

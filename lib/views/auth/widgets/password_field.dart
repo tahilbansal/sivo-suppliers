@@ -37,8 +37,7 @@ class PasswordField extends StatelessWidget {
             decoration: InputDecoration(
               suffixIcon: GestureDetector(
                 onTap: () {
-                  passwordController.setPassword =
-                      !passwordController.password;
+                  passwordController.setPassword = !passwordController.password;
                 },
                 child: Icon(
                   passwordController.password
@@ -61,9 +60,8 @@ class PasswordField extends StatelessWidget {
                   borderSide: BorderSide(color: Colors.red, width: 0.5),
                   borderRadius: BorderRadius.all(Radius.circular(12))),
               focusedBorder: const OutlineInputBorder(
-                  borderSide:
-                      BorderSide(color: kPrimary, width: 0.5),
-                  borderRadius:  BorderRadius.all(Radius.circular(12))),
+                  borderSide: BorderSide(color: kPrimary, width: 0.5),
+                  borderRadius: BorderRadius.all(Radius.circular(12))),
               focusedErrorBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: kRed, width: 0.5),
                   borderRadius: BorderRadius.all(Radius.circular(12))),
@@ -74,16 +72,13 @@ class PasswordField extends StatelessWidget {
                   borderSide: BorderSide(color: kGray, width: 0.5),
                   borderRadius: BorderRadius.all(Radius.circular(12))),
               border: const OutlineInputBorder(
-                borderSide:
-                    BorderSide(color: kPrimary, width: 0.5),
-                borderRadius:  BorderRadius.all(
+                borderSide: BorderSide(color: kPrimary, width: 0.5),
+                borderRadius: BorderRadius.all(
                   Radius.circular(12),
                 ),
               ),
             ),
           ),
-        )
-      );
-    
+        ));
   }
 }

@@ -20,7 +20,6 @@ FetchOrder fetchOrder(String id) {
 
       if (response.statusCode == 200) {
         order.value = getOrderFromJson(response.body);
-     
       } else {
         appiError.value = apiErrorFromJson(response.body);
       }

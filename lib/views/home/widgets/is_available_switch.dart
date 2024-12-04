@@ -17,14 +17,16 @@ class AvailableSwitch extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-             ReusableText(
+            ReusableText(
               text: 'Food Availability',
-              style: appStyle(14, kGray, FontWeight.w600,
+              style: appStyle(
+                14,
+                kGray,
+                FontWeight.w600,
               ),
             ),
             Obx(
               () => Switch(
-
                 value: supplierController.isAvailable,
                 onChanged: (value) {
                   supplierController.setAvailability =

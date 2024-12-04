@@ -97,7 +97,10 @@ class HttpUtil {
 
   // Error handling
   void onError(ErrorEntity eInfo) {
-    print('error.code -> ' + eInfo.code.toString() + ', error.message -> ' + eInfo.message);
+    print('error.code -> ' +
+        eInfo.code.toString() +
+        ', error.message -> ' +
+        eInfo.message);
     switch (eInfo.code) {
       case 401:
         UserStore.to.onLogout();
@@ -123,34 +126,43 @@ class HttpUtil {
       case DioErrorType.cancel:
         {
           try {
-            int errCode = error.response != null ? error.response!.statusCode! : -1;
+            int errCode =
+                error.response != null ? error.response!.statusCode! : -1;
             // String errMsg = error.response.statusMessage;
             // return ErrorEntity(code: errCode, message: errMsg);
             switch (errCode) {
               case 400:
-                return ErrorEntity(code: errCode, message: "Request syntax error");
+                return ErrorEntity(
+                    code: errCode, message: "Request syntax error");
               case 401:
                 return ErrorEntity(code: errCode, message: "Unauthorized");
               case 403:
-                return ErrorEntity(code: errCode, message: "Server refuses to execute");
+                return ErrorEntity(
+                    code: errCode, message: "Server refuses to execute");
               case 404:
-                return ErrorEntity(code: errCode, message: "Cannot connect to server");
+                return ErrorEntity(
+                    code: errCode, message: "Cannot connect to server");
               case 405:
-                return ErrorEntity(code: errCode, message: "Request method forbidden");
+                return ErrorEntity(
+                    code: errCode, message: "Request method forbidden");
               case 500:
-                return ErrorEntity(code: errCode, message: "Internal server error");
+                return ErrorEntity(
+                    code: errCode, message: "Internal server error");
               case 502:
                 return ErrorEntity(code: errCode, message: "Invalid request");
               case 503:
                 return ErrorEntity(code: errCode, message: "Server is down");
               case 505:
-                return ErrorEntity(code: errCode, message: "HTTP protocol not supported");
+                return ErrorEntity(
+                    code: errCode, message: "HTTP protocol not supported");
               default:
                 {
                   // return ErrorEntity(code: errCode, message: "Unknown error");
                   return ErrorEntity(
                     code: errCode,
-                    message: error.response != null ? error.response!.statusMessage! : "",
+                    message: error.response != null
+                        ? error.response!.statusMessage!
+                        : "",
                   );
                 }
             }
@@ -191,15 +203,15 @@ class HttpUtil {
   /// cacheKey: Cache key
   /// cacheDisk: Whether to cache on disk
   Future get(
-      String path, {
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-        bool refresh = false,
-        bool noCache = !CACHE_ENABLE,
-        bool list = false,
-        String cacheKey = '',
-        bool cacheDisk = false,
-      }) async {
+    String path, {
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    bool refresh = false,
+    bool noCache = !CACHE_ENABLE,
+    bool list = false,
+    String cacheKey = '',
+    bool cacheDisk = false,
+  }) async {
     Options requestOptions = options ?? Options();
     if (requestOptions.extra == null) {
       requestOptions.extra = Map();
@@ -228,11 +240,11 @@ class HttpUtil {
 
   /// RESTful POST operation
   Future post(
-      String path, {
-        dynamic data,
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-      }) async {
+    String path, {
+    dynamic data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+  }) async {
     Options requestOptions = options ?? Options();
     requestOptions.headers = requestOptions.headers ?? {};
     Map<String, dynamic>? authorization = getAuthorizationHeader();
@@ -251,11 +263,11 @@ class HttpUtil {
 
   /// RESTful PUT operation
   Future put(
-      String path, {
-        dynamic data,
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-      }) async {
+    String path, {
+    dynamic data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+  }) async {
     Options requestOptions = options ?? Options();
     requestOptions.headers = requestOptions.headers ?? {};
     Map<String, dynamic>? authorization = getAuthorizationHeader();
@@ -274,11 +286,11 @@ class HttpUtil {
 
   /// RESTful PATCH operation
   Future patch(
-      String path, {
-        dynamic data,
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-      }) async {
+    String path, {
+    dynamic data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+  }) async {
     Options requestOptions = options ?? Options();
     requestOptions.headers = requestOptions.headers ?? {};
     Map<String, dynamic>? authorization = getAuthorizationHeader();
@@ -297,11 +309,11 @@ class HttpUtil {
 
   /// RESTful DELETE operation
   Future delete(
-      String path, {
-        dynamic data,
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-      }) async {
+    String path, {
+    dynamic data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+  }) async {
     Options requestOptions = options ?? Options();
     requestOptions.headers = requestOptions.headers ?? {};
     Map<String, dynamic>? authorization = getAuthorizationHeader();
@@ -320,11 +332,11 @@ class HttpUtil {
 
   /// RESTful POST form submission operation
   Future postForm(
-      String path, {
-        dynamic data,
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-      }) async {
+    String path, {
+    dynamic data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+  }) async {
     Options requestOptions = options ?? Options();
     requestOptions.headers = requestOptions.headers ?? {};
     Map<String, dynamic>? authorization = getAuthorizationHeader();
@@ -343,12 +355,12 @@ class HttpUtil {
 
   /// RESTful POST Stream data
   Future postStream(
-      String path, {
-        dynamic data,
-        int dataLength = 0,
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-      }) async {
+    String path, {
+    dynamic data,
+    int dataLength = 0,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+  }) async {
     Options requestOptions = options ?? Options();
     requestOptions.headers = requestOptions.headers ?? {};
     Map<String, dynamic>? authorization = getAuthorizationHeader();

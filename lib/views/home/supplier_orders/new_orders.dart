@@ -25,8 +25,6 @@ class NewOrders extends HookWidget {
     late final StreamSubscription listenerSubscription;
 
     controller.setOnStatusChangeCallback(refetch);
-    //reload if there is new notifications on order page
-    // Register the listener to refetch on triggerReload
     useEffect(() {
       listenerSubscription = controller.triggerReload.listen((_) {
         refetch();
@@ -40,8 +38,8 @@ class NewOrders extends HookWidget {
     }, [controller.triggerReload]);
 
     if (isLoading) {
-      return const FoodsListShimmer();
-    } else if (orders==null) {
+      return const itemsListShimmer();
+    } else if (orders == null) {
       return const EmptyPage();
     }
 

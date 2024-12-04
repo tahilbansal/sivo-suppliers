@@ -20,7 +20,6 @@ import 'package:intl/intl.dart';
 class SalesData extends HookWidget {
   SalesData({Key? key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
     final box = GetStorage();
@@ -40,13 +39,19 @@ class SalesData extends HookWidget {
     if (isLoading) {
       return Scaffold(
         appBar: CommonAppBar(titleText: "Sales data"),
-        body: const Center(child: CircularProgressIndicator(color: kPrimary,)),
+        body: const Center(
+            child: CircularProgressIndicator(
+          color: kPrimary,
+        )),
       );
     }
-    if(orders!.isEmpty){
+    if (orders!.isEmpty) {
       return Scaffold(
         appBar: CommonAppBar(titleText: "You don't have sales"),
-        body: const Center(child: CircularProgressIndicator(color: kPrimary,)),
+        body: const Center(
+            child: CircularProgressIndicator(
+          color: kPrimary,
+        )),
       );
     }
 
@@ -69,12 +74,12 @@ class SalesData extends HookWidget {
             value: selectedChartType.value,
             items: <String>['Daily', 'Monthly', 'Yearly']
                 .map((String value) => DropdownMenuItem<String>(
-              value: value,
-              child: Text(
-                value,
-                style: const TextStyle(color: kOffWhite),
-              ),
-            ))
+                      value: value,
+                      child: Text(
+                        value,
+                        style: const TextStyle(color: kOffWhite),
+                      ),
+                    ))
                 .toList(),
             onChanged: (String? newValue) {
               selectedChartType.value = newValue!;
@@ -94,8 +99,8 @@ class SalesData extends HookWidget {
                 children: [
                   ReusableText(
                       text: supplier!.title,
-                      style: appStyle(
-                          kFontSizeBodyLarge, kGray, FontWeight.w600)),
+                      style:
+                          appStyle(kFontSizeBodyLarge, kGray, FontWeight.w600)),
                   CircleAvatar(
                     radius: 15.r,
                     backgroundColor: kGray,
@@ -118,22 +123,22 @@ class SalesData extends HookWidget {
                 text: selectedChartType.value == "Daily"
                     ? "---Timeline"
                     : selectedChartType.value == "Monthly"
-                    ? "---Months"
-                    : "---Years",
+                        ? "---Months"
+                        : "---Years",
               ),
               dateFormat: selectedChartType.value == "Daily"
                   ? DateFormat('yyyy-MM-dd')
                   : selectedChartType.value == "Monthly"
-                  ? DateFormat('yyyy-MM')
-                  : DateFormat('yyyy'),
+                      ? DateFormat('yyyy-MM')
+                      : DateFormat('yyyy'),
               // Change format based on selection
               majorGridLines: const MajorGridLines(width: 0),
               edgeLabelPlacement: EdgeLabelPlacement.shift,
               intervalType: selectedChartType.value == "Daily"
                   ? DateTimeIntervalType.days
                   : selectedChartType.value == "Monthly"
-                  ? DateTimeIntervalType.months
-                  : DateTimeIntervalType.years,
+                      ? DateTimeIntervalType.months
+                      : DateTimeIntervalType.years,
               // Change interval type based on selection
               interval: 1, // Set interval to 1 day, month, or year
             ),
@@ -141,8 +146,8 @@ class SalesData extends HookWidget {
                 text: selectedChartType.value == "Daily"
                     ? 'Daily Sales Analysis'
                     : selectedChartType.value == "Monthly"
-                    ? 'Monthly Sales Analysis'
-                    : 'Yearly Sales Analysis'),
+                        ? 'Monthly Sales Analysis'
+                        : 'Yearly Sales Analysis'),
             legend: Legend(isVisible: true),
             tooltipBehavior: TooltipBehavior(enable: true),
             series: <CartesianSeries<DailySalesData, DateTime>>[

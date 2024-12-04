@@ -9,7 +9,6 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 
-
 // Custom Hook
 FetchHook useFetchFood() {
   final box = GetStorage();
@@ -23,8 +22,8 @@ FetchHook useFetchFood() {
 
     isLoading.value = true;
     try {
-      final response = await http.get(
-          Uri.parse('${Environment.appBaseUrl}/api/items/supplier-items/$supplierId'));
+      final response = await http.get(Uri.parse(
+          '${Environment.appBaseUrl}/api/items/supplier-items/$supplierId'));
 
       if (response.statusCode == 200) {
         items.value = itemFromJson(response.body);

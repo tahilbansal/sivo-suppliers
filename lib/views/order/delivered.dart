@@ -56,12 +56,23 @@ class DeliveredPage extends StatelessWidget {
                     color: kLightWhite,
                     borderRadius: BorderRadius.circular(10.r),
                   ),
-                  child:  Column(
+                  child: Column(
                     children: [
-                      RowText(first: "Order Number", second: controller.order!.id, color: kDark,),
-                      RowText(first: "Recipient No.", second: controller.order!.userId!.phone, color: kDark),
-                      const RowText(first: "Rating", second: '⭐ 5.0', color: kDark),
-                       RowText(first: "Earnings", second: "\$ ${controller.order!.deliveryFee}", color: kDark),
+                      RowText(
+                        first: "Order Number",
+                        second: controller.order!.id,
+                        color: kDark,
+                      ),
+                      RowText(
+                          first: "Recipient No.",
+                          second: controller.order!.userId!.phone,
+                          color: kDark),
+                      const RowText(
+                          first: "Rating", second: '⭐ 5.0', color: kDark),
+                      RowText(
+                          first: "Earnings",
+                          second: "\$ ${controller.order!.deliveryFee}",
+                          color: kDark),
                     ],
                   ),
                 )

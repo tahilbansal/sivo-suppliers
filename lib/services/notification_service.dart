@@ -23,14 +23,13 @@ class NotificationService {
         onDidReceiveNotificationResponse: (data) {
       try {
         if (data.payload!.isNotEmpty) {
-           navigatorKey.currentState
+          navigatorKey.currentState
               ?.pushNamed('/order_details_page', arguments: data);
         } else {
           //  Get.toNamed(RouteHelper.getNotificationRoute());
         }
       } catch (e) {}
     });
-
 
     await _messaging.requestPermission(
       alert: true,
@@ -58,22 +57,21 @@ class NotificationService {
       return;
     }
   }
-  int x=0;
+
+  int x = 0;
 
   void initPushNotification() {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-
       controller.newOrdersController.setTriggerReload();
       print(
           "onMessage: ${message.notification?.title}/${message.notification?.body}/${message.notification?.titleLocKey}");
-      
+
       String orderData = jsonEncode(message.data);
       showBigTextNotification(
           message.notification!.body!,
           message.notification!.title!,
           orderData,
           flutterLocalNotificationsPlugin);
-     
     });
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       print(

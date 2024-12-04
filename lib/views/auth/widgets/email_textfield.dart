@@ -11,7 +11,8 @@ class EmailTextField extends StatelessWidget {
     this.controller,
     this.hintText,
     this.focusNode,
-    this.initialValue, this.maxLines,
+    this.initialValue,
+    this.maxLines,
   }) : super(key: key);
   final String? hintText;
   final Widget? prefixIcon;
@@ -44,7 +45,7 @@ class EmailTextField extends StatelessWidget {
           prefixIcon: prefixIcon,
           isDense: true,
           contentPadding: const EdgeInsets.all(0),
-          
+
           hintStyle: appStyle(12, kGray, FontWeight.normal),
           // contentPadding: EdgeInsets.only(left: 24),
           errorBorder: const OutlineInputBorder(

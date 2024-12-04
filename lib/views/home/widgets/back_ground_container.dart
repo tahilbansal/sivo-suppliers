@@ -4,7 +4,9 @@ import 'package:rivus_supplier/constants/constants.dart';
 
 class BackGroundContainer extends StatelessWidget {
   const BackGroundContainer({
-    super.key, required this.child, this.color,
+    super.key,
+    required this.child,
+    this.color,
   });
 
   final Widget child;
@@ -15,17 +17,16 @@ class BackGroundContainer extends StatelessWidget {
     return Container(
       width: width,
       height: hieght,
-
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(0.r),
           topRight: Radius.circular(0.r),
         ),
-        image: const DecorationImage(
-            image: AssetImage('assets/images/restaurant_bk.png'),
-            fit: BoxFit.cover,
-            opacity: 0.5),
+        // image: const DecorationImage(
+        //     image: AssetImage('assets/images/restaurant_bk.png'),
+        //     fit: BoxFit.cover,
+        //     opacity: 0.5),
       ),
       child: child,
     );

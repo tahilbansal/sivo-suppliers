@@ -23,54 +23,52 @@ class WaitingPage extends StatelessWidget {
     supplierController.supplier = controller.getSupplierData(id);
     return Scaffold(
       body: BackGroundContainer(
-        color: Colors.white,
+          color: Colors.white,
           child: Padding(
-        padding: EdgeInsets.fromLTRB(24.w, 200.h, 24.w, 0),
-        child: ListView(
-          children: [
-            Lottie.asset('assets/anime/delivery.json'),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            padding: EdgeInsets.fromLTRB(24.w, 200.h, 24.w, 0),
+            child: ListView(
               children: [
-                ReusableText(
-                text: "Status: ${supplierController.supplier!.verification}",
-                style: appStyle(14, kGray, FontWeight.bold)),
-
-                GestureDetector(
-                  onTap: () {
-                    Get.to(
-                      () => const Login(),
-                    );
-                  },
-                  child: ReusableText(
-                      text: "Try Login",
-                      style: appStyle(14, kTertiary, FontWeight.bold)),
+                Lottie.asset('assets/anime/delivery.json'),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ReusableText(
+                        text:
+                            "Status: ${supplierController.supplier!.verification}",
+                        style: appStyle(14, kGray, FontWeight.bold)),
+                    GestureDetector(
+                      onTap: () {
+                        Get.to(
+                          () => const Login(),
+                        );
+                      },
+                      child: ReusableText(
+                          text: "Try Login",
+                          style: appStyle(14, kTertiary, FontWeight.bold)),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 10.h,
+                ),
+                SizedBox(
+                  width: width * 0.8,
+                  child: Text(
+                    supplierController.supplier!.verificationMessage,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.normal,
+                      fontSize: 12,
+                      color: kGray,
+                    ),
+                    textAlign: TextAlign.justify,
+                  ),
+                ),
+                SizedBox(
+                  height: 10.h,
                 ),
               ],
             ),
-            
-            SizedBox(
-              height: 10.h,
-            ),
-            SizedBox(
-              width: width * 0.8,
-              child: Text(
-                supplierController.supplier!.verificationMessage,
-                style: const TextStyle(
-                  fontWeight: FontWeight.normal,
-                  fontSize: 12,
-                  color: kGray,
-                ),
-                textAlign: TextAlign.justify,
-              ),
-            ),
-            SizedBox(
-              height: 10.h,
-            ),
-            
-          ],
-        ),
-      )),
+          )),
     );
   }
 }

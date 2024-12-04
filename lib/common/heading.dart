@@ -6,10 +6,10 @@ import 'package:rivus_supplier/constants/constants.dart';
 
 // ignore: must_be_immutable
 class HomeHeading extends StatelessWidget {
-   HomeHeading({super.key, required this.heading,  this.supplier});
+  HomeHeading({super.key, required this.heading, this.supplier});
 
   final String heading;
-   bool? supplier;
+  bool? supplier;
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +24,13 @@ class HomeHeading extends StatelessWidget {
             child: ReusableText(
                 text: heading, style: appStyle(16, kDark, FontWeight.bold)),
           ),
-            supplier == true || supplier != null ? const SizedBox.shrink(): const Icon(
-            AntDesign.appstore1,
-            size: 20,
-            color: kSecondary,
-          )
+          supplier == true || supplier != null
+              ? const SizedBox.shrink()
+              : const Icon(
+                  AntDesign.appstore1,
+                  size: 20,
+                  color: kSecondary,
+                )
         ],
       ),
     );

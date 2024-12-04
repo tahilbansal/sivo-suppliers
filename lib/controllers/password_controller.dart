@@ -11,5 +11,4 @@ class PasswordController extends GetxController {
   set setPassword(bool newValue) {
     _password.value = newValue;
   }
-
 }

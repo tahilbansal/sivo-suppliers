@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:rivus_supplier/constants/constants.dart';
 import 'package:rivus_supplier/models/api_error.dart';
 import 'package:rivus_supplier/models/environment.dart';
+import 'package:rivus_supplier/models/price_visibility.dart';
 import 'package:rivus_supplier/models/supplier_response.dart';
 import 'package:rivus_supplier/models/status.dart';
 import 'package:rivus_supplier/models/sucess_model.dart';
@@ -31,6 +32,16 @@ class SupplierController extends GetxController {
   set setStatus(bool newValue) {
     _status.value = newValue;
     refetch.value = newValue;
+  }
+
+  RxBool _priceVisibility = false.obs;
+
+  bool get priceVisibility => _priceVisibility.value;
+
+  set setPriceVisibility(bool newValue) {
+    _priceVisibility.value = newValue;
+    box.write("price_visibility", newValue);
+    //refetch.value = newValue;
   }
 
   var refetch = false.obs;
@@ -111,7 +122,7 @@ class SupplierController extends GetxController {
     String token = box.read('token');
     String accessToken = jsonDecode(token);
     String? supplierId = box.read('supplierId');
-    if(supplierId==null){
+    if (supplierId == null) {
       print("I am null...................");
     }
     setLoading = true;
@@ -129,6 +140,41 @@ class SupplierController extends GetxController {
         Status data = statusFromJson(response.body);
         box.write("status", data.isAvailable);
         setStatus = data.isAvailable;
+      } else {
+        var data = apiErrorFromJson(response.body);
+        Get.snackbar(data.message, "Failed to toggle status, please try again",
+            colorText: kLightWhite,
+            backgroundColor: kRed,
+            icon: const Icon(Icons.error));
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  void supplierPriceVisibility() async {
+    String token = box.read('token');
+    String accessToken = jsonDecode(token);
+    String? supplierId = box.read('supplierId');
+    if (supplierId == null) {
+      print("I am null...................");
+    }
+    setLoading = true;
+    var url = Uri.parse(
+        '${Environment.appBaseUrl}/api/supplier/price_visibility/$supplierId');
+    try {
+      var response = await http.patch(
+        url,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $accessToken',
+        },
+      );
+
+      if (response.statusCode == 200) {
+        PriceVisibility data = priceVisibilityFromJson(response.body);
+        box.write("price_visibility", data.showItemPrice);
+        setPriceVisibility = data.showItemPrice;
       } else {
         var data = apiErrorFromJson(response.body);
         Get.snackbar(data.message, "Failed to toggle status, please try again",

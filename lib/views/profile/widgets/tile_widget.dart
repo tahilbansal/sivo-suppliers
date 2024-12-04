@@ -23,7 +23,8 @@ class DbestTilesWidget extends StatelessWidget {
       leading: Icon(leading, color: kGray),
       title: Text(
         title,
-        style: appStyle(kFontSizeBodyRegular, kGray, FontWeight.normal), // Use predefined font size
+        style: appStyle(kFontSizeBodyRegular, kGray,
+            FontWeight.normal), // Use predefined font size
       ),
       trailing: const Icon(
         AntDesign.right,

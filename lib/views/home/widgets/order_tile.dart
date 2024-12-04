@@ -49,11 +49,11 @@ class OrderTile extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         controller.order = order;
-        controller.setDistance = distanceToSupplier + distanceFromSupplierToClient;
+        controller.setDistance =
+            distanceToSupplier + distanceFromSupplierToClient;
         Get.to(() => const ActivePage(),
-          transition: Transition.fadeIn,
-          duration: const Duration(milliseconds: 500)
-        );
+            transition: Transition.fadeIn,
+            duration: const Duration(milliseconds: 500));
         activeOrder = const ActivePage();
       },
       child: Stack(
@@ -63,8 +63,12 @@ class OrderTile extends StatelessWidget {
             margin: const EdgeInsets.only(bottom: 8),
             height: 90.h,
             width: width,
-            decoration:  BoxDecoration(
-                color: controller.order == null? kOffWhite : controller.order!.id == order.id ? kSecondaryLight : kOffWhite,
+            decoration: BoxDecoration(
+                color: controller.order == null
+                    ? kOffWhite
+                    : controller.order!.id == order.id
+                        ? kSecondaryLight
+                        : kOffWhite,
                 borderRadius: const BorderRadius.all(Radius.circular(9))),
             child: Container(
               padding: const EdgeInsets.all(4),
@@ -74,13 +78,12 @@ class OrderTile extends StatelessWidget {
                   ClipRRect(
                     borderRadius: const BorderRadius.all(Radius.circular(12)),
                     child: SizedBox(
-                      height: 70.h,
-                      width: 60.h,
-                      child: Image.network(
-                        order.userId!.profile,
-                        fit: BoxFit.cover,
-                      )
-                    ),
+                        height: 70.h,
+                        width: 60.h,
+                        child: Image.network(
+                          order.userId!.profile,
+                          fit: BoxFit.cover,
+                        )),
                   ),
                   const SizedBox(
                     width: 10,
@@ -94,11 +97,12 @@ class OrderTile extends StatelessWidget {
                       ),
                       ReusableText(
                           text: order.userId?.username ?? 'Unknown User',
-                          style: appStyle(kFontSizeBodySmall, kGray, FontWeight.w500)),
+                          style: appStyle(
+                              kFontSizeBodySmall, kGray, FontWeight.w500)),
+                      OrderRowText(text: "🍲 Order : ${order.id}"),
                       OrderRowText(
-                          text: "🍲 Order : ${order.id}"),
-                      OrderRowText(
-                          text: "🏠 ${order.deliveryAddress!.addressLine1.substring(0,40)}"),
+                          text:
+                              "🏠 ${order.deliveryAddress!.addressLine1.substring(0, 40)}"),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -112,11 +116,13 @@ class OrderTile extends StatelessWidget {
                                     : const Color(0xFFFFFFFF),
                                 borderRadius: BorderRadius.circular(10)),
                             child: ReusableText(
-                                text: "To 📌 ${distanceToSupplier.toStringAsFixed(2)} km",
+                                text:
+                                    "To 📌 ${distanceToSupplier.toStringAsFixed(2)} km",
                                 style: appStyle(
                                     kFontSizeSubtext,
                                     active == 'ready'
-                                        ? const Color(0xFFFFFFFF) : kGray,
+                                        ? const Color(0xFFFFFFFF)
+                                        : kGray,
                                     FontWeight.w400)),
                           ),
                           Container(
@@ -128,9 +134,13 @@ class OrderTile extends StatelessWidget {
                                     : const Color(0xFFFFFFFF),
                                 borderRadius: BorderRadius.circular(10)),
                             child: ReusableText(
-                                text: "From 📌 To 🏠 ${distanceFromSupplierToClient.toStringAsFixed(2)} km",
-                                style: appStyle(9,
-                                    active == 'active' ? const Color(0xFFFFFFFF) : kGray,
+                                text:
+                                    "From 📌 To 🏠 ${distanceFromSupplierToClient.toStringAsFixed(2)} km",
+                                style: appStyle(
+                                    9,
+                                    active == 'active'
+                                        ? const Color(0xFFFFFFFF)
+                                        : kGray,
                                     FontWeight.w400)),
                           ),
                           // Container(
@@ -149,7 +159,7 @@ class OrderTile extends StatelessWidget {
               ),
             ),
           ),
-         Positioned(
+          Positioned(
               right: 10.h,
               top: 6.h,
               child: ClipRRect(
@@ -181,6 +191,7 @@ class OrderRowText extends StatelessWidget {
     return SizedBox(
         width: width / 1.6,
         child: ReusableText(
-            text: text, style: appStyle(kFontSizeSubtext, kGray, FontWeight.w400)));
+            text: text,
+            style: appStyle(kFontSizeSubtext, kGray, FontWeight.w400)));
   }
 }

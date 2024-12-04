@@ -4,26 +4,29 @@ import 'package:rivus_supplier/common/app_style.dart';
 import 'package:rivus_supplier/common/reusable_text.dart';
 import 'package:rivus_supplier/common/shimmers/foodlist_shimmer.dart';
 import 'package:rivus_supplier/constants/constants.dart';
-import 'package:rivus_supplier/controllers/foods_controller.dart';
+import 'package:rivus_supplier/controllers/items_controller.dart';
 import 'package:rivus_supplier/hooks/fetchAllCategories.dart';
 import 'package:rivus_supplier/models/categories.dart';
 import 'package:rivus_supplier/views/home/widgets/back_ground_container.dart';
 import 'package:get/get.dart';
 
 class AllCategories extends HookWidget {
-  const AllCategories({super.key, required this.next, });
+  const AllCategories({
+    super.key,
+    required this.next,
+  });
 
   final Function() next;
 
   @override
   Widget build(BuildContext context) {
-    final foodsController = Get.put(FoodsController());
+    final foodsController = Get.put(ItemsController());
     final hookResult = useFetchAllCategories();
     final categories = hookResult.data;
     final isLoading = hookResult.isLoading;
 
     return isLoading
-        ? const FoodsListShimmer()
+        ? const itemsListShimmer()
         : BackGroundContainer(
             child: Container(
               padding: const EdgeInsets.only(
@@ -38,12 +41,14 @@ class AllCategories extends HookWidget {
                       children: [
                         ReusableText(
                           text: "Pick Category",
-                          style: appStyle(kFontSizeBodyRegular, kGray, FontWeight.w600),
+                          style: appStyle(
+                              kFontSizeBodyRegular, kGray, FontWeight.w600),
                         ),
                         ReusableText(
                           text:
                               "You are required to pick a category for your food item",
-                          style: appStyle(kFontSizeSubtext, kGray, FontWeight.normal),
+                          style: appStyle(
+                              kFontSizeSubtext, kGray, FontWeight.normal),
                         ),
                       ],
                     ),
@@ -71,7 +76,8 @@ class AllCategories extends HookWidget {
                             ),
                             title: ReusableText(
                                 text: category.title,
-                                style: appStyle(kFontSizeBodySmall, kGray, FontWeight.normal)),
+                                style: appStyle(kFontSizeBodySmall, kGray,
+                                    FontWeight.normal)),
                             trailing: const Icon(
                               Icons.arrow_forward_ios_rounded,
                               color: kGray,
@@ -80,7 +86,6 @@ class AllCategories extends HookWidget {
                           );
                         }),
                   ),
-                  
                 ],
               ),
             ),

@@ -154,7 +154,7 @@ class ImageUploadController extends GetxController {
             .child(fileName)
             .putFile(imageTwo.value!);
         imageTwoUrl = await snapshot.ref.getDownloadURL();
-        images.add(imageTwoUrl);  
+        images.add(imageTwoUrl);
       } catch (e) {
         debugPrint("Error uploading");
       }

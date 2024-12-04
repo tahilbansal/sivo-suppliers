@@ -6,18 +6,17 @@ import 'dart:convert';
 
 Status statusFromJson(String str) => Status.fromJson(json.decode(str));
 
-
 class Status {
-    final String message;
-    final bool isAvailable;
+  final String message;
+  final bool isAvailable;
 
-    Status({
-        required this.message,
-        required this.isAvailable,
-    });
+  Status({
+    required this.message,
+    required this.isAvailable,
+  });
 
-    factory Status.fromJson(Map<String, dynamic> json) => Status(
+  factory Status.fromJson(Map<String, dynamic> json) => Status(
         message: json["message"],
         isAvailable: json["isAvailable"],
-    );
+      );
 }

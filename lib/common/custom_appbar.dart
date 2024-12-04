@@ -101,10 +101,10 @@ class CustomAppBar extends StatelessWidget {
                     GestureDetector(
                       onTap: id != null
                           ? () {
-                        Get.to(() => const ProfilePage(),
-                            transition: Transition.cupertino,
-                            duration: const Duration(milliseconds: 900));
-                      }
+                              Get.to(() => const ProfilePage(),
+                                  transition: Transition.cupertino,
+                                  duration: const Duration(milliseconds: 900));
+                            }
                           : null,
                       child: CircleAvatar(
                         radius: 16.r,
@@ -125,21 +125,21 @@ class CustomAppBar extends StatelessWidget {
                               text: heading != null
                                   ? heading!
                                   : supplierController.supplier == null
-                                  ? ""
-                                  : supplierController.supplier!.title,
-                              style: appStyle(
-                                  13.sp, kSecondary, FontWeight.w600)),
+                                      ? ""
+                                      : supplierController.supplier!.title,
+                              style:
+                                  appStyle(13.sp, kSecondary, FontWeight.w600)),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.65,
                             child: ReusableText(
                                 text: title != null
                                     ? title!
                                     : supplierController.supplier == null
-                                    ? ""
-                                    : supplierController
-                                    .supplier!.coords.address,
-                                style: appStyle(
-                                    11.sp, kGray, FontWeight.normal)),
+                                        ? ""
+                                        : supplierController
+                                            .supplier!.coords.address,
+                                style:
+                                    appStyle(11.sp, kGray, FontWeight.normal)),
                           )
                         ],
                       ),
@@ -149,7 +149,7 @@ class CustomAppBar extends StatelessWidget {
                 GestureDetector(
                   onTap: id != null ? onTap : null,
                   child: Obx(
-                        () => SvgPicture.asset(
+                    () => SvgPicture.asset(
                       supplierController.status
                           ? 'assets/icons/open_sign.svg'
                           : 'assets/icons/closed_sign.svg',
@@ -162,18 +162,18 @@ class CustomAppBar extends StatelessWidget {
             ),
             type != true
                 ? Positioned(
-                top: 45.h,
-                left: 0,
-                child: GestureDetector(
-                  onTap: () {
-                    Get.back();
-                  },
-                  child: const Icon(
-                    AntDesign.closecircle,
-                    color: kRed,
-                    size: 18,
-                  ),
-                ))
+                    top: 45.h,
+                    left: 0,
+                    child: GestureDetector(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: const Icon(
+                        AntDesign.closecircle,
+                        color: kRed,
+                        size: 18,
+                      ),
+                    ))
                 : const SizedBox.shrink(),
             if (id != null)
               StreamBuilder<Map<String, dynamic>>(
@@ -205,7 +205,7 @@ class CustomAppBar extends StatelessWidget {
                         outForDeliveryController.refetch.value = true;
                         Future.delayed(
                           const Duration(seconds: 5),
-                              () {
+                          () {
                             outForDeliveryController.refetch.value = false;
                           },
                         );
@@ -213,7 +213,7 @@ class CustomAppBar extends StatelessWidget {
                         pickedController.refetch.value = true;
                         Future.delayed(
                           const Duration(seconds: 5),
-                              () {
+                          () {
                             pickedController.refetch.value = false;
                           },
                         );
@@ -221,7 +221,7 @@ class CustomAppBar extends StatelessWidget {
                         newOrderController.refetch.value = true;
                         Future.delayed(
                           const Duration(seconds: 5),
-                              () {
+                          () {
                             newOrderController.refetch.value = false;
                           },
                         );

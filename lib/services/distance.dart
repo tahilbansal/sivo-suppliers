@@ -19,7 +19,7 @@ class Distance {
 
     // Radius of the Earth in kilometers
     const double earthRadiusKm = 6371.0;
-    var distance = (earthRadiusKm * 2) * c ;
+    var distance = (earthRadiusKm * 2) * c;
 
     // Calculate time (distance / speed)
     var time = distance / speedKmPerHr;

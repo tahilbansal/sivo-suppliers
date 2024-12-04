@@ -25,7 +25,8 @@ FetchSupplierData fetchSupplier(
     isLoading.value = true;
 
     try {
-      Uri url = Uri.parse('${Environment.appBaseUrl}/api/supplier/statistics/$id');
+      Uri url =
+          Uri.parse('${Environment.appBaseUrl}/api/supplier/statistics/$id');
       final response = await http.get(url);
 
       if (response.statusCode == 200) {

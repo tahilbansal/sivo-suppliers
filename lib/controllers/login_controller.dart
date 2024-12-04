@@ -7,6 +7,7 @@ import 'package:rivus_supplier/constants/constants.dart';
 import 'package:rivus_supplier/controllers/login_response.dart';
 import 'package:rivus_supplier/controllers/notifications_controller.dart';
 import 'package:rivus_supplier/controllers/supplier_controller.dart';
+import 'package:rivus_supplier/entrypoint.dart';
 import 'package:rivus_supplier/main.dart';
 import 'package:rivus_supplier/models/api_error.dart';
 import 'package:rivus_supplier/models/environment.dart';
@@ -53,15 +54,12 @@ class LoginController extends GetxController {
         LoginResponse data = loginResponseFromJson(response.body);
         String userId = data.id;
         String userData = json.encode(data);
-        print("user login id is ${userId}");
         box.write(userId, userData);
         box.write("token", json.encode(data.userToken));
         box.write("userId", json.encode(data.id));
-        print(box.read("userId"));
         box.write("e-verification", data.verification);
         controller.updateUserToken(controller.fcmToken);
 
-        print("${controller.fcmToken} updated successfully");
         if (data.userType == "Vendor") {
           getSupplier(data.userToken);
         } else if (data.verification == false) {
@@ -79,7 +77,6 @@ class LoginController extends GetxController {
           Get.offAll(() => const SupplierRegistration(),
               transition: Transition.fade,
               duration: const Duration(seconds: 2));
-
           defaultHome = const Login();
         }
 
@@ -90,39 +87,40 @@ class LoginController extends GetxController {
             backgroundColor: kPrimary,
             icon: const Icon(Ionicons.fast_food_outline));
 
+        var userbase = await db
+            .collection("users")
+            .withConverter(
+              fromFirestore: UserData.fromFirestore,
+              toFirestore: (UserData userdata, options) =>
+                  userdata.toFirestore(),
+            )
+            .where("id", isEqualTo: userId)
+            .get();
 
-        var userbase = await db.collection("users").withConverter(
-          fromFirestore: UserData.fromFirestore,
-          toFirestore: (UserData userdata, options)=>userdata.toFirestore(),
-        ).where("id", isEqualTo: userId).get();
-
-        if(userbase.docs.isEmpty){
-          print("docs---empty");
+        if (userbase.docs.isEmpty) {
           final data = UserData(
-              id:userId,
+              id: userId,
               name: "",
               email: login.email,
               photourl: "",
               location: "",
               fcmtoken: "",
-              addtime: Timestamp.now()
-
-          );
+              addtime: Timestamp.now());
           try {
-            await db.collection("users").withConverter(
-              fromFirestore: UserData.fromFirestore,
-              toFirestore: (UserData userdata, options) => userdata.toFirestore(),
-            ).add(data);
-
-            print("docs---updated");
+            await db
+                .collection("users")
+                .withConverter(
+                  fromFirestore: UserData.fromFirestore,
+                  toFirestore: (UserData userdata, options) =>
+                      userdata.toFirestore(),
+                )
+                .add(data);
           } catch (e) {
             print("Error adding document: $e");
           }
-          print("docs---updated");
-        }else{
+        } else {
           print("docs---exist");
         }
-
       } else {
         var data = apiErrorFromJson(response.body);
 
@@ -175,6 +173,7 @@ class LoginController extends GetxController {
         supplierController.supplier = supplier;
         box.write("supplierId", supplier.id);
         box.write("verification", supplier.verification);
+        box.write("price_visibility", supplier.showItemPrice);
         box.write(supplier.id, json.encode(supplier));
 
         supplierController.supplier = getSupplierData(supplier.id)!;
@@ -184,7 +183,7 @@ class LoginController extends GetxController {
               transition: Transition.fade,
               duration: const Duration(seconds: 2));
         } else {
-          Get.to(() => const HomePage(),
+          Get.offAll(() => MainScreen(),
               transition: Transition.fade,
               duration: const Duration(seconds: 2));
         }
@@ -195,7 +194,7 @@ class LoginController extends GetxController {
             backgroundColor: kRed,
             icon: const Icon(Ionicons.fast_food_outline));
 
-        Get.offAll(() => const HomePage(),
+        Get.offAll(() => MainScreen(),
             transition: Transition.fade, duration: const Duration(seconds: 2));
       }
     } catch (e) {

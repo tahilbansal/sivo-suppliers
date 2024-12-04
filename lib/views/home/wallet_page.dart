@@ -54,7 +54,7 @@ class _WalletPageState extends State<WalletPage> {
       return Scaffold(
         appBar: CommonAppBar(titleText: "Wallet Page"),
         body: const BackGroundContainer(
-            color: kLightWhite, child: FoodsListShimmer()),
+            color: kLightWhite, child: itemsListShimmer()),
       );
     }
 
@@ -64,7 +64,6 @@ class _WalletPageState extends State<WalletPage> {
       body: BackGroundContainer(
         color: kWhite,
         child: ListView(
-
           children: [
             Container(
               padding: EdgeInsets.symmetric(horizontal: 12.w),
@@ -100,26 +99,26 @@ class _WalletPageState extends State<WalletPage> {
                   payout.isEmpty
                       ? const SizedBox.shrink()
                       : Column(
-                    children: [
-                      RowText(
-                        first: "Latest Request",
-                        second: payout[0]
-                            .createdAt
-                            .toString()
-                            .substring(0, 10),
-                        bold: true,
-                      ),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      RowText(
-                        first: payout[0].id,
-                        second:
-                        "\$ ${payout[0].amount.toStringAsFixed(2)}",
-                        bold: false,
-                      ),
-                    ],
-                  ),
+                          children: [
+                            RowText(
+                              first: "Latest Request",
+                              second: payout[0]
+                                  .createdAt
+                                  .toString()
+                                  .substring(0, 10),
+                              bold: true,
+                            ),
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            RowText(
+                              first: payout[0].id,
+                              second:
+                                  "\$ ${payout[0].amount.toStringAsFixed(2)}",
+                              bold: false,
+                            ),
+                          ],
+                        ),
                   SizedBox(
                     height: 15.h,
                   ),
@@ -133,98 +132,98 @@ class _WalletPageState extends State<WalletPage> {
                     color: kSecondary,
                   ),
                   Obx(
-                        () => controller.payout
+                    () => controller.payout
                         ? Column(
-                      children: [
-                        SizedBox(
-                          height: 15.h,
-                        ),
-                        EmailTextField(
-                          controller: bank,
-                          hintText: "Bank Name",
-                          prefixIcon: Icon(
-                            AntDesign.bank,
-                            color: Theme.of(context).dividerColor,
-                            size: 20.h,
-                          ),
-                          keyboardType: TextInputType.name,
-                        ),
-                        SizedBox(
-                          height: 15.h,
-                        ),
-                        EmailTextField(
-                          controller: name,
-                          hintText: "Account Name",
-                          prefixIcon: Icon(
-                            AntDesign.user,
-                            color: Theme.of(context).dividerColor,
-                            size: 20.h,
-                          ),
-                          keyboardType: TextInputType.name,
-                        ),
-                        SizedBox(
-                          height: 15.h,
-                        ),
-                        EmailTextField(
-                          controller: account,
-                          hintText: "Account Number",
-                          prefixIcon: Icon(
-                            AntDesign.calculator,
-                            color: Theme.of(context).dividerColor,
-                            size: 20.h,
-                          ),
-                          keyboardType: TextInputType.number,
-                        ),
-                        SizedBox(
-                          height: 15.h,
-                        ),
-                        EmailTextField(
-                          controller: amount,
-                          hintText: "Amount",
-                          prefixIcon: Icon(
-                            AntDesign.pay_circle_o1,
-                            color: Theme.of(context).dividerColor,
-                            size: 20.h,
-                          ),
-                          keyboardType: TextInputType.number,
-                        ),
-                        SizedBox(
-                          height: 20.h,
-                        ),
-                        CustomButton(
-                          text: "Submit Payout",
-                          color: kPrimary,
-                          radius: 0,
-                          onTap: () {
-                            PayoutRequest payout = PayoutRequest(
-                                supplier: id,
-                                amount: amount.text,
-                                accountNumber: account.text,
-                                accountName: name.text,
-                                accountBank: bank.text,
-                                method: "bank_transfer");
+                            children: [
+                              SizedBox(
+                                height: 15.h,
+                              ),
+                              EmailTextField(
+                                controller: bank,
+                                hintText: "Bank Name",
+                                prefixIcon: Icon(
+                                  AntDesign.bank,
+                                  color: Theme.of(context).dividerColor,
+                                  size: 20.h,
+                                ),
+                                keyboardType: TextInputType.name,
+                              ),
+                              SizedBox(
+                                height: 15.h,
+                              ),
+                              EmailTextField(
+                                controller: name,
+                                hintText: "Account Name",
+                                prefixIcon: Icon(
+                                  AntDesign.user,
+                                  color: Theme.of(context).dividerColor,
+                                  size: 20.h,
+                                ),
+                                keyboardType: TextInputType.name,
+                              ),
+                              SizedBox(
+                                height: 15.h,
+                              ),
+                              EmailTextField(
+                                controller: account,
+                                hintText: "Account Number",
+                                prefixIcon: Icon(
+                                  AntDesign.calculator,
+                                  color: Theme.of(context).dividerColor,
+                                  size: 20.h,
+                                ),
+                                keyboardType: TextInputType.number,
+                              ),
+                              SizedBox(
+                                height: 15.h,
+                              ),
+                              EmailTextField(
+                                controller: amount,
+                                hintText: "Amount",
+                                prefixIcon: Icon(
+                                  AntDesign.pay_circle_o1,
+                                  color: Theme.of(context).dividerColor,
+                                  size: 20.h,
+                                ),
+                                keyboardType: TextInputType.number,
+                              ),
+                              SizedBox(
+                                height: 20.h,
+                              ),
+                              CustomButton(
+                                text: "Submit Payout",
+                                color: kPrimary,
+                                radius: 0,
+                                onTap: () {
+                                  PayoutRequest payout = PayoutRequest(
+                                      supplier: id,
+                                      amount: amount.text,
+                                      accountNumber: account.text,
+                                      accountName: name.text,
+                                      accountBank: bank.text,
+                                      method: "bank_transfer");
 
-                            String data = payoutRequestToJson(payout);
+                                  String data = payoutRequestToJson(payout);
 
-                            double amountDouble =
-                            double.parse(amount.text);
+                                  double amountDouble =
+                                      double.parse(amount.text);
 
-                            if (amountDouble >
-                                (revenueTotal - revenueTotal * 0.1)) {
-                              // insufficient amount
-                              insufficientFunds(context);
-                            } else {
-                              payoutController.payout(data, refetch);
-                              controller.setRequest = !controller.payout;
-                              amount.text = '';
-                              name.text = '';
-                              bank.text = '';
-                              account.text = '';
-                            }
-                          },
-                        )
-                      ],
-                    )
+                                  if (amountDouble >
+                                      (revenueTotal - revenueTotal * 0.1)) {
+                                    // insufficient amount
+                                    insufficientFunds(context);
+                                  } else {
+                                    payoutController.payout(data, refetch);
+                                    controller.setRequest = !controller.payout;
+                                    amount.text = '';
+                                    name.text = '';
+                                    bank.text = '';
+                                    account.text = '';
+                                  }
+                                },
+                              )
+                            ],
+                          )
                         : const SizedBox.shrink(),
                   ),
                 ],
@@ -286,7 +285,6 @@ class RowText extends StatelessWidget {
             bold ? FontWeight.bold : FontWeight.normal,
           ),
         ),
-
         ReusableText(
           text: second,
           style: appStyle(
@@ -299,4 +297,3 @@ class RowText extends StatelessWidget {
     );
   }
 }
-

@@ -24,7 +24,7 @@ class ReadyForDelivery extends HookWidget {
     controller.setOnStatusChangeCallback(refetch);
 
     if (isLoading) {
-      return const FoodsListShimmer();
+      return const itemsListShimmer();
     } else if (orders!.isEmpty) {
       return const EmptyPage();
     }

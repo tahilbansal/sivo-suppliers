@@ -141,7 +141,7 @@ class Statistics extends StatelessWidget {
                       children: [
                         ReusableText(
                           text:
-                          "\$${(revenueTotal - revenueTotal * 0.1).toStringAsFixed(2)}",
+                              "\$${(revenueTotal - revenueTotal * 0.1).toStringAsFixed(2)}",
                           style: appStyle(18.sp, kGray, FontWeight.w600),
                         ),
                         ReusableText(
@@ -160,4 +160,3 @@ class Statistics extends StatelessWidget {
     );
   }
 }
-

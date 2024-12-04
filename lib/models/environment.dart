@@ -7,22 +7,22 @@ class Environment {
       return '.env.production';
     }
 
-      return '.env.development';
+    return '.env.development';
   }
 
   static String get googleApiKey {
     return dotenv.env['GOOGLE_API_KEY'] ?? 'API_KEY not found';
   }
 
-   static String get googleApiKey2 {
+  static String get googleApiKey2 {
     return dotenv.env['GOOGLE_API_KEY2'] ?? 'API_KEY not found';
   }
 
-    static String get appBaseUrl {
+  static String get appBaseUrl {
     return dotenv.env['API_BASE_URL'] ?? 'API_BASE_URL not found';
   }
 
-   static String get paymentUrl {
+  static String get paymentUrl {
     return dotenv.env['PAYMENT_URL'] ?? 'PAYMENT_BASE_URL not found';
   }
 }

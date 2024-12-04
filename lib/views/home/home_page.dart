@@ -12,7 +12,7 @@ import 'package:rivus_supplier/common/utils/show_snackbar.dart';
 import 'package:rivus_supplier/constants/constants.dart';
 import 'package:rivus_supplier/controllers/order_controller.dart';
 import 'package:rivus_supplier/controllers/supplier_controller.dart';
-import 'package:rivus_supplier/views/home/add_foods.dart';
+import 'package:rivus_supplier/views/item/add_items.dart';
 import 'package:rivus_supplier/views/home/catalog_page.dart';
 import 'package:rivus_supplier/views/home/supplier_orders/cancelled_orders.dart';
 import 'package:rivus_supplier/views/home/supplier_orders/picked_orders.dart';
@@ -29,7 +29,6 @@ import 'package:rivus_supplier/views/sales/sales_data.dart';
 import 'package:get/get.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:get_storage/get_storage.dart';
-
 
 class HomePage extends StatefulHookWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -56,7 +55,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           AlertDialog(
             backgroundColor: kWhite,
             title: const Text('Error'),
-            content: const Text('Supplier ID is null. Please set up the supplier correctly.'),
+            content: const Text(
+                'Supplier ID is null. Please set up the supplier correctly.'),
             actions: [
               TextButton(
                 onPressed: () {
@@ -98,75 +98,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             height: MediaQuery.of(context).size.height,
             child: Column(
               children: [
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 12.w),
-                  height: 65.h,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      DbestHomeTile(
-                        imagePath: "assets/icons/catalog-new.svg",
-                        text: "Catalog",
-                        onTap: () {
-                          Get.to(() => const CatalogPage(),
-                              transition: Transition.fadeIn,
-                              duration: const Duration(milliseconds: 400));
-                        },
-                      ),
-                      // DbestHomeTile(
-                      //   imagePath: "assets/icons/foods.svg",
-                      //   text: "Create",
-                      //   onTap: () {
-                      //     Get.to(() => const AddFoodsPage(),
-                      //         transition: Transition.fadeIn,
-                      //         duration: const Duration(milliseconds: 400));
-                      //   },
-                      // ),
-                      DbestHomeTile(
-                        imagePath: "assets/icons/chat.svg",
-                        text: "Chat",
-                        onTap: () async {
-                          var userToken = await GetStorage().read("userId");
-                          if(userToken==null){
-                            showCustomSnackBar("You are not logged in", title: "Login");
-                          }else{
-                            print("chatting page--");
-                            Get.to(() => const MessagePage(),
-                                transition: Transition.fadeIn,
-                                duration: const Duration(milliseconds: 400));
-                          }
-                        },
-                      ),
-                      // DbestHomeTile(
-                      //   imagePath: "assets/icons/wallet.svg",
-                      //   text: "Wallet",
-                      //   onTap: () {
-                      //     Get.to(() => const WalletPage(),
-                      //         transition: Transition.fadeIn,
-                      //         duration: const Duration(milliseconds: 400));
-                      //   },
-                      // ),
-                      DbestHomeTile(
-                        imagePath: "assets/icons/delivery.svg",
-                        text: "Self Delivered",
-                        onTap: () {
-                          Get.to(() => const SelfDeliveredPage(),
-                              transition: Transition.fadeIn,
-                              duration: const Duration(milliseconds: 400));
-                        },
-                      ),
-                      DbestHomeTile(
-                        imagePath: "assets/icons/chart.svg",
-                        text: "Analytics",
-                        onTap: () {
-                          Get.to(() =>  SalesData(),
-                              transition: Transition.fadeIn,
-                              duration: const Duration(milliseconds: 400));
-                        },
-                      ),
-                    ],
-                  ),
-                ),
                 // Container(
                 //   margin: EdgeInsets.symmetric(horizontal: 12.w),
                 //   height: 65.h,
@@ -254,7 +185,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 ),
                 Container(
                   color: Colors.transparent,
-                  height: MediaQuery.of(context).size.height * 0.65,
+                  height: MediaQuery.of(context).size.height * 0.75,
                   child: TabBarView(
                     controller: _tabController,
                     children: const [
@@ -268,6 +199,74 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     ],
                   ),
                 ),
+                // Container(
+                //   margin: EdgeInsets.symmetric(horizontal: 12.w),
+                //   height: 65.h,
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //     children: [
+                //       DbestHomeTile(
+                //         imagePath: "assets/icons/catalog-new.svg",
+                //         text: "Catalog",
+                //         onTap: () {
+                //           Get.to(() => const CatalogPage(),
+                //               transition: Transition.fadeIn,
+                //               duration: const Duration(milliseconds: 400));
+                //         },
+                //       ),
+                //       // DbestHomeTile(
+                //       //   imagePath: "assets/icons/foods.svg",
+                //       //   text: "Create",
+                //       //   onTap: () {
+                //       //     Get.to(() => const AddFoodsPage(),
+                //       //         transition: Transition.fadeIn,
+                //       //         duration: const Duration(milliseconds: 400));
+                //       //   },
+                //       // ),
+                //       DbestHomeTile(
+                //         imagePath: "assets/icons/chat.svg",
+                //         text: "Chat",
+                //         onTap: () async {
+                //           var userToken = await GetStorage().read("userId");
+                //           if(userToken==null){
+                //             showCustomSnackBar("You are not logged in", title: "Login");
+                //           }else{
+                //             Get.to(() => const MessagePage(),
+                //                 transition: Transition.fadeIn,
+                //                 duration: const Duration(milliseconds: 400));
+                //           }
+                //         },
+                //       ),
+                //       // DbestHomeTile(
+                //       //   imagePath: "assets/icons/wallet.svg",
+                //       //   text: "Wallet",
+                //       //   onTap: () {
+                //       //     Get.to(() => const WalletPage(),
+                //       //         transition: Transition.fadeIn,
+                //       //         duration: const Duration(milliseconds: 400));
+                //       //   },
+                //       // ),
+                //       DbestHomeTile(
+                //         imagePath: "assets/icons/delivery.svg",
+                //         text: "Self Delivered",
+                //         onTap: () {
+                //           Get.to(() => const SelfDeliveredPage(),
+                //               transition: Transition.fadeIn,
+                //               duration: const Duration(milliseconds: 400));
+                //         },
+                //       ),
+                //       DbestHomeTile(
+                //         imagePath: "assets/icons/chart.svg",
+                //         text: "Analytics",
+                //         onTap: () {
+                //           Get.to(() =>  SalesData(),
+                //               transition: Transition.fadeIn,
+                //               duration: const Duration(milliseconds: 400));
+                //         },
+                //       ),
+                //     ],
+                //   ),
+                // ),
               ],
             ),
           ),
@@ -310,7 +309,8 @@ class DbestHomeTile extends StatelessWidget {
   }
 }
 
-void showAnimatedDialog(BuildContext context, Widget dialog, {bool isFlip = false, bool dismissible = true}) {
+void showAnimatedDialog(BuildContext context, Widget dialog,
+    {bool isFlip = false, bool dismissible = true}) {
   showGeneralDialog(
     context: context,
     barrierDismissible: dismissible,
@@ -322,9 +322,14 @@ void showAnimatedDialog(BuildContext context, Widget dialog, {bool isFlip = fals
       if (isFlip) {
         return Rotation3DTransition(
           alignment: Alignment.center,
-          turns: Tween<double>(begin: math.pi, end: 2.0 * math.pi).animate(CurvedAnimation(parent: a1, curve: Interval(0.0, 1.0, curve: Curves.linear))),
+          turns: Tween<double>(begin: math.pi, end: 2.0 * math.pi).animate(
+              CurvedAnimation(
+                  parent: a1, curve: Interval(0.0, 1.0, curve: Curves.linear))),
           child: FadeTransition(
-            opacity: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(parent: a1, curve: Interval(0.5, 1.0, curve: Curves.elasticOut))),
+            opacity: Tween<double>(begin: 0.0, end: 1.0).animate(
+                CurvedAnimation(
+                    parent: a1,
+                    curve: Interval(0.5, 1.0, curve: Curves.elasticOut))),
             child: widget,
           ),
         );

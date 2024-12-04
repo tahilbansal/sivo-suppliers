@@ -2,8 +2,7 @@ import 'package:get/get.dart';
 
 import '../../../common/entities/msgcontent.dart';
 
-
-class ChatState{
+class ChatState {
   RxList<Msgcontent> msgcontentList = <Msgcontent>[].obs;
   var to_uid = "".obs;
   var to_name = "".obs;

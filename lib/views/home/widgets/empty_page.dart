@@ -10,11 +10,16 @@ class EmptyPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Padding(
-        padding:  EdgeInsets.all(12.0.h),
+        padding: EdgeInsets.all(12.0.h),
         child: ClipRRect(
-          borderRadius: BorderRadius.all(Radius.circular(20.r),
-          ),
-          child: Image.asset('assets/images/empty.png', width: width, fit: BoxFit.fitWidth,)),
+            borderRadius: BorderRadius.all(
+              Radius.circular(20.r),
+            ),
+            child: Image.asset(
+              'assets/images/empty.png',
+              width: width,
+              fit: BoxFit.fitWidth,
+            )),
       ),
     );
   }

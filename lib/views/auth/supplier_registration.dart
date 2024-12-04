@@ -115,42 +115,43 @@ class _SupplierRegistrationState extends State<SupplierRegistration> {
     }
   }
 
-void _onMarkerDragEnd(LatLng newPosition) async {
-  setState(() {
-    _selectedLocation = newPosition;
-  });
-
-  final reverseGeocodeUrl = Uri.parse(
-      'https://maps.googleapis.com/maps/api/geocode/json?latlng=${newPosition.latitude},${newPosition.longitude}&key=$googleApiKey');
-
-  final response = await http.get(reverseGeocodeUrl);
-
-  if (response.statusCode == 200) {
-    final responseBody = json.decode(response.body);
-
-    // Extracting the formatted address
-    final address = responseBody['results'][0]['formatted_address'];
-
-    // Extracting the postal code
-    String postalCode = "";
-    final addressComponents = responseBody['results'][0]['address_components'];
-    for (var component in addressComponents) {
-      if (component['types'].contains('postal_code')) {
-        postalCode = component['long_name'];
-        break;
-      }
-    }
-
-    // Update the state with the new address and postal code
+  void _onMarkerDragEnd(LatLng newPosition) async {
     setState(() {
-      _searchController.text = address;
-      _postalCodeRes.text = postalCode;
+      _selectedLocation = newPosition;
     });
-  } else {
-    // Handle the error or no result case
-    print('Failed to fetch address');
+
+    final reverseGeocodeUrl = Uri.parse(
+        'https://maps.googleapis.com/maps/api/geocode/json?latlng=${newPosition.latitude},${newPosition.longitude}&key=$googleApiKey');
+
+    final response = await http.get(reverseGeocodeUrl);
+
+    if (response.statusCode == 200) {
+      final responseBody = json.decode(response.body);
+
+      // Extracting the formatted address
+      final address = responseBody['results'][0]['formatted_address'];
+
+      // Extracting the postal code
+      String postalCode = "";
+      final addressComponents =
+          responseBody['results'][0]['address_components'];
+      for (var component in addressComponents) {
+        if (component['types'].contains('postal_code')) {
+          postalCode = component['long_name'];
+          break;
+        }
+      }
+
+      // Update the state with the new address and postal code
+      setState(() {
+        _searchController.text = address;
+        _postalCodeRes.text = postalCode;
+      });
+    } else {
+      // Handle the error or no result case
+      print('Failed to fetch address');
+    }
   }
-}
 
   String supplierAddress = "";
   final TextEditingController _title = TextEditingController();
@@ -393,7 +394,6 @@ void _onMarkerDragEnd(LatLng newPosition) async {
                   SizedBox(
                     height: 20.h,
                   ),
-                 
                   EmailTextField(
                     hintText: "Address",
                     controller: _searchController,
@@ -416,8 +416,8 @@ void _onMarkerDragEnd(LatLng newPosition) async {
 
                       if (_title.text.isNotEmpty &&
                           _time.text.isNotEmpty &&
-                         _postalCodeRes.text.isNotEmpty&&
-                         _searchController.text.isNotEmpty &&
+                          _postalCodeRes.text.isNotEmpty &&
+                          _searchController.text.isNotEmpty &&
                           imageUploader.logoUrl.isNotEmpty &&
                           imageUploader.coverUrl.isNotEmpty &&
                           _selectedLocation != null) {

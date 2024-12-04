@@ -1,12 +1,11 @@
 import 'package:get/get.dart';
 
 class NewOrdersController extends GetxController {
-
   var refetch = false.obs;
 
   // Function to be called when status changes
   Function? onStatusChange;
-  RxInt triggerReload=0.obs;
+  RxInt triggerReload = 0.obs;
   @override
   void onInit() {
     super.onInit();
@@ -31,7 +30,7 @@ class NewOrdersController extends GetxController {
     super.onClose();
   }
 
-  void setTriggerReload(){
+  void setTriggerReload() {
     print("Reloading new orders tab ${triggerReload.value}");
 
     triggerReload.value++;

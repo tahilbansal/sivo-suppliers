@@ -19,15 +19,12 @@ class PayoutCotroller extends GetxController {
     var url = Uri.parse('${Environment.appBaseUrl}/api/supplier/payout');
 
     try {
-      var response = await http.post(
-        url,
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer $accessToken'
-        },
-        body: data
-      );
-
+      var response = await http.post(url,
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer $accessToken'
+          },
+          body: data);
 
       if (response.statusCode == 201) {
         var data = successResponseFromJson(response.body);

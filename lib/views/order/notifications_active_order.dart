@@ -49,7 +49,7 @@ class _NotificationOrderPageState extends State<NotificationOrderPage> {
                 text: "Data Loading",
                 style: appStyle(16, kGray, FontWeight.w500)),
           ),
-          body: const FoodsListShimmer());
+          body: const itemsListShimmer());
     }
 
     return Scaffold(
@@ -118,17 +118,22 @@ class _NotificationOrderPageState extends State<NotificationOrderPage> {
                       SizedBox(
                         height: 5.h,
                       ),
-                      RowText(first: "Quantity", second: "${data.orderItems[0].quantity}"),
+                      RowText(
+                          first: "Quantity",
+                          second: "${data.orderItems[0].quantity}"),
                       SizedBox(
                         height: 5.h,
                       ),
-                      RowText(first: "Recipient", second: data.deliveryAddress.addressLine1),
+                      RowText(
+                          first: "Recipient",
+                          second: data.deliveryAddress.addressLine1),
                       SizedBox(
                         height: 5.h,
                       ),
                       GestureDetector(
                         onTap: () {},
-                        child: RowText(first: "Phone ", second: data.userId.phone),
+                        child:
+                            RowText(first: "Phone ", second: data.userId.phone),
                       ),
                       const Divida(),
                       ReusableText(

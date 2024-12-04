@@ -131,9 +131,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     () => controller.isLoading
                         ? const Center(
                             child: CircularProgressIndicator.adaptive(
-                              backgroundColor: kPrimary,
-                              valueColor:
-                                  AlwaysStoppedAnimation<Color>(kLightWhite),
+                            backgroundColor: kPrimary,
+                            valueColor:
+                                AlwaysStoppedAnimation<Color>(kLightWhite),
                           ))
                         : CustomButton(
                             btnHieght: 37.h,

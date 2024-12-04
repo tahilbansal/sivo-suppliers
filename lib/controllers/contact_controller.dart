@@ -8,13 +8,14 @@ import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get_storage/get_storage.dart';
 
-class ContactState{
+class ContactState {
   var count = 0.obs;
   RxString supplierId = "".obs;
- // Rxn<Suppliers> supplier = Rxn<Suppliers>();
+  // Rxn<Suppliers> supplier = Rxn<Suppliers>();
   RxBool loading = false.obs;
   RxList<UserData> contactList = <UserData>[].obs;
 }
+
 class ContactController extends GetxController {
   ContactController();
   final ContactState state = ContactState();
@@ -27,7 +28,7 @@ class ContactController extends GetxController {
     super.onReady();
     //this token could be something encrypted
     token = box.read("userId");
-    if(token!=null){
+    if (token != null) {
       token = jsonDecode(token!);
     }
   }
@@ -124,11 +125,10 @@ class ContactController extends GetxController {
         .collection("users")
         .where("id", isNotEqualTo: decodedUserId)
         .withConverter(
-      fromFirestore: UserData.fromFirestore,
-      toFirestore: (UserData userdata, options) => userdata.toFirestore(),
-    ).get();
+          fromFirestore: UserData.fromFirestore,
+          toFirestore: (UserData userdata, options) => userdata.toFirestore(),
+        )
+        .get();
     state.contactList.add(usersbase.docs[0].data());
-
   }
-
 }

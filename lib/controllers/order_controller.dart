@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:rivus_supplier/constants/constants.dart';
+import 'package:rivus_supplier/entrypoint.dart';
 import 'package:rivus_supplier/models/api_error.dart';
 import 'package:rivus_supplier/models/environment.dart';
 import 'package:rivus_supplier/models/ready_orders.dart';
@@ -73,7 +74,6 @@ class OrdersController extends GetxController {
 
         Map<String, dynamic> data = jsonDecode(response.body);
         order = ReadyOrders.fromJson(data);
-
       } else {
         var data = apiErrorFromJson(response.body);
 
@@ -106,8 +106,8 @@ class OrdersController extends GetxController {
     String accessToken = jsonDecode(token);
 
     setLoading = true;
-    var url =
-        Uri.parse('${Environment.appBaseUrl}/api/orders/picked-orders/$orderId/$driverId');
+    var url = Uri.parse(
+        '${Environment.appBaseUrl}/api/orders/picked-orders/$orderId/$driverId');
 
     try {
       var response = await http.put(
@@ -159,7 +159,8 @@ class OrdersController extends GetxController {
     String accessToken = jsonDecode(token);
 
     setLoading = true;
-    var url = Uri.parse('${Environment.appBaseUrl}/api/orders/process/$orderId/$status');
+    var url = Uri.parse(
+        '${Environment.appBaseUrl}/api/orders/process/$orderId/$status');
     try {
       var response = await http.put(
         url,
@@ -172,7 +173,8 @@ class OrdersController extends GetxController {
       if (response.statusCode == 200) {
         setLoading = false;
 
-        Get.off(() =>  const HomePage(),
+        Get.off(() => MainScreen(),
+            arguments: 2,
             transition: Transition.fadeIn,
             duration: const Duration(seconds: 2));
       } else {

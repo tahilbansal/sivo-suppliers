@@ -18,7 +18,8 @@ class NotificationsController extends GetxController {
   RxString _fcmToken = ''.obs;
 
   String get fcmToken => _fcmToken.value;
-  final NewOrdersController newOrdersController= Get.put(NewOrdersController());
+  final NewOrdersController newOrdersController =
+      Get.put(NewOrdersController());
   set setFcm(String newValue) {
     _fcmToken.value = newValue;
   }
@@ -49,7 +50,6 @@ class NotificationsController extends GetxController {
         '${Environment.appBaseUrl}/api/users/updateToken/$deviceToken');
 
     try {
-      
       var response = await http.put(
         url,
         headers: {

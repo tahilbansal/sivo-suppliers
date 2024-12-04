@@ -7,12 +7,13 @@ import 'package:rivus_supplier/common/reusable_text.dart';
 import 'package:rivus_supplier/constants/constants.dart';
 
 class FoodWidget extends StatelessWidget {
-     FoodWidget(
+  FoodWidget(
       {super.key,
       required this.image,
       required this.title,
       required this.time,
-      this.onTap, required String price});
+      this.onTap,
+      required String price});
 
   final String image;
   final String title;

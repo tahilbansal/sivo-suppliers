@@ -17,9 +17,7 @@ class CatergoriesShimmer extends StatelessWidget {
             return Column(
               children: [
                 ShimmerWidget(
-                    shimmerWidth: 70.w,
-                    shimmerHieght: 60.h,
-                    shimmerRadius: 12),
+                    shimmerWidth: 70.w, shimmerHieght: 60.h, shimmerRadius: 12),
               ],
             );
           }),

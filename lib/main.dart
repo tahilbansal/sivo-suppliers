@@ -4,6 +4,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rivus_supplier/common/routes/pages.dart';
 import 'package:rivus_supplier/constants/constants.dart';
+import 'package:rivus_supplier/entrypoint.dart';
 import 'package:rivus_supplier/firebase_options.dart';
 import 'package:rivus_supplier/models/environment.dart';
 import 'package:rivus_supplier/services/notification_service.dart';
@@ -17,15 +18,13 @@ import 'package:get_storage/get_storage.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
-
-
 Future<dynamic> myBackgroundMessageHandler(RemoteMessage message) async {
   print(
       "onBackground: ${message.notification?.title}/${message.notification?.body}/${message.notification?.titleLocKey}");
 }
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-FlutterLocalNotificationsPlugin();
+    FlutterLocalNotificationsPlugin();
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -59,17 +58,14 @@ class MyApp extends StatelessWidget {
 
     if (token == null) {
       defaultHome = const Login();
-    }
-    else if (token != null && supplierId == null) {
+    } else if (token != null && supplierId == null) {
       defaultHome = const Login();
-    }
-    else if (token != null &&  emailVerification == false || emailVerification == null) {
+    } else if (token != null && emailVerification == false ||
+        emailVerification == null) {
       defaultHome = const VerificationPage();
-    }
-    else if (supplierId != null &&  verification == "Verified") {
-      defaultHome = const HomePage();
-    }
-    else if (supplierId != null && verification != "Verified") {
+    } else if (supplierId != null && verification == "Verified") {
+      defaultHome = MainScreen();
+    } else if (supplierId != null && verification != "Verified") {
       defaultHome = const WaitingPage();
     }
 
@@ -94,7 +90,6 @@ class MyApp extends StatelessWidget {
               '/order_details_page': (context) => const NotificationOrderPage(),
             },
           );
-        }
-      );
+        });
   }
 }

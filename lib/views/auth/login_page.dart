@@ -20,7 +20,7 @@ class Login extends StatefulWidget {
   State<Login> createState() => _LoginState();
 }
 
-class _LoginState extends State<Login>  {
+class _LoginState extends State<Login> {
   late final TextEditingController _emailController = TextEditingController();
   late final TextEditingController _passwordController =
       TextEditingController();
@@ -133,9 +133,9 @@ class _LoginState extends State<Login>  {
                     () => controller.isLoading
                         ? const Center(
                             child: CircularProgressIndicator.adaptive(
-                              backgroundColor: kPrimary,
-                              valueColor:
-                                  AlwaysStoppedAnimation<Color>(kLightWhite),
+                            backgroundColor: kPrimary,
+                            valueColor:
+                                AlwaysStoppedAnimation<Color>(kLightWhite),
                           ))
                         : CustomButton(
                             btnHieght: 37.h,

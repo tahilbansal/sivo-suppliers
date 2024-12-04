@@ -3,7 +3,11 @@ import 'package:rivus_supplier/constants/constants.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ShimmerWidget extends StatelessWidget {
-  const ShimmerWidget({super.key, required this.shimmerWidth, required this.shimmerHieght, required this.shimmerRadius});
+  const ShimmerWidget(
+      {super.key,
+      required this.shimmerWidth,
+      required this.shimmerHieght,
+      required this.shimmerRadius});
 
   final double shimmerWidth;
   final double shimmerHieght;
@@ -15,7 +19,10 @@ class ShimmerWidget extends StatelessWidget {
       width: shimmerWidth,
       height: shimmerHieght,
       padding: const EdgeInsets.only(right: 12, top: 8.0),
-      child: _buildShimmerLine(height: shimmerHieght-20, width: shimmerHieght-15, radius: shimmerRadius),
+      child: _buildShimmerLine(
+          height: shimmerHieght - 20,
+          width: shimmerHieght - 15,
+          radius: shimmerRadius),
     );
   }
 

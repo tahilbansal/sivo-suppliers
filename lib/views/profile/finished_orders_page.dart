@@ -6,14 +6,13 @@ class FinishedOrders extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Finished Orders'),
-        backgroundColor: Colors.white,
-        elevation: 0.4,
-      ),
-      body: const Center(
-        child: Text('Finished Orders'),
-      )
-    );
+        appBar: AppBar(
+          title: const Text('Finished Orders'),
+          backgroundColor: Colors.white,
+          elevation: 0.4,
+        ),
+        body: const Center(
+          child: Text('Finished Orders'),
+        ));
   }
 }

@@ -13,7 +13,7 @@ class FetchSupplierData {
   final List<LatestPayout> payout;
   final Function? refetch;
 
-  FetchSupplierData( 
+  FetchSupplierData(
       {required this.supplier,
       required this.ordersTotal,
       required this.cancelledOrders,

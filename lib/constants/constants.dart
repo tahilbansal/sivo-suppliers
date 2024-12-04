@@ -23,7 +23,7 @@ double hieght = 926.h;
 double width = 428.w;
 
 // API URL
-const String appBaseUrl = "https://ffoodly.dbestech.com";
+const String appBaseUrl = "https://fitemly.dbestech.com";
 
 // Font Size Constants
 const double kFontSizeH1 = 32.0; // Headline 1

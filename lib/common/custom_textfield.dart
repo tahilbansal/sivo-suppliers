@@ -11,7 +11,8 @@ class CustomTextField extends StatelessWidget {
       required this.keyboardType,
       this.validator,
       this.suffixIcon,
-      this.obscureText, this.onEditingComplete});
+      this.obscureText,
+      this.onEditingComplete});
 
   final TextEditingController controller;
   final String hintText;
@@ -24,14 +25,13 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.all(4.h),
-      padding: EdgeInsets.only( left:4.h),
+      padding: EdgeInsets.only(left: 4.h),
       decoration: BoxDecoration(
-        border: Border.all(
-          width: 0.3,
-          color: kGray,
-        ),
-        borderRadius: BorderRadius.all(Radius.circular(9.r))
-      ),
+          border: Border.all(
+            width: 0.3,
+            color: kGray,
+          ),
+          borderRadius: BorderRadius.all(Radius.circular(9.r))),
       child: TextFormField(
         keyboardType: keyboardType,
         onEditingComplete: onEditingComplete,

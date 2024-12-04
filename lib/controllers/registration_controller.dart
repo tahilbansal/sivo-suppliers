@@ -57,7 +57,6 @@ class RegistrationController extends GetxController {
           colorText: kLightWhite,
           backgroundColor: kRed,
           icon: const Icon(Icons.error));
-
     } finally {
       setLoading = false;
     }

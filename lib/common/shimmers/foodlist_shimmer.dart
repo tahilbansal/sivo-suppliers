@@ -3,8 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rivus_supplier/common/shimmers/shimmer_widget.dart';
 import 'package:rivus_supplier/constants/constants.dart';
 
-class FoodsListShimmer extends StatelessWidget {
-  const FoodsListShimmer({super.key});
+class itemsListShimmer extends StatelessWidget {
+  const itemsListShimmer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +17,7 @@ class FoodsListShimmer extends StatelessWidget {
           itemCount: 6,
           itemBuilder: (context, index) {
             return ShimmerWidget(
-                shimmerWidth: width,
-                shimmerHieght: 70.h,
-                shimmerRadius: 12);
+                shimmerWidth: width, shimmerHieght: 70.h, shimmerRadius: 12);
           }),
     );
   }

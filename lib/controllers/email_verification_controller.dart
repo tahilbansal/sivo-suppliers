@@ -50,7 +50,7 @@ class EmailVerificationController extends GetxController {
 
       if (response.statusCode == 200) {
         VerificationResponse data = verificationResponseFromJson(response.body);
-  
+
         box.write("e-verification", data.verification);
 
         setLoading = false;

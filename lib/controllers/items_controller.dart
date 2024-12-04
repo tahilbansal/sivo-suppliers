@@ -4,17 +4,17 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:http/http.dart' as http;
 import 'package:rivus_supplier/constants/constants.dart';
+import 'package:rivus_supplier/entrypoint.dart';
 import 'package:rivus_supplier/models/api_error.dart';
 import 'package:rivus_supplier/models/environment.dart';
 import 'package:rivus_supplier/models/items.dart';
 import 'package:rivus_supplier/models/sucess_model.dart';
-import 'package:rivus_supplier/views/home/home_page.dart';
-import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:http/http.dart' as http;
 
-class FoodsController extends GetxController {
+class ItemsController extends GetxController {
   final box = GetStorage();
 
   var currentPage = 0.obs;
@@ -83,7 +83,7 @@ class FoodsController extends GetxController {
     _category = newValue;
   }
 
-  void addFood(String foodItem) async {
+  void addItem(String item) async {
     String token = box.read('token');
     String accessToken = jsonDecode(token);
 
@@ -96,7 +96,7 @@ class FoodsController extends GetxController {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer $accessToken',
         },
-        body: foodItem,
+        body: item,
       );
 
       if (response.statusCode == 201) {
@@ -106,9 +106,9 @@ class FoodsController extends GetxController {
             colorText: kLightWhite,
             backgroundColor: kPrimary,
             icon: const Icon(Icons.add_alert));
-        Get.to(() => const HomePage(),
-            transition: Transition.fadeIn,
-            duration: const Duration(seconds: 1));
+        Get.offAll(() => MainScreen(),
+            arguments: 0, transition: Transition.fadeIn);
+        //duration: const Duration(seconds: 1));
       } else {
         var data = apiErrorFromJson(response.body);
 
@@ -127,12 +127,12 @@ class FoodsController extends GetxController {
     }
   }
 
-  // Update Food Method
-  void updateFood(String foodId, Item updatedFood) async {
+  // Update Item Method
+  void updateItem(String itemId, Item updatedItem) async {
     String token = box.read('token');
     String accessToken = jsonDecode(token);
 
-    Uri url = Uri.parse('${Environment.appBaseUrl}/api/items/update/$foodId');
+    Uri url = Uri.parse('${Environment.appBaseUrl}/api/items/update/$itemId');
 
     try {
       var response = await http.post(
@@ -141,7 +141,7 @@ class FoodsController extends GetxController {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer $accessToken',
         },
-        body: jsonEncode(updatedFood.toJson()),
+        body: jsonEncode(updatedItem.toJson()),
       );
 
       if (response.statusCode == 200) {
@@ -151,12 +151,11 @@ class FoodsController extends GetxController {
             colorText: kLightWhite,
             backgroundColor: kPrimary,
             icon: const Icon(Icons.add_alert));
-        Get.to(() => const HomePage(),
-            transition: Transition.fadeIn,
-            duration: const Duration(seconds: 1));
+        Get.offAll(() => MainScreen(),
+            arguments: 0, transition: Transition.fadeIn);
+        //duration: const Duration(seconds: 1));
       } else {
         var data = apiErrorFromJson(response.body);
-
         Get.snackbar(data.message, "Failed to update product, please try again",
             backgroundColor: kRed, icon: const Icon(Icons.error));
       }
@@ -169,6 +168,48 @@ class FoodsController extends GetxController {
           icon: const Icon(Icons.error));
     } finally {
       setLoading = false;
+    }
+  }
+
+  Future<void> deleteItem(String itemId) async {
+    String token = box.read('token');
+    String accessToken = jsonDecode(token);
+
+    Uri url = Uri.parse('${Environment.appBaseUrl}/api/items/$itemId');
+
+    try {
+      var response = await http.delete(
+        url,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $accessToken',
+        },
+      );
+
+      if (response.statusCode == 200) {
+        Get.snackbar(
+          "Success",
+          "Item successfully deleted",
+          backgroundColor: kPrimary,
+          colorText: kLightWhite,
+        );
+        Get.offAll(() => MainScreen(),
+            arguments: 0, transition: Transition.fadeIn);
+      } else {
+        Get.snackbar(
+          "Error",
+          "Failed to delete item",
+          backgroundColor: kRed,
+          colorText: kLightWhite,
+        );
+      }
+    } catch (e) {
+      Get.snackbar(
+        "Error",
+        "An error occurred while deleting the item",
+        backgroundColor: kRed,
+        colorText: kLightWhite,
+      );
     }
   }
 }

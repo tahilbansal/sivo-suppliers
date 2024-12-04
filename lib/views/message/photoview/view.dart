@@ -9,7 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PhotoImageView extends GetView<PhotoImageViewController> {
   const PhotoImageView({Key? key}) : super(key: key);
-  AppBar _buildAppbar(){
+  AppBar _buildAppbar() {
     return AppBar(
       bottom: PreferredSize(
         preferredSize: const Size.fromHeight(1.0),
@@ -17,22 +17,19 @@ class PhotoImageView extends GetView<PhotoImageViewController> {
           color: AppColors.secondaryElement,
           height: 2.0,
         ),
-
       ),
       title: Text(
         "Image",
         style: TextStyle(
-          color: AppColors.primaryText,
-          fontSize: 16.sp,
-          fontWeight: FontWeight.normal
-        ),
+            color: AppColors.primaryText,
+            fontSize: 16.sp,
+            fontWeight: FontWeight.normal),
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: _buildAppbar(),
       body: Container(

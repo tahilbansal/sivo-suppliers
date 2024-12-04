@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 
 class DeliveredController extends GetxController {
-
   var refetch = false.obs;
 
   // Function to be called when status changes

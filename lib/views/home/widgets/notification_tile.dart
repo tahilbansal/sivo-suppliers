@@ -51,8 +51,12 @@ class NotificationTile extends StatelessWidget {
           margin: const EdgeInsets.only(bottom: 8),
           height: 84,
           width: width,
-          decoration:  BoxDecoration(
-              color: controller.order == null? kOffWhite : controller.order!.id == order.id ? kSecondaryLight : kOffWhite,
+          decoration: BoxDecoration(
+              color: controller.order == null
+                  ? kOffWhite
+                  : controller.order!.id == order.id
+                      ? kSecondaryLight
+                      : kOffWhite,
               borderRadius: const BorderRadius.all(Radius.circular(9))),
           child: Container(
             padding: const EdgeInsets.all(4),
@@ -82,11 +86,9 @@ class NotificationTile extends StatelessWidget {
                     ReusableText(
                         text: order.orderItems[0].foodId.title,
                         style: appStyle(10, kGray, FontWeight.w500)),
+                    OrderRowText(text: "🍲 Order : ${order.id}"),
                     OrderRowText(
-                        text: "🍲 Order : ${order.id}"),
-                    OrderRowText(
-                        text:
-                            "🏠 ${order.deliveryAddress.addressLine1}"),
+                        text: "🏠 ${order.deliveryAddress.addressLine1}"),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -155,7 +157,7 @@ class NotificationTile extends StatelessWidget {
             ),
           ),
         ),
-       Positioned(
+        Positioned(
             right: 10.h,
             top: 6.h,
             child: ClipRRect(
@@ -163,8 +165,8 @@ class NotificationTile extends StatelessWidget {
               child: SizedBox(
                 width: 19.h,
                 height: 19.h,
-                child: Image.network(order.supplierId.logoUrl,
-                    fit: BoxFit.cover),
+                child:
+                    Image.network(order.supplierId.logoUrl, fit: BoxFit.cover),
               ),
             ))
       ],

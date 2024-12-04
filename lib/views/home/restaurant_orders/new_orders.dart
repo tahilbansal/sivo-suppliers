@@ -40,8 +40,8 @@ class NewOrders extends HookWidget {
     }, [controller.triggerReload]);
 
     if (isLoading) {
-      return const FoodsListShimmer();
-    } else if (orders==null) {
+      return const itemsListShimmer();
+    } else if (orders == null) {
       return const EmptyPage();
     }
 

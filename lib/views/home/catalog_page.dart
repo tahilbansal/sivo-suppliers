@@ -1,21 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rivus_supplier/common/common_appbar.dart';
-import 'package:rivus_supplier/common/custom_appbar.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:rivus_supplier/constants/constants.dart';
+import 'package:rivus_supplier/controllers/supplier_controller.dart';
 import 'package:rivus_supplier/views/home/widgets/back_ground_container.dart';
-import 'package:rivus_supplier/views/home/widgets/food_list.dart';
+import 'package:rivus_supplier/views/home/widgets/item_list.dart';
 
-import 'add_foods.dart';
+import '../item/add_items.dart';
 
 class CatalogPage extends StatelessWidget {
   const CatalogPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final box = GetStorage();
+    final supplierController = Get.put(SupplierController());
+    supplierController.setPriceVisibility = box.read('price_visibility');
+
     return Scaffold(
       backgroundColor: kLightWhite,
-      appBar: CommonAppBar(titleText: "Catalog") ,
+      appBar: AppBar(
+        title: const Text("Catalog"),
+        backgroundColor: kPrimary,
+        actions: [
+          Obx(() =>
+              Row(
+                children: [
+                  const Text(
+                    "Show Prices",
+                    style: TextStyle(color: Colors.white, fontSize: 16),
+                  ),
+                  Switch(
+                    value: supplierController.priceVisibility,
+                    onChanged: (value) {
+                      supplierController.supplierPriceVisibility();
+                    },
+                    activeColor: kSecondary,
+                    inactiveThumbColor: Colors.grey,
+                    inactiveTrackColor: Colors.grey.shade300,
+                  ),
+                ],
+              )),
+        ],
+      ),
+      //appBar: CommonAppBar(titleText: "Catalog") ,
       // appBar :AppBar(
       //   automaticallyImplyLeading: false,
       //   flexibleSpace: CustomAppBar(
@@ -36,19 +64,22 @@ class CatalogPage extends StatelessWidget {
             ),
             tileColor: kSecondary, // Customize tile color
             onTap: () {
-              Get.to(() => const AddFoodsPage(),
+              Get.to(() => const AddItemsPage(),
                   transition: Transition.fadeIn,
                   duration: const Duration(milliseconds: 500));
             },
           ),
-          const SizedBox(height: 10), // Spacing between the tile and the food list
+          const SizedBox(
+              height: 10), // Spacing between the tile and the food list
 
           // Wrap the FoodList inside the BackGroundContainer
           const Expanded(
             child: BackGroundContainer(
-              child: FoodList(),
-            ),
-          ),
+                child: Padding(
+                  padding: EdgeInsets.only(bottom: 50),
+                  child: ItemList(),
+                )),
+          )
         ],
       ),
     );

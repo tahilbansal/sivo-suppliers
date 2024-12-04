@@ -15,22 +15,23 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 class MessageController extends GetxController {
   MessageController();
   final box = GetStorage();
-  String? token;// = box.read('token');
- // final token = UserStore.to.token;
+  String? token; // = box.read('token');
+  // final token = UserStore.to.token;
   final db = FirebaseFirestore.instance;
   final MessageState state = MessageState();
   var listener;
 
   final RefreshController refreshController =
       RefreshController(initialRefresh: true);
-@override
+  @override
   void onInit() {
-   token = box.read('userId');
-   if(token!=null){
-     token = jsonDecode(token!);
-   }
+    token = box.read('userId');
+    if (token != null) {
+      token = jsonDecode(token!);
+    }
     super.onInit();
   }
+
   @override
   void onReady() {
     super.onReady();
@@ -41,13 +42,12 @@ class MessageController extends GetxController {
     print("-----------state.msgList.value");
     print(state.msgList.value);
 
-
     var from_messages = await db
         .collection("message")
         .withConverter(
-      fromFirestore: Msg.fromFirestore,
-      toFirestore: (Msg msg, options) => msg.toFirestore(),
-    )
+          fromFirestore: Msg.fromFirestore,
+          toFirestore: (Msg msg, options) => msg.toFirestore(),
+        )
         .where("from_uid", isEqualTo: token)
         .get();
     print(from_messages.docs.length);
@@ -55,9 +55,9 @@ class MessageController extends GetxController {
     var to_messages = await db
         .collection("message")
         .withConverter(
-      fromFirestore: Msg.fromFirestore,
-      toFirestore: (Msg msg, options) => msg.toFirestore(),
-    )
+          fromFirestore: Msg.fromFirestore,
+          toFirestore: (Msg msg, options) => msg.toFirestore(),
+        )
         .where("to_uid", isEqualTo: token)
         .get();
     print("to_messages.docs.length------------");
@@ -94,7 +94,7 @@ class MessageController extends GetxController {
         message.name = item.to_name;
         message.avatar = item.to_avatar;
         message.token = item.to_uid;
-       // message.online = item.to_online;
+        // message.online = item.to_online;
         message.msg_num = item.to_msg_num ?? 0;
       } else {
         message.name = item.from_name;
@@ -120,25 +120,25 @@ class MessageController extends GetxController {
     final toMessageRef = db
         .collection("message")
         .withConverter(
-      fromFirestore: Msg.fromFirestore,
-      toFirestore: (Msg msg, options) => msg.toFirestore(),
-    )
+          fromFirestore: Msg.fromFirestore,
+          toFirestore: (Msg msg, options) => msg.toFirestore(),
+        )
         .where("to_uid", isEqualTo: token);
     final fromMessageRef = db
         .collection("message")
         .withConverter(
-      fromFirestore: Msg.fromFirestore,
-      toFirestore: (Msg msg, options) => msg.toFirestore(),
-    )
+          fromFirestore: Msg.fromFirestore,
+          toFirestore: (Msg msg, options) => msg.toFirestore(),
+        )
         .where("from_uid", isEqualTo: token);
     toMessageRef.snapshots().listen(
-          (event) async {
+      (event) async {
         await asyncLoadMsgData();
       },
       onError: (error) => print("Listen failed: $error"),
     );
     fromMessageRef.snapshots().listen(
-          (event) async {
+      (event) async {
         await asyncLoadMsgData();
       },
       onError: (error) => print("Listen failed: $error"),
@@ -181,7 +181,7 @@ class MessageController extends GetxController {
       if (user.docs.isNotEmpty) {
         var doc_id = user.docs.first.id;
         await db.collection("users").doc(doc_id).update({"fcmtoken": fcmToken});
-      }else{
+      } else {
         print("----------docs are empty-------");
       }
     }

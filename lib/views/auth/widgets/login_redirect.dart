@@ -20,7 +20,8 @@ class LoginRedirection extends StatelessWidget {
         backgroundColor: kLightWhite,
         elevation: 0.3,
         title: ReusableText(
-            text: "Please login to access this page", style: appStyle(12, kDark, FontWeight.w500)),
+            text: "Please login to access this page",
+            style: appStyle(12, kDark, FontWeight.w500)),
       ),
       body: SafeArea(
         child: CustomContainer(

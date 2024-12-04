@@ -11,7 +11,7 @@ class TabWidget extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 5),
       width: MediaQuery.of(context).size.width / 5,
       height: 25,
-      child:  Center(child: Text(text)),
+      child: Center(child: Text(text)),
     );
   }
 }
