@@ -5,6 +5,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:rivus_supplier/common/routes/names.dart';
 import 'package:rivus_supplier/constants/constants.dart';
 import 'package:get/get.dart';
+import 'package:rivus_supplier/views/order/invoice_page.dart';
 import 'package:rivus_supplier/views/order/send_invoice.dart';
 
 import '../../../../common/custom_btn.dart';
@@ -48,7 +49,7 @@ Widget ChatRightItem(Msgcontent item) {
                                 onTap: () {
                                   // Navigate to the order details page
                                   //Get.to(() => OrderDetailsPage(orderId: item.orderId));
-                                  Get.to(() => SendInvoicePage(),
+                                  Get.to(() => ActivePage(),
                                       arguments: item.orderId);
                                 },
                                 radius: 9,
@@ -62,7 +63,7 @@ Widget ChatRightItem(Msgcontent item) {
                                 onTap: () {
                                   // Navigate to the order details page
                                   //Get.to(() => OrderDetailsPage(orderId: item.orderId));
-                                  Get.to(() => ActivePage(),
+                                  Get.to(() => SendInvoicePage(),
                                       arguments: item.orderId);
                                 },
                                 radius: 9,
@@ -74,20 +75,49 @@ Widget ChatRightItem(Msgcontent item) {
                               SizedBox(height: 4.w),
                             ],
                           )
-                        : ConstrainedBox(
-                            constraints: BoxConstraints(
-                              maxWidth: 200.w,
-                            ),
-                            child: GestureDetector(
-                              onTap: () {
-                                Get.toNamed(AppRoutes.Photoimgview,
-                                    parameters: {"url": item.content ?? ""});
-                              },
-                              child: CachedNetworkImage(
-                                imageUrl: "${item.content}",
-                              ),
-                            ),
-                          )))
+                        : item.type == "invoice"
+                            ? Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "${item.content}",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 16.sp,
+                                    ),
+                                  ),
+                                  SizedBox(height: 8.w),
+                                  CustomButton(
+                                    onTap: () {
+                                      // Navigate to invoice page or perform action
+                                      Get.to(() => InvoicePage(),
+                                          arguments: item.orderId);
+                                    },
+                                    radius: 9,
+                                    color: kPrimary,
+                                    btnWidth: width * 0.95,
+                                    btnHieght: 34.h,
+                                    text: "VIEW INVOICE",
+                                  ),
+                                  SizedBox(height: 4.w),
+                                ],
+                              )
+                            : ConstrainedBox(
+                                constraints: BoxConstraints(
+                                  maxWidth: 200.w,
+                                ),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Get.toNamed(AppRoutes.Photoimgview,
+                                        parameters: {
+                                          "url": item.content ?? ""
+                                        });
+                                  },
+                                  child: CachedNetworkImage(
+                                    imageUrl: "${item.content}",
+                                  ),
+                                ),
+                              )))
       ],
     ),
   );

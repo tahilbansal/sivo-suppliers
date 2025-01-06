@@ -5,6 +5,7 @@ import 'package:rivus_supplier/constants/constants.dart';
 import 'package:rivus_supplier/controllers/supplier_controller.dart';
 import 'package:rivus_supplier/views/home/widgets/back_ground_container.dart';
 import 'package:rivus_supplier/views/home/widgets/item_list.dart';
+import 'package:rivus_supplier/views/item/add_items_csv.dart';
 
 import '../item/add_items.dart';
 
@@ -70,9 +71,23 @@ class CatalogPage extends StatelessWidget {
             },
           ),
           const SizedBox(
-              height: 10), // Spacing between the tile and the food list
-
-          // Wrap the FoodList inside the BackGroundContainer
+              height: 5),
+          ListTile(
+            leading: const Icon(Icons.add, color: Colors.white),
+            title: const Text(
+              "Add Bulk Items Through CSV",
+              style: TextStyle(color: Colors.white, fontSize: 18),
+            ),
+            tileColor: kSecondary, // Customize tile color
+            onTap: () {
+              Get.to(() => FileUploadPage(),
+                  transition: Transition.fadeIn,
+                  duration: const Duration(milliseconds: 500));
+            },
+          ),
+          const SizedBox(
+              height: 10),
+          // Wrap the ItemList inside the BackGroundContainer
           const Expanded(
             child: BackGroundContainer(
                 child: Padding(

@@ -39,7 +39,7 @@ class HomePage extends StatefulHookWidget {
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   late final TabController _tabController = TabController(
-    length: 7,
+    length: 4,
     vsync: this,
   );
 
@@ -79,7 +79,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     _tabController.animateTo(orderController.tabIndex);
 
     return DefaultTabController(
-      length: 7,
+      length: 4,
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -98,40 +98,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             height: MediaQuery.of(context).size.height,
             child: Column(
               children: [
-                // Container(
-                //   margin: EdgeInsets.symmetric(horizontal: 12.w),
-                //   height: 65.h,
-                //   child: Row(
-                //     mainAxisAlignment: MainAxisAlignment.start,
-                //     children: [
-                //       DbestHomeTile(
-                //         imagePath: "assets/icons/chat.svg",
-                //         text: "Chat",
-                //         onTap: () async {
-                //           var userToken = await GetStorage().read("userId");
-                //           if(userToken==null){
-                //             showCustomSnackBar("You are not logged in", title: "Login");
-                //           }else{
-                //             print("chatting page--");
-                //             Get.to(() => const MessagePage(),
-                //                 transition: Transition.fadeIn,
-                //                 duration: const Duration(milliseconds: 400));
-                //           }
-                //         },
-                //       ),
-                //       const SizedBox(width: 65,),
-                //       DbestHomeTile(
-                //         imagePath: "assets/icons/chart.svg",
-                //         text: "Chart",
-                //         onTap: () {
-                //           Get.to(() =>  SalesData(),
-                //               transition: Transition.fadeIn,
-                //               duration: const Duration(milliseconds: 400));
-                //         },
-                //       ),
-                //     ],
-                //   ),
-                // ),
                 SizedBox(
                   height: 12.h,
                 ),
@@ -162,17 +128,17 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           child: TabWidget(text: "New Orders"),
                         ),
                         Tab(
-                          child: TabWidget(text: "Preparing"),
+                          child: TabWidget(text: "In Progress"),
                         ),
-                        Tab(
-                          child: TabWidget(text: "Ready"),
-                        ),
-                        Tab(
-                          child: TabWidget(text: "Picked"),
-                        ),
-                        Tab(
-                          child: TabWidget(text: "Self Deliveries"),
-                        ),
+                        // Tab(
+                        //   child: TabWidget(text: "Ready"),
+                        // ),
+                        // Tab(
+                        //   child: TabWidget(text: "Picked"),
+                        // ),
+                        // Tab(
+                        //   child: TabWidget(text: "Self Deliveries"),
+                        // ),
                         Tab(
                           child: TabWidget(text: "Delivered"),
                         ),
@@ -191,82 +157,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     children: const [
                       NewOrders(),
                       PreparingOrders(),
-                      ReadyForDelivery(),
-                      PickedOrders(),
-                      SelfDeliveries(),
+                      // ReadyForDelivery(),
+                      // PickedOrders(),
+                      // SelfDeliveries(),
                       DeliveredOrders(),
                       CancelledOrders(),
                     ],
                   ),
                 ),
-                // Container(
-                //   margin: EdgeInsets.symmetric(horizontal: 12.w),
-                //   height: 65.h,
-                //   child: Row(
-                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //     children: [
-                //       DbestHomeTile(
-                //         imagePath: "assets/icons/catalog-new.svg",
-                //         text: "Catalog",
-                //         onTap: () {
-                //           Get.to(() => const CatalogPage(),
-                //               transition: Transition.fadeIn,
-                //               duration: const Duration(milliseconds: 400));
-                //         },
-                //       ),
-                //       // DbestHomeTile(
-                //       //   imagePath: "assets/icons/foods.svg",
-                //       //   text: "Create",
-                //       //   onTap: () {
-                //       //     Get.to(() => const AddFoodsPage(),
-                //       //         transition: Transition.fadeIn,
-                //       //         duration: const Duration(milliseconds: 400));
-                //       //   },
-                //       // ),
-                //       DbestHomeTile(
-                //         imagePath: "assets/icons/chat.svg",
-                //         text: "Chat",
-                //         onTap: () async {
-                //           var userToken = await GetStorage().read("userId");
-                //           if(userToken==null){
-                //             showCustomSnackBar("You are not logged in", title: "Login");
-                //           }else{
-                //             Get.to(() => const MessagePage(),
-                //                 transition: Transition.fadeIn,
-                //                 duration: const Duration(milliseconds: 400));
-                //           }
-                //         },
-                //       ),
-                //       // DbestHomeTile(
-                //       //   imagePath: "assets/icons/wallet.svg",
-                //       //   text: "Wallet",
-                //       //   onTap: () {
-                //       //     Get.to(() => const WalletPage(),
-                //       //         transition: Transition.fadeIn,
-                //       //         duration: const Duration(milliseconds: 400));
-                //       //   },
-                //       // ),
-                //       DbestHomeTile(
-                //         imagePath: "assets/icons/delivery.svg",
-                //         text: "Self Delivered",
-                //         onTap: () {
-                //           Get.to(() => const SelfDeliveredPage(),
-                //               transition: Transition.fadeIn,
-                //               duration: const Duration(milliseconds: 400));
-                //         },
-                //       ),
-                //       DbestHomeTile(
-                //         imagePath: "assets/icons/chart.svg",
-                //         text: "Analytics",
-                //         onTap: () {
-                //           Get.to(() =>  SalesData(),
-                //               transition: Transition.fadeIn,
-                //               duration: const Duration(milliseconds: 400));
-                //         },
-                //       ),
-                //     ],
-                //   ),
-                // ),
               ],
             ),
           ),

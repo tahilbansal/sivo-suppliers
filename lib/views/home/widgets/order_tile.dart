@@ -99,60 +99,64 @@ class OrderTile extends StatelessWidget {
                           text: order.userId?.username ?? 'Unknown User',
                           style: appStyle(
                               kFontSizeBodySmall, kGray, FontWeight.w500)),
-                      OrderRowText(text: "🍲 Order : ${order.id}"),
-                      OrderRowText(
-                          text:
-                              "🏠 ${order.deliveryAddress!.addressLine1.substring(0, 40)}"),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            padding: EdgeInsets.symmetric(horizontal: 3.w),
-                            margin: EdgeInsets.only(right: 2.w),
-                            width: 90.w,
-                            decoration: BoxDecoration(
-                                color: active == 'ready'
-                                    ? kSecondary
-                                    : const Color(0xFFFFFFFF),
-                                borderRadius: BorderRadius.circular(10)),
-                            child: ReusableText(
-                                text:
-                                    "To 📌 ${distanceToSupplier.toStringAsFixed(2)} km",
-                                style: appStyle(
-                                    kFontSizeSubtext,
-                                    active == 'ready'
-                                        ? const Color(0xFFFFFFFF)
-                                        : kGray,
-                                    FontWeight.w400)),
-                          ),
-                          Container(
-                            padding: EdgeInsets.symmetric(horizontal: 3.w),
-                            margin: EdgeInsets.only(right: 2.w),
-                            decoration: BoxDecoration(
-                                color: active == 'active'
-                                    ? kSecondary
-                                    : const Color(0xFFFFFFFF),
-                                borderRadius: BorderRadius.circular(10)),
-                            child: ReusableText(
-                                text:
-                                    "From 📌 To 🏠 ${distanceFromSupplierToClient.toStringAsFixed(2)} km",
-                                style: appStyle(
-                                    9,
-                                    active == 'active'
-                                        ? const Color(0xFFFFFFFF)
-                                        : kGray,
-                                    FontWeight.w400)),
-                          ),
-                          // Container(
-                          //   padding: EdgeInsets.symmetric(horizontal: 3.w),
-                          //   margin: EdgeInsets.only(right: 2.w),
-                          //   decoration: BoxDecoration(color: const Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(10)),
-                          //   child: ReusableText(
-                          //       text: "\$ ${order.deliveryFee}",
-                          //       style: appStyle(9, kGray, FontWeight.w400)),
-                          // ),
-                        ],
-                      ),
+                      OrderRowText(text: "🍲 Order :  ${order.id.substring(0, 6)}"),
+                      Text(
+                          "🏠 ${order.deliveryAddress!.addressLine1.substring(0,40)}",
+                          style: appStyle(kFontSizeSubtext, kGray, FontWeight.w400),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                          softWrap: true,
+                        ),
+                      // Row(
+                      //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //   children: [
+                      //     Container(
+                      //       padding: EdgeInsets.symmetric(horizontal: 3.w),
+                      //       margin: EdgeInsets.only(right: 2.w),
+                      //       width: 90.w,
+                      //       decoration: BoxDecoration(
+                      //           color: active == 'ready'
+                      //               ? kSecondary
+                      //               : const Color(0xFFFFFFFF),
+                      //           borderRadius: BorderRadius.circular(10)),
+                      //       child: ReusableText(
+                      //           text:
+                      //               "To 📌 ${distanceToSupplier.toStringAsFixed(2)} km",
+                      //           style: appStyle(
+                      //               kFontSizeSubtext,
+                      //               active == 'ready'
+                      //                   ? const Color(0xFFFFFFFF)
+                      //                   : kGray,
+                      //               FontWeight.w400)),
+                      //     ),
+                      //     Container(
+                      //       padding: EdgeInsets.symmetric(horizontal: 3.w),
+                      //       margin: EdgeInsets.only(right: 2.w),
+                      //       decoration: BoxDecoration(
+                      //           color: active == 'active'
+                      //               ? kSecondary
+                      //               : const Color(0xFFFFFFFF),
+                      //           borderRadius: BorderRadius.circular(10)),
+                      //       child: ReusableText(
+                      //           text:
+                      //               "From 📌 To 🏠 ${distanceFromSupplierToClient.toStringAsFixed(2)} km",
+                      //           style: appStyle(
+                      //               9,
+                      //               active == 'active'
+                      //                   ? const Color(0xFFFFFFFF)
+                      //                   : kGray,
+                      //               FontWeight.w400)),
+                      //     ),
+                      //     // Container(
+                      //     //   padding: EdgeInsets.symmetric(horizontal: 3.w),
+                      //     //   margin: EdgeInsets.only(right: 2.w),
+                      //     //   decoration: BoxDecoration(color: const Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(10)),
+                      //     //   child: ReusableText(
+                      //     //       text: "\$ ${order.deliveryFee}",
+                      //     //       style: appStyle(9, kGray, FontWeight.w400)),
+                      //     // ),
+                      //   ],
+                      // ),
                     ],
                   )
                 ],

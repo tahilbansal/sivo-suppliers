@@ -197,4 +197,62 @@ class OrdersController extends GetxController {
       setLoading = false;
     }
   }
+
+  Future<bool> updateOrderItemsPrices(String orderId, List<Map<String, dynamic>> updatedOrderItems) async {
+    String token = box.read('token');
+    String accessToken = jsonDecode(token);
+
+    var url = Uri.parse('${Environment.appBaseUrl}/api/orders/$orderId/update-prices');
+
+    setLoading = true;
+
+    try {
+      final response = await http.put(
+        url,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $accessToken',
+        },
+        body: jsonEncode({
+          "orderItems": updatedOrderItems,
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        // Successfully updated
+        Get.snackbar(
+          "Invoice Sent Successfully",
+          "The invoice has been sent to the customer",
+          colorText: kLightWhite,
+          backgroundColor: kPrimary,
+          icon: const Icon(Icons.check_circle),
+        );
+        return true;
+      } else {
+        // Handle errors
+        var errorData = apiErrorFromJson(response.body);
+        Get.snackbar(
+          "Update Failed",
+          errorData.message,
+          colorText: kLightWhite,
+          backgroundColor: kRed,
+          icon: const Icon(Icons.error),
+        );
+        return false;
+      }
+    } catch (e) {
+      // Log error and show message
+      print("Error updating order items prices: $e");
+      Get.snackbar(
+        "Error",
+        "An error occurred while updating the prices. Please try again.",
+        colorText: kLightWhite,
+        backgroundColor: kRed,
+        icon: const Icon(Icons.error),
+      );
+      return false;
+    } finally {
+      setLoading = false; // Reset loading state
+    }
+  }
 }

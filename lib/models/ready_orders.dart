@@ -10,6 +10,7 @@ class ReadyOrders {
   final String id;
   final UserId? userId;
   final List<OrderItem> orderItems;
+  final double? orderTotal;
   final double? deliveryFee;
   final DeliveryAddress? deliveryAddress;
   final String orderStatus;
@@ -22,6 +23,7 @@ class ReadyOrders {
     required this.id,
     this.userId,
     required this.orderItems,
+    this.orderTotal,
     this.deliveryFee,
     this.deliveryAddress,
     required this.orderStatus,
@@ -36,6 +38,7 @@ class ReadyOrders {
         userId: json["userId"] != null ? UserId.fromJson(json["userId"]) : null,
         orderItems: List<OrderItem>.from(
             json["orderItems"].map((x) => OrderItem.fromJson(x))),
+        orderTotal: json["deliveryFee"]?.toDouble(),
         deliveryFee: json["deliveryFee"]?.toDouble(),
         deliveryAddress: json["deliveryAddress"] != null
             ? DeliveryAddress.fromJson(json["deliveryAddress"])
@@ -139,23 +142,27 @@ class OrderItem {
 class ItemId {
   final String id;
   final String title;
+  final String? unit;
   final List<String> imageUrl;
 
   ItemId({
     required this.id,
     required this.title,
+    this.unit,
     required this.imageUrl,
   });
 
   factory ItemId.fromJson(Map<String, dynamic> json) => ItemId(
         id: json["_id"] ?? "",
         title: json["title"] ?? "",
+        unit: json["unit"] ?? "",
         imageUrl: List<String>.from(json["imageUrl"].map((x) => x)),
       );
 
   Map<String, dynamic> toJson() => {
         "_id": id,
         "title": title,
+        "unit": unit,
         "imageUrl": List<dynamic>.from(imageUrl.map((x) => x)),
       };
 }

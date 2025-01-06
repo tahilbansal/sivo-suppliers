@@ -170,6 +170,7 @@ class ChatController extends GetxController {
     }
   }
 
+
   sendMessage() async {
     String sendContent = textController.text;
     final content = Msgcontent(
@@ -244,6 +245,115 @@ class ChatController extends GetxController {
       }
     }
   }
+
+  sendInvoiceMessage(String message, String orderId) async {
+    String sendContent = message;
+    final content = Msgcontent(
+        uid: user_id,
+        content: sendContent,
+        type: "invoice",
+        orderId: orderId,
+        addtime: Timestamp.now());
+
+    // Add message to Firestore
+    await FirebaseFirestore.instance
+        .collection("message")
+        .doc(doc_id)
+        .collection("msglist")
+        .withConverter(
+        fromFirestore: Msgcontent.fromFirestore,
+        toFirestore: (Msgcontent msgcontent, options) =>
+            msgcontent.toFirestore())
+        .add(content)
+        .then((DocumentReference doc) {
+      textController.clear();
+      Get.focusScope?.unfocus();
+    });
+
+    // Update message count and last message
+    var message_res = await db
+        .collection("message")
+        .doc(doc_id)
+        .withConverter(
+      fromFirestore: Msg.fromFirestore,
+      toFirestore: (Msg msg, options) => msg.toFirestore(),
+    )
+        .get();
+
+    if (message_res.data() != null) {
+      var item = message_res.data()!;
+      int to_msg_num = item.to_msg_num == null ? 0 : item.to_msg_num!;
+      int from_msg_num = item.from_msg_num == null ? 0 : item.from_msg_num!;
+      if (item.from_uid == user_id) {
+        from_msg_num = from_msg_num + 1;
+      } else {
+        to_msg_num = to_msg_num + 1;
+      }
+      await db.collection("message").doc(doc_id).update({
+        "to_msg_num": to_msg_num,
+        "from_msg_num": from_msg_num,
+        "last_msg": sendContent,
+        "last_time": Timestamp.now()
+      });
+    }
+
+    // Send notification
+    var userbase = await FirebaseFirestore.instance
+        .collection("users")
+        .withConverter(
+      fromFirestore: UserData.fromFirestore,
+      toFirestore: (UserData userdata, options) => userdata.toFirestore(),
+    )
+        .where("id", isEqualTo: state.to_uid.value)
+        .get();
+
+    if (userbase.docs.isNotEmpty) {
+      var title = "Message sent by $from_name";
+      var body = sendContent;
+      var token = userbase.docs.first.data().fcmtoken;
+      if (token != null) {
+        sendNotification(title, body, token);
+      } else {
+        print("token is empty, so won't send notification");
+      }
+    } else {
+      print("docs are empty");
+    }
+  }
+
+  // Future<void> sendMessageInvoice(String message, String orderId) async {
+  //   final content = Msgcontent(
+  //       uid: user_id,
+  //       content: message,
+  //       type: "text",
+  //       orderId: orderId,
+  //       addtime: Timestamp.now());
+  //   try {
+  //     await FirebaseFirestore.instance
+  //         .collection("message")
+  //         .doc(doc_id)
+  //         .collection("msglist")
+  //         .withConverter(
+  //         fromFirestore: Msgcontent.fromFirestore,
+  //         toFirestore: (Msgcontent msgcontent, options) =>
+  //             msgcontent.toFirestore())
+  //         .add(content)
+  //         .then((DocumentReference doc) {
+  //       print("Invoice sent $doc");
+  //     });
+  //   } catch (e) {
+  //     print("Could not send invoice ${e.toString()}");
+  //   }
+  //   // Update the message metadata
+  //   try {
+  //     await db.collection("message").doc(doc_id).update({
+  //       "last_msg": "Invoice sent",
+  //       "last_time": Timestamp.now(),
+  //     });
+  //   } catch (e) {
+  //     print("Error updating message metadata: ${e.toString()}");
+  //   }
+  // }
 
   @override
   void onReady() {
