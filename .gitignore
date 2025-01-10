@@ -29,7 +29,13 @@ migrate_working_dir/
 .flutter-plugins-dependencies
 .pub-cache/
 .pub/
-/build/
+.env
+/web/firebase-messaging-sw.js
+
+
+/build/*
+!/build/web
+!/build/web/**
 
 # Symbolication related
 app.*.symbols

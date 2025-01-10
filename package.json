@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "generate-sw": "node scripts/generate-sw.js",
+    "build": "flutter build web --no-tree-shake-icons && npm run generate-sw"
+  }
+}
