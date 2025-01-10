@@ -99,8 +99,7 @@ class SalesData extends HookWidget {
                 children: [
                   ReusableText(
                       text: supplier!.title,
-                      style:
-                          appStyle(kFontSizeBodyLarge, kGray, FontWeight.w600)),
+                      style: appStyle(kFontSizeBodyLarge, kGray, FontWeight.w600)),
                   CircleAvatar(
                     radius: 15.r,
                     backgroundColor: kGray,

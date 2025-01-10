@@ -39,11 +39,11 @@ class Statistics extends StatelessWidget {
                       children: [
                         ReusableText(
                           text: ordersTotal.toString(),
-                          style: appStyle(18.sp, kGray, FontWeight.w600),
+                          style: appStyle(18, kGray, FontWeight.w600),
                         ),
                         ReusableText(
                           text: "Total Orders",
-                          style: appStyle(14.sp, kGray, FontWeight.normal),
+                          style: appStyle(14, kGray, FontWeight.normal),
                         ),
                       ],
                     ),
@@ -52,11 +52,11 @@ class Statistics extends StatelessWidget {
                       children: [
                         ReusableText(
                           text: processingOrders.toString(),
-                          style: appStyle(18.sp, kGray, FontWeight.w600),
+                          style: appStyle(18, kGray, FontWeight.w600),
                         ),
                         ReusableText(
                           text: "Processing Orders",
-                          style: appStyle(14.sp, kGray, FontWeight.normal),
+                          style: appStyle(14, kGray, FontWeight.normal),
                         ),
                       ],
                     ),
@@ -65,11 +65,11 @@ class Statistics extends StatelessWidget {
                       children: [
                         ReusableText(
                           text: cancelledOrders.toString(),
-                          style: appStyle(18.sp, kGray, FontWeight.w600),
+                          style: appStyle(18, kGray, FontWeight.w600),
                         ),
                         ReusableText(
                           text: "Cancelled Orders",
-                          style: appStyle(14.sp, kGray, FontWeight.normal),
+                          style: appStyle(14, kGray, FontWeight.normal),
                         ),
                       ],
                     ),
@@ -78,11 +78,11 @@ class Statistics extends StatelessWidget {
                       children: [
                         ReusableText(
                           text: "\$${revenueTotal.toStringAsFixed(2)}",
-                          style: appStyle(18.sp, kGray, FontWeight.w600),
+                          style: appStyle(18, kGray, FontWeight.w600),
                         ),
                         ReusableText(
                           text: "Total Revenue",
-                          style: appStyle(14.sp, kGray, FontWeight.normal),
+                          style: appStyle(14, kGray, FontWeight.normal),
                         ),
                       ],
                     ),
@@ -102,11 +102,11 @@ class Statistics extends StatelessWidget {
                       children: [
                         ReusableText(
                           text: 0.toString(),
-                          style: appStyle(18.sp, kGray, FontWeight.w600),
+                          style: appStyle(18, kGray, FontWeight.w600),
                         ),
                         ReusableText(
                           text: "Total Deliveries",
-                          style: appStyle(14.sp, kGray, FontWeight.normal),
+                          style: appStyle(14, kGray, FontWeight.normal),
                         ),
                       ],
                     ),
@@ -115,11 +115,11 @@ class Statistics extends StatelessWidget {
                       children: [
                         ReusableText(
                           text: 0.toString(),
-                          style: appStyle(18.sp, kGray, FontWeight.w600),
+                          style: appStyle(18, kGray, FontWeight.w600),
                         ),
                         ReusableText(
                           text: "Delivery Revenue",
-                          style: appStyle(14.sp, kGray, FontWeight.normal),
+                          style: appStyle(14, kGray, FontWeight.normal),
                         ),
                       ],
                     ),
@@ -128,11 +128,11 @@ class Statistics extends StatelessWidget {
                       children: [
                         ReusableText(
                           text: "\$${(revenueTotal * 0.1).toStringAsFixed(2)}",
-                          style: appStyle(18.sp, kGray, FontWeight.w600),
+                          style: appStyle(18, kGray, FontWeight.w600),
                         ),
                         ReusableText(
                           text: "Commission Total",
-                          style: appStyle(14.sp, kGray, FontWeight.normal),
+                          style: appStyle(14, kGray, FontWeight.normal),
                         ),
                       ],
                     ),
@@ -142,11 +142,11 @@ class Statistics extends StatelessWidget {
                         ReusableText(
                           text:
                               "\$${(revenueTotal - revenueTotal * 0.1).toStringAsFixed(2)}",
-                          style: appStyle(18.sp, kGray, FontWeight.w600),
+                          style: appStyle(18, kGray, FontWeight.w600),
                         ),
                         ReusableText(
                           text: "Withdrawable",
-                          style: appStyle(14.sp, kGray, FontWeight.normal),
+                          style: appStyle(14, kGray, FontWeight.normal),
                         ),
                       ],
                     ),

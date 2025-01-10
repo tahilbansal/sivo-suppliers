@@ -29,31 +29,29 @@ class NewOrders extends HookWidget {
       listenerSubscription = controller.triggerReload.listen((_) {
         refetch();
       });
-
-      // Cleanup function to dispose of the listener
-      return () {
-        //controller.dispose();
-        listenerSubscription.cancel();
-      };
+      return () => listenerSubscription.cancel();
     }, [controller.triggerReload]);
 
     if (isLoading) {
       return const itemsListShimmer();
-    } else if (orders == null) {
+    } else if (orders == null || orders.isEmpty) {
       return const EmptyPage();
     }
 
-    return Container(
-      height: hieght / 1.3,
-      width: width,
-      color: Colors.transparent,
-      child: ListView.builder(
-          padding: EdgeInsets.only(top: 10.h, left: 12.w, right: 12.w),
-          itemCount: orders.length,
-          itemBuilder: (context, i) {
-            ReadyOrders order = orders[i];
-            return OrderTile(order: order, active: 'active');
-          }),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return Container(
+          padding: EdgeInsets.symmetric(horizontal: 12.w),
+          color: Colors.transparent,
+          child: ListView.builder(
+            itemCount: orders.length,
+            itemBuilder: (context, i) {
+              final order = orders[i];
+              return OrderTile(order: order, active: 'active');
+            },
+          ),
+        );
+      },
     );
   }
 }

@@ -39,7 +39,7 @@ Widget ChatLeftItem(Msgcontent item) {
                                 item.content ?? "",
                                 style: TextStyle(
                                   fontWeight: FontWeight.w500,
-                                  fontSize: 16.sp,
+                                  fontSize: 16.sp.clamp(16, 20),
                                 ),
                               ),
                               SizedBox(height: 8.w),

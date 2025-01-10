@@ -46,6 +46,13 @@ class OrderTile extends StatelessWidget {
     double distanceToSupplier = distance.distance + 1;
     double distanceFromSupplierToClient = distance2.distance + 1;
 
+    double containerHeight = 90.h;
+    var address = order.deliveryAddress!.addressLine1.substring(0,40);
+    if (ScreenUtil().screenWidth > 600) {
+      containerHeight = 120.h;
+      address = order.deliveryAddress!.addressLine1;
+    }
+
     return GestureDetector(
       onTap: () {
         controller.order = order;
@@ -60,121 +67,75 @@ class OrderTile extends StatelessWidget {
         clipBehavior: Clip.hardEdge,
         children: [
           Container(
-            margin: const EdgeInsets.only(bottom: 8),
-            height: 90.h,
-            width: width,
+            margin: EdgeInsets.only(bottom: 8.h),
+            height: containerHeight,
+            width: 1.sw, // Full screen width
             decoration: BoxDecoration(
-                color: controller.order == null
-                    ? kOffWhite
-                    : controller.order!.id == order.id
-                        ? kSecondaryLight
-                        : kOffWhite,
-                borderRadius: const BorderRadius.all(Radius.circular(9))),
-            child: Container(
-              padding: const EdgeInsets.all(4),
+              color: controller.order == null
+                  ? kOffWhite
+                  : controller.order!.id == order.id
+                  ? kSecondaryLight
+                  : kOffWhite,
+              borderRadius: BorderRadius.all(Radius.circular(9.r)),
+            ),
+            child: Padding(
+              padding: EdgeInsets.all(4.w),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ClipRRect(
-                    borderRadius: const BorderRadius.all(Radius.circular(12)),
+                    borderRadius: BorderRadius.all(Radius.circular(12.r)),
                     child: SizedBox(
-                        height: 70.h,
-                        width: 60.h,
-                        child: Image.network(
-                          order.userId!.profile,
-                          fit: BoxFit.cover,
-                        )),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: 2.h,
+                      height: 70.h,
+                      width: 60.h,
+                      child: Image.network(
+                        order.userId!.profile,
+                        fit: BoxFit.cover,
                       ),
-                      ReusableText(
+                    ),
+                  ),
+                  SizedBox(width: 10.w),
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(height: 2.h),
+                        ReusableText(
                           text: order.userId?.username ?? 'Unknown User',
-                          style: appStyle(
-                              kFontSizeBodySmall, kGray, FontWeight.w500)),
-                      OrderRowText(text: "🍲 Order :  ${order.id.substring(0, 6)}"),
-                      Text(
-                          "🏠 ${order.deliveryAddress!.addressLine1.substring(0,40)}",
-                          style: appStyle(kFontSizeSubtext, kGray, FontWeight.w400),
+                          style: appStyle(kFontSizeBodySmall, kGray, FontWeight.w500),
+                        ),
+                        OrderRowText(
+                            text: "🍲 Order :  ${order.id.substring(0, 6)}"),
+                        Text(
+                          "🏠 $address",
+                          style: appStyle(kFontSizeCaption, kGray, FontWeight.w400),
                           overflow: TextOverflow.ellipsis,
                           maxLines: 2,
                           softWrap: true,
                         ),
-                      // Row(
-                      //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      //   children: [
-                      //     Container(
-                      //       padding: EdgeInsets.symmetric(horizontal: 3.w),
-                      //       margin: EdgeInsets.only(right: 2.w),
-                      //       width: 90.w,
-                      //       decoration: BoxDecoration(
-                      //           color: active == 'ready'
-                      //               ? kSecondary
-                      //               : const Color(0xFFFFFFFF),
-                      //           borderRadius: BorderRadius.circular(10)),
-                      //       child: ReusableText(
-                      //           text:
-                      //               "To 📌 ${distanceToSupplier.toStringAsFixed(2)} km",
-                      //           style: appStyle(
-                      //               kFontSizeSubtext,
-                      //               active == 'ready'
-                      //                   ? const Color(0xFFFFFFFF)
-                      //                   : kGray,
-                      //               FontWeight.w400)),
-                      //     ),
-                      //     Container(
-                      //       padding: EdgeInsets.symmetric(horizontal: 3.w),
-                      //       margin: EdgeInsets.only(right: 2.w),
-                      //       decoration: BoxDecoration(
-                      //           color: active == 'active'
-                      //               ? kSecondary
-                      //               : const Color(0xFFFFFFFF),
-                      //           borderRadius: BorderRadius.circular(10)),
-                      //       child: ReusableText(
-                      //           text:
-                      //               "From 📌 To 🏠 ${distanceFromSupplierToClient.toStringAsFixed(2)} km",
-                      //           style: appStyle(
-                      //               9,
-                      //               active == 'active'
-                      //                   ? const Color(0xFFFFFFFF)
-                      //                   : kGray,
-                      //               FontWeight.w400)),
-                      //     ),
-                      //     // Container(
-                      //     //   padding: EdgeInsets.symmetric(horizontal: 3.w),
-                      //     //   margin: EdgeInsets.only(right: 2.w),
-                      //     //   decoration: BoxDecoration(color: const Color(0xFFFFFFFF), borderRadius: BorderRadius.circular(10)),
-                      //     //   child: ReusableText(
-                      //     //       text: "\$ ${order.deliveryFee}",
-                      //     //       style: appStyle(9, kGray, FontWeight.w400)),
-                      //     // ),
-                      //   ],
-                      // ),
-                    ],
+                      ],
+                    ),
                   )
                 ],
               ),
             ),
           ),
           Positioned(
-              right: 10.h,
-              top: 6.h,
-              child: ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(10.r)),
-                child: SizedBox(
-                  width: 19.h,
-                  height: 19.h,
-                  child: Image.network(order.supplierId!.logoUrl,
-                      fit: BoxFit.cover),
+            right: 10.w,
+            top: 6.h,
+            child: ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(10.r)),
+              child: SizedBox(
+                width: 19.h,
+                height: 19.h,
+                child: Image.network(
+                  order.supplierId!.logoUrl,
+                  fit: BoxFit.cover,
                 ),
-              ))
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -193,9 +154,11 @@ class OrderRowText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        width: width / 1.6,
-        child: ReusableText(
-            text: text,
-            style: appStyle(kFontSizeSubtext, kGray, FontWeight.w400)));
+      width: 0.6.sw, // Adjust width dynamically based on screen size
+      child: ReusableText(
+        text: text,
+        style: appStyle(kFontSizeCaption, kGray, FontWeight.w400),
+      ),
+    );
   }
 }

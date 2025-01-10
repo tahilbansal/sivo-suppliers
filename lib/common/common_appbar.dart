@@ -27,7 +27,7 @@ CommonAppBar(
     title: appBarChild ??
         ReusableText(
             text: titleText!,
-            style: appStyle(kFontSizeH4.sp, kWhite, FontWeight.w500)),
+            style: appStyle(kFontSizeH4, kWhite, FontWeight.w500)),
     backgroundColor: kPrimary,
     actions: appBarActions,
   );

@@ -1,4 +1,5 @@
 import 'package:rivus_supplier/common/common_appbar.dart';
+import 'package:rivus_supplier/common/entities/message.dart';
 import 'package:rivus_supplier/common/values/colors.dart';
 import 'package:rivus_supplier/constants/constants.dart';
 import 'package:rivus_supplier/controllers/login_controller.dart';
@@ -12,11 +13,12 @@ import 'controller.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 class ChatPage extends GetView<ChatController> {
-  const ChatPage({Key? key}) : super(key: key);
+  final Message? chatDetails;
+  const ChatPage({Key? key, this.chatDetails}) : super(key: key);
 
   AppBar _buildAppBar() {
     return CommonAppBar(
-        appBarChild: Container(
+      appBarChild: Container(
       padding: EdgeInsets.only(top: 0.w, bottom: 0.w, right: 0.w),
       child: Row(
         children: [
@@ -69,7 +71,7 @@ class ChatPage extends GetView<ChatController> {
                               fontFamily: 'Avenir',
                               fontWeight: FontWeight.bold,
                               color: AppColors.primaryBackground,
-                              fontSize: 16.sp),
+                              fontSize: 16.sp.clamp(16, 20)),
                         ),
                         Obx(() => Text(
                               controller.state.to_location.value,
@@ -79,8 +81,9 @@ class ChatPage extends GetView<ChatController> {
                                   fontFamily: 'Avenir',
                                   fontWeight: FontWeight.normal,
                                   color: AppColors.primaryBackground,
-                                  fontSize: 14.sp),
-                            ))
+                                  fontSize: 14.sp.clamp(14, 18)),
+                            )
+                        )
                       ],
                     ),
                   ),

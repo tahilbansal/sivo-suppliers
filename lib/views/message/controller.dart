@@ -4,6 +4,7 @@ import 'package:rivus_supplier/common/entities/entities.dart';
 import 'package:rivus_supplier/common/entities/message.dart';
 import 'package:rivus_supplier/common/store/store.dart';
 import 'package:rivus_supplier/common/utils/http.dart';
+import 'package:rivus_supplier/views/message/chat/view.dart';
 import 'package:rivus_supplier/views/message/state.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -20,6 +21,7 @@ class MessageController extends GetxController {
   final db = FirebaseFirestore.instance;
   final MessageState state = MessageState();
   var listener;
+  Rx<Message?> selectedChat = Rx<Message?>(null); // Reactive variable to track the selected chat
 
   final RefreshController refreshController =
       RefreshController(initialRefresh: true);
@@ -38,9 +40,17 @@ class MessageController extends GetxController {
     _snapshots();
   }
 
+  selectChat(Message message) {
+    // Navigate to the chat page with the required parameters
+    Get.to(ChatPage(), arguments: {
+      "doc_id": message.doc_id,
+      "to_uid": message.token,
+      "to_name": message.name,
+      "to_avatar": message.avatar
+    });
+  }
+
   asyncLoadMsgData() async {
-    print("-----------state.msgList.value");
-    print(state.msgList.value);
 
     var from_messages = await db
         .collection("message")
@@ -50,7 +60,6 @@ class MessageController extends GetxController {
         )
         .where("from_uid", isEqualTo: token)
         .get();
-    print(from_messages.docs.length);
 
     var to_messages = await db
         .collection("message")
@@ -60,8 +69,6 @@ class MessageController extends GetxController {
         )
         .where("to_uid", isEqualTo: token)
         .get();
-    print("to_messages.docs.length------------");
-    print(to_messages.docs.length);
     state.msgList.clear();
 
     if (from_messages.docs.isNotEmpty) {
@@ -202,11 +209,6 @@ class MessageController extends GetxController {
     );
 
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      print("..................onMessage................");
-      print(
-          "onMessage: ${message.notification?.title}/${message.notification?.body}");
-      print("message.data------------");
-      print(message.data);
       //   HelperNotification.showNotification(message.notification!.title!, message.notification!.body!);
     });
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {

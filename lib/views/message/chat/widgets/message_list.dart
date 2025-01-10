@@ -18,129 +18,55 @@ class MessageList extends GetView<MessageController> {
   const MessageList({Key? key}) : super(key: key);
 
   Widget messageListItem(Message item) {
-    return Container(
-      padding: EdgeInsets.only(top: 10.w, left: 15.w, right: 15.w),
-      child: InkWell(
-        onTap: () {
-          Get.to(ChatPage(), arguments: {
-            "doc_id": item.doc_id,
-            "to_uid": item.token,
-            "to_name": item.name,
-            "to_avatar": item.avatar
-          });
-        },
+    return InkWell(
+      onTap: () {
+        // Pass the selected message details to ChatPage
+        controller.selectChat(item);
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.w.clamp(10, 10)),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              padding: EdgeInsets.only(top: 0.w, left: 0.w, right: 10.w),
-              child: SizedBox(
-                width: 54.w,
-                height: 54.w,
-                child: CachedNetworkImage(
-                  imageUrl: item.avatar!,
-                  imageBuilder: (context, imageProvider) => Container(
-                    width: 54.w,
-                    height: 54.w,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(54)),
-                        image: DecorationImage(
-                            image: imageProvider, fit: BoxFit.cover)),
-                  ),
-                  errorWidget: (context, url, error) => const Image(
-                      image: AssetImage('assets/images/feature-1.png')),
-                ),
-              ),
+            CircleAvatar(
+              radius: 27.w.clamp(27, 40),
+              backgroundImage: CachedNetworkImageProvider(item.avatar!),
+              backgroundColor: Colors.grey[300],
             ),
-            Container(
-              padding: EdgeInsets.only(top: 0.w, left: 0.w, right: 5.w),
-              decoration: const BoxDecoration(
-                  border: Border(
-                      bottom: BorderSide(width: 1, color: Color(0xffe5e5e5)))),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
+            SizedBox(width: 10.w),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
-                    width: 250.w,
-                    height: 48.w,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          item.name!,
-                          overflow: TextOverflow.clip,
-                          maxLines: 1,
-                          style: TextStyle(
-                              fontFamily: "Avenir",
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.thirdElement,
-                              fontSize: 16.sp),
-                        ),
-                        Text(
-                          item.last_msg ?? "",
-                          overflow: TextOverflow.clip,
-                          maxLines: 1,
-                          style: TextStyle(
-                              fontFamily: "Avenir",
-                              fontWeight: FontWeight.normal,
-                              color: AppColors.thirdElement,
-                              fontSize: 14.sp),
-                        ),
-                      ],
+                  Text(
+                    item.name!,
+                    style: TextStyle(
+                      fontSize: 16.sp.clamp(14, 20),
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.thirdElement,
                     ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                  SizedBox(
-                    width: 60.w,
-                    height: 54.w,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                          duTimeLineFormat(
-                              (item.last_time as Timestamp).toDate()),
-                          overflow: TextOverflow.clip,
-                          maxLines: 1,
-                          style: TextStyle(
-                              fontFamily: "Avenir",
-                              fontWeight: FontWeight.normal,
-                              color: AppColors.thirdElementText,
-                              fontSize: 12.sp),
-                        ),
-                        item.msg_num == 0
-                          ? Container()
-                          : Container(
-                              padding: EdgeInsets.only(
-                                left: 4.w,
-                                right: 4.w,
-                                top: 0.h,
-                                bottom: 0.h),
-                              decoration: BoxDecoration(
-                                color: Colors.red,
-                                borderRadius:
-                                BorderRadius.all(Radius.circular(10)),
-                              ),
-                              child: Text(
-                                "${item.msg_num}",
-                                textAlign: TextAlign.end,
-                                overflow: TextOverflow.fade,
-                                maxLines: 1,
-                                style: TextStyle(
-                                  fontFamily: 'Avenir',
-                                  fontWeight: FontWeight.normal,
-                                  color: AppColors.primaryElementText,
-                                  fontSize: 11.sp,
-                                ),
-                              ),
-                            ),
-                      ],
+                  Text(
+                    item.last_msg ?? "",
+                    style: TextStyle(
+                      fontSize: 14.sp.clamp(14, 20),
+                      color: AppColors.thirdElementText,
                     ),
-                  )
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ],
               ),
-            )
+            ),
+            SizedBox(width: 10.w),
+            Text(
+              duTimeLineFormat((item.last_time as Timestamp).toDate()),
+              style: TextStyle(
+                fontSize: 12.sp.clamp(14, 20),
+                color: AppColors.thirdElementText,
+              ),
+            ),
           ],
         ),
       ),
@@ -149,18 +75,58 @@ class MessageList extends GetView<MessageController> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => CustomScrollView(
-          slivers: [
-            SliverPadding(
-              padding: EdgeInsets.symmetric(horizontal: 0.w, vertical: 0.w),
-              sliver: SliverList(
-                delegate: SliverChildBuilderDelegate((context, index) {
-                  var item = controller.state.msgList[index];
-                  return messageListItem(item);
-                }, childCount: controller.state.msgList.length),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        // Check if the screen width is wide enough for a desktop view
+        bool isDesktop = constraints.maxWidth > 800;
+
+        return Obx(() {
+          var messageList = controller.state.msgList;
+
+          return isDesktop
+              ? Row(
+              children: [
+              // Message List on the left
+              Expanded(
+                flex: 3,
+                child: ListView.builder(
+                  itemCount: messageList.length,
+                  itemBuilder: (context, index) {
+                    var item = messageList[index];
+                    return messageListItem(item);
+                  },
+                ),
               ),
-            ),
-          ],
-        ));
+              // Chat Page on the right
+              Expanded(
+                flex: 5,
+                child: Obx(() {
+                  final selectedChat = controller.selectedChat.value;
+
+                  if (selectedChat == null) {
+                    return Center(
+                      child: Text(
+                        "Select a chat to start messaging",
+                        style: TextStyle(fontSize: 22),
+                      ),
+                    );
+                  }
+                  return ChatPage(
+                    chatDetails: selectedChat,
+                  );
+                }),
+              ),
+            ],
+          )
+              : ListView.builder(
+            itemCount: messageList.length,
+            itemBuilder: (context, index) {
+              var item = messageList[index];
+              return messageListItem(item);
+            },
+          );
+        });
+      },
+    );
   }
 }

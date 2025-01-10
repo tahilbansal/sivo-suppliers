@@ -56,7 +56,6 @@ FetchHook useFetchPicked(String query) {
           }
         } catch (e) {
           print("Error deserializing JSON: $e");
-          appSnackBar("Error deserializing orders");
         }
       } else {
         // Handle error response

@@ -49,14 +49,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     if (!_isNavigating) {
       _isNavigating = true;
       SchedulerBinding.instance.addPostFrameCallback((_) {
-        // Show a dialog or handle the case when the supplier ID is null
-        showAnimatedDialog(
-          context,
-          AlertDialog(
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
             backgroundColor: kWhite,
             title: const Text('Error'),
             content: const Text(
-                'Supplier ID is null. Please set up the supplier correctly.'),
+              'Supplier ID is null. Please set up the supplier correctly.',
+            ),
             actions: [
               TextButton(
                 onPressed: () {
@@ -93,81 +93,57 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           elevation: 0,
           backgroundColor: kLightWhite,
         ),
-        body: BackGroundContainer(
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height,
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 12.h,
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 12.w),
-                  child: Container(
-                    height: 25.h,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                      color: kOffWhite,
-                      borderRadius: BorderRadius.circular(25.r),
-                    ),
-                    child: TabBar(
-                      controller: _tabController,
-                      indicator: BoxDecoration(
-                        color: kPrimary,
-                        borderRadius: BorderRadius.circular(25.r),
+        body: LayoutBuilder(
+          builder: (context, constraints) {
+            return BackGroundContainer(
+              child: SizedBox(
+                height: constraints.maxHeight,
+                child: Column(
+                  children: [
+                    SizedBox(height: 12.h),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 12.w),
+                      child: Container(
+                        height: 25.h,
+                        width: constraints.maxWidth,
+                        decoration: BoxDecoration(
+                          color: kOffWhite,
+                          borderRadius: BorderRadius.circular(25.r),
+                        ),
+                        child: TabBar(
+                          controller: _tabController,
+                          indicator: BoxDecoration(
+                            color: kPrimary,
+                            borderRadius: BorderRadius.circular(25.r),
+                          ),
+                          labelPadding: EdgeInsets.zero,
+                          labelColor: Colors.white,
+                          unselectedLabelColor: Colors.grey.withOpacity(0.7),
+                          tabs: const [
+                            Tab(child: TabWidget(text: "New Orders")),
+                            Tab(child: TabWidget(text: "In Progress")),
+                            Tab(child: TabWidget(text: "Delivered")),
+                            Tab(child: TabWidget(text: "Cancelled")),
+                          ],
+                        ),
                       ),
-                      labelPadding: EdgeInsets.zero,
-                      labelColor: Colors.white,
-                      dividerColor: Colors.transparent,
-                      tabAlignment: TabAlignment.start,
-                      isScrollable: true,
-                      labelStyle: appStyle(12, kLightWhite, FontWeight.normal),
-                      unselectedLabelColor: Colors.grey.withOpacity(0.7),
-                      tabs: const <Widget>[
-                        Tab(
-                          child: TabWidget(text: "New Orders"),
-                        ),
-                        Tab(
-                          child: TabWidget(text: "In Progress"),
-                        ),
-                        // Tab(
-                        //   child: TabWidget(text: "Ready"),
-                        // ),
-                        // Tab(
-                        //   child: TabWidget(text: "Picked"),
-                        // ),
-                        // Tab(
-                        //   child: TabWidget(text: "Self Deliveries"),
-                        // ),
-                        Tab(
-                          child: TabWidget(text: "Delivered"),
-                        ),
-                        Tab(
-                          child: TabWidget(text: "Cancelled"),
-                        ),
-                      ],
                     ),
-                  ),
+                    Expanded(
+                      child: TabBarView(
+                        controller: _tabController,
+                        children: const [
+                          NewOrders(),
+                          PreparingOrders(),
+                          DeliveredOrders(),
+                          CancelledOrders(),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-                Container(
-                  color: Colors.transparent,
-                  height: MediaQuery.of(context).size.height * 0.75,
-                  child: TabBarView(
-                    controller: _tabController,
-                    children: const [
-                      NewOrders(),
-                      PreparingOrders(),
-                      // ReadyForDelivery(),
-                      // PickedOrders(),
-                      // SelfDeliveries(),
-                      DeliveredOrders(),
-                      CancelledOrders(),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
+              ),
+            );
+          },
         ),
       ),
     );
