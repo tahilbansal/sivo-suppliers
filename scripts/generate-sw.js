@@ -1,5 +1,4 @@
 const fs = require('fs');
-
 // Read the template
 let swTemplate = fs.readFileSync('web/firebase-messaging-sw.template.js', 'utf8');
 

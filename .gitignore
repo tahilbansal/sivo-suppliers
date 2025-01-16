@@ -30,7 +30,6 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 .env
-/web/firebase-messaging-sw.js
 
 
 /build/*
