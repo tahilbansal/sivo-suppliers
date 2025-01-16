@@ -32,12 +32,8 @@ migrate_working_dir/
 .env
 
 
-# Ignore everything in the build directory
-build/*
-
-# Allow the web folder
-!build/web
-!build/web/**
+/build/*
+!/build/web/
 
 # Symbolication related
 app.*.symbols
