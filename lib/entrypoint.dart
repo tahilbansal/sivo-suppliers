@@ -32,7 +32,6 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final entryController = Get.put(MainScreenController());
-    final controller = Get.put(OrdersController());
 
     // Handle arguments to set tab index
     final args = Get.arguments;
