@@ -14,11 +14,9 @@ class NotificationService {
 
   Future<void> initialize(
       FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin) async {
-    var androidInitialize =
-        const AndroidInitializationSettings('notification_icon');
+    var androidInitialize = const AndroidInitializationSettings('notification_icon');
     var iOSInitialize = const DarwinInitializationSettings();
-    var initializationsSettings =
-        InitializationSettings(android: androidInitialize, iOS: iOSInitialize);
+    var initializationsSettings = InitializationSettings(android: androidInitialize, iOS: iOSInitialize);
     flutterLocalNotificationsPlugin.initialize(initializationsSettings,
         onDidReceiveNotificationResponse: (data) {
       try {
@@ -26,7 +24,7 @@ class NotificationService {
           navigatorKey.currentState
               ?.pushNamed('/order_details_page', arguments: data);
         } else {
-          //  Get.toNamed(RouteHelper.getNotificationRoute());
+           // Get.toNamed(RouteHelper.getNotificationRoute());
         }
       } catch (e) {}
     });

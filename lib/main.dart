@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -15,16 +17,15 @@ import 'package:rivus_supplier/views/home/home_page.dart';
 import 'package:rivus_supplier/views/order/notifications_active_order.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 Future<dynamic> myBackgroundMessageHandler(RemoteMessage message) async {
-  print(
-      "onBackground: ${message.notification?.title}/${message.notification?.body}/${message.notification?.titleLocKey}");
+  print("onBackground: ${message.notification?.title}/${message.notification?.body}/${message.notification?.titleLocKey}");
 }
 
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-    FlutterLocalNotificationsPlugin();
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -37,7 +38,11 @@ void main() async {
   );
   await GetStorage.init();
   await dotenv.load(fileName: Environment.fileName);
-  await NotificationService().initialize(flutterLocalNotificationsPlugin);
+  // Check if the platform is NOT a web browser
+  if (!kIsWeb) {
+    await NotificationService().initialize(flutterLocalNotificationsPlugin);
+  }
+
   runApp(
     const MyApp(),
   );
