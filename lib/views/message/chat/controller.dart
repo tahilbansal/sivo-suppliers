@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
-import 'package:rivus_supplier/common/utils/security.dart';
-import 'package:rivus_supplier/controllers/login_controller.dart';
-import 'package:rivus_supplier/models/environment.dart';
+import 'package:sivo_suppliers/common/utils/security.dart';
+import 'package:sivo_suppliers/controllers/login_controller.dart';
+import 'package:sivo_suppliers/models/environment.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:rivus_supplier/common/entities/entities.dart';
+import 'package:sivo_suppliers/common/entities/entities.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'index.dart';

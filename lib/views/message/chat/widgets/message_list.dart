@@ -1,8 +1,8 @@
-import 'package:rivus_supplier/common/entities/message.dart';
-import 'package:rivus_supplier/common/utils/date.dart';
-import 'package:rivus_supplier/main.dart';
-import 'package:rivus_supplier/views/message/chat/index.dart';
-import 'package:rivus_supplier/views/message/controller.dart';
+import 'package:sivo_suppliers/common/entities/message.dart';
+import 'package:sivo_suppliers/common/utils/date.dart';
+import 'package:sivo_suppliers/main.dart';
+import 'package:sivo_suppliers/views/message/chat/index.dart';
+import 'package:sivo_suppliers/views/message/controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

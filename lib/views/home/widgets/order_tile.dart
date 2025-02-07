@@ -1,16 +1,16 @@
 // ignore_for_file: unrelated_type_equality_checks, unused_local_variable
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:rivus_supplier/common/app_style.dart';
-import 'package:rivus_supplier/common/reusable_text.dart';
-import 'package:rivus_supplier/constants/constants.dart';
-import 'package:rivus_supplier/controllers/location_controller.dart';
-import 'package:rivus_supplier/controllers/order_controller.dart';
-import 'package:rivus_supplier/entrypoint.dart';
-import 'package:rivus_supplier/models/distance_time.dart';
-import 'package:rivus_supplier/models/ready_orders.dart';
-import 'package:rivus_supplier/services/distance.dart';
-import 'package:rivus_supplier/views/order/active_page.dart';
+import 'package:sivo_suppliers/common/app_style.dart';
+import 'package:sivo_suppliers/common/reusable_text.dart';
+import 'package:sivo_suppliers/constants/constants.dart';
+import 'package:sivo_suppliers/controllers/location_controller.dart';
+import 'package:sivo_suppliers/controllers/order_controller.dart';
+import 'package:sivo_suppliers/entrypoint.dart';
+import 'package:sivo_suppliers/models/distance_time.dart';
+import 'package:sivo_suppliers/models/ready_orders.dart';
+import 'package:sivo_suppliers/services/distance.dart';
+import 'package:sivo_suppliers/views/order/active_page.dart';
 import 'package:get/get.dart';
 
 class OrderTile extends StatelessWidget {

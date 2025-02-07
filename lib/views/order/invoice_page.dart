@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:rivus_supplier/common/app_style.dart';
-import 'package:rivus_supplier/common/common_appbar.dart';
-import 'package:rivus_supplier/common/custom_btn.dart';
-import 'package:rivus_supplier/constants/constants.dart';
-import 'package:rivus_supplier/controllers/order_controller.dart';
+import 'package:sivo_suppliers/common/app_style.dart';
+import 'package:sivo_suppliers/common/common_appbar.dart';
+import 'package:sivo_suppliers/common/custom_btn.dart';
+import 'package:sivo_suppliers/constants/constants.dart';
+import 'package:sivo_suppliers/controllers/order_controller.dart';
 import 'package:get/get.dart';
 
 class InvoicePage extends StatefulWidget {

@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:rivus_supplier/common/app_style.dart';
-import 'package:rivus_supplier/constants/constants.dart';
-import 'package:rivus_supplier/controllers/password_controller.dart';
+import 'package:sivo_suppliers/common/app_style.dart';
+import 'package:sivo_suppliers/constants/constants.dart';
+import 'package:sivo_suppliers/controllers/password_controller.dart';
 import 'package:get/get.dart';
 
 class PasswordField extends StatelessWidget {

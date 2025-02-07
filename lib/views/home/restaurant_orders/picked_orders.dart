@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:rivus_supplier/common/shimmers/foodlist_shimmer.dart';
-import 'package:rivus_supplier/constants/constants.dart';
-import 'package:rivus_supplier/controllers/updates_controllers/picked_controller.dart';
-import 'package:rivus_supplier/hooks/fetchSupplierOrders.dart';
-import 'package:rivus_supplier/models/ready_orders.dart';
-import 'package:rivus_supplier/views/home/widgets/empty_page.dart';
-import 'package:rivus_supplier/views/home/widgets/order_tile.dart';
+import 'package:sivo_suppliers/common/shimmers/foodlist_shimmer.dart';
+import 'package:sivo_suppliers/constants/constants.dart';
+import 'package:sivo_suppliers/controllers/updates_controllers/picked_controller.dart';
+import 'package:sivo_suppliers/hooks/fetchSupplierOrders.dart';
+import 'package:sivo_suppliers/models/ready_orders.dart';
+import 'package:sivo_suppliers/views/home/widgets/empty_page.dart';
+import 'package:sivo_suppliers/views/home/widgets/order_tile.dart';
 import 'package:get/get.dart';
 
 class PickedOrders extends HookWidget {

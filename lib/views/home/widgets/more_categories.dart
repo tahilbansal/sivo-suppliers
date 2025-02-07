@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:rivus_supplier/common/app_style.dart';
-import 'package:rivus_supplier/common/reusable_text.dart';
-import 'package:rivus_supplier/common/shimmers/foodlist_shimmer.dart';
-import 'package:rivus_supplier/constants/constants.dart';
-import 'package:rivus_supplier/controllers/items_controller.dart';
-import 'package:rivus_supplier/hooks/fetchAllCategories.dart';
-import 'package:rivus_supplier/models/categories.dart';
-import 'package:rivus_supplier/views/home/widgets/back_ground_container.dart';
+import 'package:sivo_suppliers/common/app_style.dart';
+import 'package:sivo_suppliers/common/reusable_text.dart';
+import 'package:sivo_suppliers/common/shimmers/foodlist_shimmer.dart';
+import 'package:sivo_suppliers/constants/constants.dart';
+import 'package:sivo_suppliers/controllers/items_controller.dart';
+import 'package:sivo_suppliers/hooks/fetchAllCategories.dart';
+import 'package:sivo_suppliers/models/categories.dart';
+import 'package:sivo_suppliers/views/home/widgets/back_ground_container.dart';
 import 'package:get/get.dart';
 
 class AllCategories extends HookWidget {

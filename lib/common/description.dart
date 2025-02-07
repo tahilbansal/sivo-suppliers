@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:rivus_supplier/common/app_style.dart';
-import 'package:rivus_supplier/constants/constants.dart';
+import 'package:sivo_suppliers/common/app_style.dart';
+import 'package:sivo_suppliers/constants/constants.dart';
 
 class DescriptionField extends StatelessWidget {
   const DescriptionField({

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:rivus_supplier/common/app_style.dart';
-import 'package:rivus_supplier/common/reusable_text.dart';
-import 'package:rivus_supplier/constants/constants.dart';
+import 'package:sivo_suppliers/common/app_style.dart';
+import 'package:sivo_suppliers/common/reusable_text.dart';
+import 'package:sivo_suppliers/constants/constants.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton(

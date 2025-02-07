@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:rivus_supplier/constants/constants.dart';
-import 'package:rivus_supplier/controllers/supplier_controller.dart';
-import 'package:rivus_supplier/views/home/widgets/back_ground_container.dart';
-import 'package:rivus_supplier/views/home/widgets/item_list.dart';
-import 'package:rivus_supplier/views/item/add_items_csv.dart';
+import 'package:sivo_suppliers/constants/constants.dart';
+import 'package:sivo_suppliers/controllers/supplier_controller.dart';
+import 'package:sivo_suppliers/views/home/widgets/back_ground_container.dart';
+import 'package:sivo_suppliers/views/home/widgets/item_list.dart';
+import 'package:sivo_suppliers/views/item/add_items_csv.dart';
 
 import '../item/add_items.dart';
 

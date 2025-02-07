@@ -1,12 +1,12 @@
-import 'package:rivus_supplier/common/entities/entities.dart';
+import 'package:sivo_suppliers/common/entities/entities.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:rivus_supplier/common/routes/names.dart';
-import 'package:rivus_supplier/constants/constants.dart';
+import 'package:sivo_suppliers/common/routes/names.dart';
+import 'package:sivo_suppliers/constants/constants.dart';
 import 'package:get/get.dart';
-import 'package:rivus_supplier/views/order/invoice_page.dart';
-import 'package:rivus_supplier/views/order/send_invoice.dart';
+import 'package:sivo_suppliers/views/order/invoice_page.dart';
+import 'package:sivo_suppliers/views/order/send_invoice.dart';
 
 import '../../../../common/custom_btn.dart';
 import '../../../order/active_page.dart';

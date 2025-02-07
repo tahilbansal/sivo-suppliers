@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:rivus_supplier/common/shimmers/foodlist_shimmer.dart';
-import 'package:rivus_supplier/hooks/fetchItems.dart';
-import 'package:rivus_supplier/models/items.dart';
-import 'package:rivus_supplier/views/home/widgets/empty_page.dart';
-import 'package:rivus_supplier/views/home/widgets/item_tile.dart';
-import 'package:rivus_supplier/views/item/item_page.dart';
+import 'package:sivo_suppliers/common/shimmers/foodlist_shimmer.dart';
+import 'package:sivo_suppliers/hooks/fetchItems.dart';
+import 'package:sivo_suppliers/models/items.dart';
+import 'package:sivo_suppliers/views/home/widgets/empty_page.dart';
+import 'package:sivo_suppliers/views/home/widgets/item_tile.dart';
+import 'package:sivo_suppliers/views/item/item_page.dart';
 
 class ItemList extends HookWidget {
   const ItemList({super.key});

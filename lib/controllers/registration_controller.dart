@@ -1,11 +1,11 @@
 // ignore_for_file: prefer_final_fields
 
 import 'package:flutter/material.dart';
-import 'package:rivus_supplier/constants/constants.dart';
-import 'package:rivus_supplier/models/api_error.dart';
-import 'package:rivus_supplier/models/environment.dart';
-import 'package:rivus_supplier/models/sucess_model.dart';
-import 'package:rivus_supplier/views/auth/login_page.dart';
+import 'package:sivo_suppliers/constants/constants.dart';
+import 'package:sivo_suppliers/models/api_error.dart';
+import 'package:sivo_suppliers/models/environment.dart';
+import 'package:sivo_suppliers/models/sucess_model.dart';
+import 'package:sivo_suppliers/views/auth/login_page.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 

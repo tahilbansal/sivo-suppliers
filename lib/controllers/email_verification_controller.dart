@@ -4,12 +4,12 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-import 'package:rivus_supplier/constants/constants.dart';
-import 'package:rivus_supplier/models/api_error.dart';
-import 'package:rivus_supplier/models/environment.dart';
-import 'package:rivus_supplier/models/verification_response.dart';
-import 'package:rivus_supplier/views/auth/supplier_registration.dart';
-import 'package:rivus_supplier/views/auth/verification_page.dart';
+import 'package:sivo_suppliers/constants/constants.dart';
+import 'package:sivo_suppliers/models/api_error.dart';
+import 'package:sivo_suppliers/models/environment.dart';
+import 'package:sivo_suppliers/models/verification_response.dart';
+import 'package:sivo_suppliers/views/auth/supplier_registration.dart';
+import 'package:sivo_suppliers/views/auth/verification_page.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;

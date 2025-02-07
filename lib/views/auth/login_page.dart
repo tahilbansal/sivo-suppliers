@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:rivus_supplier/common/app_style.dart';
-import 'package:rivus_supplier/common/custom_btn.dart';
-import 'package:rivus_supplier/constants/constants.dart';
-import 'package:rivus_supplier/controllers/login_controller.dart';
-import 'package:rivus_supplier/models/login_request.dart';
-import 'package:rivus_supplier/views/auth/registration.dart';
-import 'package:rivus_supplier/views/auth/widgets/email_textfield.dart';
-import 'package:rivus_supplier/views/auth/widgets/password_field.dart';
+import 'package:sivo_suppliers/common/app_style.dart';
+import 'package:sivo_suppliers/common/custom_btn.dart';
+import 'package:sivo_suppliers/constants/constants.dart';
+import 'package:sivo_suppliers/controllers/login_controller.dart';
+import 'package:sivo_suppliers/models/login_request.dart';
+import 'package:sivo_suppliers/views/auth/registration.dart';
+import 'package:sivo_suppliers/views/auth/widgets/email_textfield.dart';
+import 'package:sivo_suppliers/views/auth/widgets/password_field.dart';
 
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';

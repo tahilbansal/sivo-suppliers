@@ -1,6 +1,6 @@
-import 'package:rivus_supplier/common/values/colors.dart';
-import 'package:rivus_supplier/views/message/chat/controller.dart';
-import 'package:rivus_supplier/views/message/chat/widgets/chat_right_item.dart';
+import 'package:sivo_suppliers/common/values/colors.dart';
+import 'package:sivo_suppliers/views/message/chat/controller.dart';
+import 'package:sivo_suppliers/views/message/chat/widgets/chat_right_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

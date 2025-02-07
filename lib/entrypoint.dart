@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:get/get.dart';
-import 'package:rivus_supplier/common/app_style.dart';
-import 'package:rivus_supplier/common/reusable_text.dart';
-import 'package:rivus_supplier/constants/constants.dart';
-import 'package:rivus_supplier/controllers/order_controller.dart';
-import 'package:rivus_supplier/controllers/tab_controller.dart';
-import 'package:rivus_supplier/views/home/catalog_page.dart';
-import 'package:rivus_supplier/views/home/home_page.dart';
-import 'package:rivus_supplier/views/message/view.dart';
-import 'package:rivus_supplier/views/order/no_selection.dart';
-import 'package:rivus_supplier/views/profile/profile_page.dart';
-import 'package:rivus_supplier/views/sales/sales_data.dart';
+import 'package:sivo_suppliers/common/app_style.dart';
+import 'package:sivo_suppliers/common/reusable_text.dart';
+import 'package:sivo_suppliers/constants/constants.dart';
+import 'package:sivo_suppliers/controllers/order_controller.dart';
+import 'package:sivo_suppliers/controllers/tab_controller.dart';
+import 'package:sivo_suppliers/views/home/catalog_page.dart';
+import 'package:sivo_suppliers/views/home/home_page.dart';
+import 'package:sivo_suppliers/views/message/view.dart';
+import 'package:sivo_suppliers/views/order/no_selection.dart';
+import 'package:sivo_suppliers/views/profile/profile_page.dart';
+import 'package:sivo_suppliers/views/sales/sales_data.dart';
 
 
 Widget activeOrder = const NoSelection();

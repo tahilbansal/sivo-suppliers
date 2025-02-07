@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rivus_supplier/common/services/services.dart';
-import 'package:rivus_supplier/common/values/values.dart';
+import 'package:sivo_suppliers/common/services/services.dart';
+import 'package:sivo_suppliers/common/values/values.dart';
 import 'package:get/get.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 

@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:get/get.dart';
-import 'package:rivus_supplier/common/app_style.dart';
-import 'package:rivus_supplier/common/custom_btn.dart';
-import 'package:rivus_supplier/common/reusable_text.dart';
-import 'package:rivus_supplier/constants/constants.dart';
-import 'package:rivus_supplier/controllers/items_controller.dart';
-import 'package:rivus_supplier/models/items.dart';
-import 'package:rivus_supplier/views/home/widgets/delete_confirmation_dialog.dart';
+import 'package:sivo_suppliers/common/app_style.dart';
+import 'package:sivo_suppliers/common/custom_btn.dart';
+import 'package:sivo_suppliers/common/reusable_text.dart';
+import 'package:sivo_suppliers/constants/constants.dart';
+import 'package:sivo_suppliers/controllers/items_controller.dart';
+import 'package:sivo_suppliers/models/items.dart';
+import 'package:sivo_suppliers/views/home/widgets/delete_confirmation_dialog.dart';
 
 import 'edit_item_page.dart';
 

@@ -7,12 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
-import 'package:rivus_supplier/constants/constants.dart';
-import 'package:rivus_supplier/entrypoint.dart';
-import 'package:rivus_supplier/models/api_error.dart';
-import 'package:rivus_supplier/models/environment.dart';
-import 'package:rivus_supplier/models/items.dart';
-import 'package:rivus_supplier/models/sucess_model.dart';
+import 'package:sivo_suppliers/constants/constants.dart';
+import 'package:sivo_suppliers/entrypoint.dart';
+import 'package:sivo_suppliers/models/api_error.dart';
+import 'package:sivo_suppliers/models/environment.dart';
+import 'package:sivo_suppliers/models/items.dart';
+import 'package:sivo_suppliers/models/sucess_model.dart';
 
 class ItemsController extends GetxController {
   final box = GetStorage();

@@ -1,5 +1,5 @@
-name: rivus_supplier
-description: "Rivus Supplier App"
+name: sivo_suppliers
+description: "Sivo Suppliers App"
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1

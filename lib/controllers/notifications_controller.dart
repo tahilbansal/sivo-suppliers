@@ -3,11 +3,11 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:rivus_supplier/constants/constants.dart';
-import 'package:rivus_supplier/controllers/updates_controllers/new_orders_controller.dart';
-import 'package:rivus_supplier/models/api_error.dart';
-import 'package:rivus_supplier/models/environment.dart';
-import 'package:rivus_supplier/models/sucess_model.dart';
+import 'package:sivo_suppliers/constants/constants.dart';
+import 'package:sivo_suppliers/controllers/updates_controllers/new_orders_controller.dart';
+import 'package:sivo_suppliers/models/api_error.dart';
+import 'package:sivo_suppliers/models/environment.dart';
+import 'package:sivo_suppliers/models/sucess_model.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;

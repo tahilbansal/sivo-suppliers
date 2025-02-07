@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'package:rivus_supplier/common/entities/entities.dart';
-import 'package:rivus_supplier/common/services/services.dart';
-import 'package:rivus_supplier/common/values/values.dart';
+import 'package:sivo_suppliers/common/entities/entities.dart';
+import 'package:sivo_suppliers/common/services/services.dart';
+import 'package:sivo_suppliers/common/values/values.dart';
 import 'package:get/get.dart';
 
 class UserStore extends GetxController {

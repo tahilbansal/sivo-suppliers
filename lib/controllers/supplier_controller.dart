@@ -1,14 +1,14 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:rivus_supplier/constants/constants.dart';
-import 'package:rivus_supplier/models/api_error.dart';
-import 'package:rivus_supplier/models/environment.dart';
-import 'package:rivus_supplier/models/price_visibility.dart';
-import 'package:rivus_supplier/models/supplier_response.dart';
-import 'package:rivus_supplier/models/status.dart';
-import 'package:rivus_supplier/models/sucess_model.dart';
-import 'package:rivus_supplier/views/auth/login_page.dart';
+import 'package:sivo_suppliers/constants/constants.dart';
+import 'package:sivo_suppliers/models/api_error.dart';
+import 'package:sivo_suppliers/models/environment.dart';
+import 'package:sivo_suppliers/models/price_visibility.dart';
+import 'package:sivo_suppliers/models/supplier_response.dart';
+import 'package:sivo_suppliers/models/status.dart';
+import 'package:sivo_suppliers/models/sucess_model.dart';
+import 'package:sivo_suppliers/views/auth/login_page.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;

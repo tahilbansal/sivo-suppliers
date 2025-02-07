@@ -1,5 +1,5 @@
-import 'package:rivus_supplier/models/api_error.dart';
-import 'package:rivus_supplier/models/supplier_data.dart';
+import 'package:sivo_suppliers/models/api_error.dart';
+import 'package:sivo_suppliers/models/supplier_data.dart';
 
 class FetchSupplierData {
   final Data? supplier;

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:rivus_supplier/views/message/chat/index.dart';
-import 'package:rivus_supplier/views/message/photoview/index.dart';
+import 'package:sivo_suppliers/views/message/chat/index.dart';
+import 'package:sivo_suppliers/views/message/photoview/index.dart';
 import 'routes.dart';
 
 class AppPages {

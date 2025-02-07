@@ -1,9 +1,9 @@
-import 'package:rivus_supplier/common/common_appbar.dart';
-import 'package:rivus_supplier/common/entities/message.dart';
-import 'package:rivus_supplier/common/values/colors.dart';
-import 'package:rivus_supplier/constants/constants.dart';
-import 'package:rivus_supplier/controllers/login_controller.dart';
-import 'package:rivus_supplier/views/message/chat/widgets/chat_list.dart';
+import 'package:sivo_suppliers/common/common_appbar.dart';
+import 'package:sivo_suppliers/common/entities/message.dart';
+import 'package:sivo_suppliers/common/values/colors.dart';
+import 'package:sivo_suppliers/constants/constants.dart';
+import 'package:sivo_suppliers/controllers/login_controller.dart';
+import 'package:sivo_suppliers/views/message/chat/widgets/chat_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

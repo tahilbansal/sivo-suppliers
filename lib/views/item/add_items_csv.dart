@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:rivus_supplier/models/environment.dart';
+import 'package:sivo_suppliers/models/environment.dart';
 
 class FileUploadPage extends StatefulWidget {
   @override

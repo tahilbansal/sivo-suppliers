@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rivus_supplier/constants/constants.dart';
+import 'package:sivo_suppliers/constants/constants.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ShimmerWidget extends StatelessWidget {

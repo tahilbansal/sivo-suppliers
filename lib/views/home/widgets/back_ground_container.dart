@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:rivus_supplier/constants/constants.dart';
+import 'package:sivo_suppliers/constants/constants.dart';
 
 class BackGroundContainer extends StatelessWidget {
   const BackGroundContainer({

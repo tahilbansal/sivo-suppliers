@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:rivus_supplier/common/entities/entities.dart';
-import 'package:rivus_supplier/models/login_response.dart';
+import 'package:sivo_suppliers/common/entities/entities.dart';
+import 'package:sivo_suppliers/models/login_response.dart';
 
-import 'package:rivus_supplier/views/message/chat/index.dart';
+import 'package:sivo_suppliers/views/message/chat/index.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get_storage/get_storage.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rivus_supplier/models/api_error.dart';
-import 'package:rivus_supplier/models/order_details.dart';
+import 'package:sivo_suppliers/models/api_error.dart';
+import 'package:sivo_suppliers/models/order_details.dart';
 
 class FetchOrder {
   final GetOrder? data;

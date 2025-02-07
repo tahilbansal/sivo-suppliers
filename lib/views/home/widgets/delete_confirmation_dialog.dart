@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rivus_supplier/constants/constants.dart';
+import 'package:sivo_suppliers/constants/constants.dart';
 
 Future<void> showDeleteConfirmationDialog({
   required BuildContext context,

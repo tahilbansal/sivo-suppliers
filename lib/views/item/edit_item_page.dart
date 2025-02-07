@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:get/get.dart';
-import 'package:rivus_supplier/common/custom_btn.dart';
-import 'package:rivus_supplier/constants/constants.dart';
-import 'package:rivus_supplier/controllers/items_controller.dart';
-import 'package:rivus_supplier/models/items.dart';
+import 'package:sivo_suppliers/common/custom_btn.dart';
+import 'package:sivo_suppliers/constants/constants.dart';
+import 'package:sivo_suppliers/controllers/items_controller.dart';
+import 'package:sivo_suppliers/models/items.dart';
 
 class EditItemPage extends StatefulWidget {
   const EditItemPage({Key? key, required this.item}) : super(key: key);

@@ -1,5 +1,5 @@
-import 'package:rivus_supplier/common/entities/message.dart';
-import 'package:rivus_supplier/common/entities/msg.dart';
+import 'package:sivo_suppliers/common/entities/message.dart';
+import 'package:sivo_suppliers/common/entities/msg.dart';
 import 'package:get/get.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';

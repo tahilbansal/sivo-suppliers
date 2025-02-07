@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:rivus_supplier/models/items.dart';
+import 'package:sivo_suppliers/models/items.dart';
 
 AddItems addItemsFromJson(String str) => AddItems.fromJson(json.decode(str));
 

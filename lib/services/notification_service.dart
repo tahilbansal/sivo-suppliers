@@ -4,8 +4,8 @@ import 'dart:convert';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:rivus_supplier/controllers/notifications_controller.dart';
-import 'package:rivus_supplier/main.dart';
+import 'package:sivo_suppliers/controllers/notifications_controller.dart';
+import 'package:sivo_suppliers/main.dart';
 import 'package:get/get.dart';
 
 class NotificationService {
