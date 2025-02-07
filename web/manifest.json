@@ -1,11 +1,11 @@
 {
-    "name": "rivus_supplier",
-    "short_name": "rivus_supplier",
+    "name": "sivo_suppliers",
+    "short_name": "sivo_suppliers",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "Rivus Supplier App",
+    "description": "Sivo Supplier App",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

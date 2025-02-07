@@ -17,7 +17,7 @@ class SelfDeliveredPage extends StatelessWidget {
         automaticallyImplyLeading: false,
         flexibleSpace: CustomAppBar(
           title: "View all internal deliveries and delivery earnings",
-          heading: "Welcome Foodly",
+          heading: "Welcome Sivo",
         ),
         elevation: 0,
         backgroundColor: kLightWhite,

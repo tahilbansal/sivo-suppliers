@@ -59,7 +59,7 @@ class _LoginState extends State<Login> {
           padding: EdgeInsets.only(top: 5.w),
           height: 50.h,
           child: Text(
-            "Foodly Supplier Panel",
+            "Sivo Supplier Panel",
             style: appStyle(24, kPrimary, FontWeight.bold),
           ),
         ),
@@ -131,25 +131,25 @@ class _LoginState extends State<Login> {
 
                   Obx(
                     () => controller.isLoading
-                        ? const Center(
-                            child: CircularProgressIndicator.adaptive(
-                            backgroundColor: kPrimary,
-                            valueColor:
-                                AlwaysStoppedAnimation<Color>(kLightWhite),
-                          ))
-                        : CustomButton(
-                            btnHieght: 37.h,
-                            color: kPrimary,
-                            text: "L O G I N",
-                            onTap: () {
-                              LoginRequest model = LoginRequest(
-                                  email: _emailController.text,
-                                  password: _passwordController.text);
+                      ? const Center(
+                          child: CircularProgressIndicator.adaptive(
+                          backgroundColor: kPrimary,
+                          valueColor:
+                              AlwaysStoppedAnimation<Color>(kLightWhite),
+                        ))
+                      : CustomButton(
+                          btnHieght: 37.h,
+                          color: kPrimary,
+                          text: "L O G I N",
+                          onTap: () {
+                            LoginRequest model = LoginRequest(
+                                email: _emailController.text,
+                                password: _passwordController.text);
 
-                              String authData = loginRequestToJson(model);
+                            String authData = loginRequestToJson(model);
 
-                              controller.loginFunc(authData, model);
-                            }),
+                            controller.loginFunc(authData, model);
+                          }),
                   )
                 ],
               ),

@@ -59,7 +59,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
           padding: EdgeInsets.only(top: 5.w),
           height: 50.h,
           child: Text(
-            "Foodly Family",
+            "Sivo Registration",
             style: appStyle(24, kPrimary, FontWeight.bold),
           ),
         ),
