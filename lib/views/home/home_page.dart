@@ -1,34 +1,23 @@
 import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:get/get.dart';
 import 'package:sivo_suppliers/common/app_style.dart';
 import 'package:sivo_suppliers/common/custom_appbar.dart';
 import 'package:sivo_suppliers/common/reusable_text.dart';
 import 'package:sivo_suppliers/common/tab_widget.dart';
-import 'package:sivo_suppliers/common/utils/show_snackbar.dart';
 import 'package:sivo_suppliers/constants/constants.dart';
 import 'package:sivo_suppliers/controllers/order_controller.dart';
 import 'package:sivo_suppliers/controllers/supplier_controller.dart';
-import 'package:sivo_suppliers/views/item/add_items.dart';
-import 'package:sivo_suppliers/views/home/catalog_page.dart';
 import 'package:sivo_suppliers/views/home/supplier_orders/cancelled_orders.dart';
-import 'package:sivo_suppliers/views/home/supplier_orders/picked_orders.dart';
-import 'package:sivo_suppliers/views/home/supplier_orders/preparing.dart';
 import 'package:sivo_suppliers/views/home/supplier_orders/delivered.dart';
 import 'package:sivo_suppliers/views/home/supplier_orders/new_orders.dart';
-import 'package:sivo_suppliers/views/home/supplier_orders/ready_for_pick_up.dart';
-import 'package:sivo_suppliers/views/home/supplier_orders/self_deliveries.dart';
-import 'package:sivo_suppliers/views/home/self_delivered_page.dart';
-import 'package:sivo_suppliers/views/home/wallet_page.dart';
+import 'package:sivo_suppliers/views/home/supplier_orders/preparing.dart';
 import 'package:sivo_suppliers/views/home/widgets/back_ground_container.dart';
-import 'package:sivo_suppliers/views/message/index.dart';
-import 'package:sivo_suppliers/views/sales/sales_data.dart';
-import 'package:get/get.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:get_storage/get_storage.dart';
 
 class HomePage extends StatefulHookWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -150,8 +139,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   }
 }
 
-class DbestHomeTile extends StatelessWidget {
-  const DbestHomeTile({
+class SivoHomeTile extends StatelessWidget {
+  const SivoHomeTile({
     Key? key,
     required this.imagePath,
     required this.text,

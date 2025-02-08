@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -13,7 +11,6 @@ import 'package:sivo_suppliers/services/notification_service.dart';
 import 'package:sivo_suppliers/views/auth/login_page.dart';
 import 'package:sivo_suppliers/views/auth/verification_page.dart';
 import 'package:sivo_suppliers/views/auth/waiting_page.dart';
-import 'package:sivo_suppliers/views/home/home_page.dart';
 import 'package:sivo_suppliers/views/order/notifications_active_order.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -82,7 +79,7 @@ class MyApp extends StatelessWidget {
         builder: (context, child) {
           return GetMaterialApp(
             debugShowCheckedModeBanner: false,
-            title: 'Rivus Supplier App',
+            title: 'Sivo Suppliers',
             theme: ThemeData(
               scaffoldBackgroundColor: kOffWhite,
               iconTheme: const IconThemeData(color: kDark),
@@ -95,6 +92,7 @@ class MyApp extends StatelessWidget {
               '/order_details_page': (context) => const NotificationOrderPage(),
             },
           );
-        });
+        }
+        );
   }
 }

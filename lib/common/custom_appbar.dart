@@ -236,6 +236,5 @@ class CustomAppBar extends StatelessWidget {
     );
   }
 
-  String profile =
-      'https://d326fntlu7tb1e.cloudfront.net/uploads/51530ae8-32b8-4a04-89b3-17f40a2f4cc1-avatar.png';
+  String profile = 'https://d326fntlu7tb1e.cloudfront.net/uploads/51530ae8-32b8-4a04-89b3-17f40a2f4cc1-avatar.png';
 }

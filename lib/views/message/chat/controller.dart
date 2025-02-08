@@ -45,6 +45,16 @@ class ChatController extends GetxController {
     }
   }
 
+  Future imgFromCamera() async {
+    final pickedFile = await _picker.pickImage(source: ImageSource.camera);
+    if (pickedFile != null) {
+      _photo = File(pickedFile.path);
+      uploadFile();
+    } else {
+      print("No image captured");
+    }
+  }
+
   Future getImgUrl(String name) async {
     final spaceRef = FirebaseStorage.instance.ref("chat").child(name);
     var str = await spaceRef.getDownloadURL();

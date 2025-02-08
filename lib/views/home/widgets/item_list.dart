@@ -24,25 +24,21 @@ class ItemList extends HookWidget {
       return const EmptyPage();
     }
 
-    return Container(
-      padding: const EdgeInsets.only(
-        left: 12,
-        top: 10,
-        right: 12,
-      ),
-      height: 200.h,
-      child: ListView.builder(
-          itemCount: items.length,
-          itemBuilder: (context, index) {
-            Item item = items[index];
-            return CategoryItemTile(
-                onTap: () {
-                  Get.to(() => ItemPage(item: item),
-                      transition: Transition.fadeIn,
-                      duration: const Duration(milliseconds: 500));
-                },
-                item: item);
-          }),
+    return ListView.builder(
+      padding: EdgeInsets.symmetric(vertical: 16.h),
+      itemCount: items.length,
+      itemBuilder: (context, index) {
+        Item item = items[index];
+        return CategoryItemTile(
+          onTap: () {
+            Get.to(() => ItemPage(item: item),
+                transition: Transition.fadeIn,
+                duration: const Duration(milliseconds: 500));
+          },
+          item: item,
+        );
+      },
     );
   }
 }
+

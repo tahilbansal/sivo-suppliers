@@ -84,6 +84,7 @@ class LoginController extends GetxController {
 
         Get.snackbar("Successfully logged in ", "Enjoy your awesome experience",
             colorText: kLightWhite,
+            duration: const Duration(seconds: 2),
             backgroundColor: kPrimary,
             icon: const Icon(Ionicons.fast_food_outline));
 
