@@ -67,7 +67,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         ),
                         SizedBox(height: 20.h),
                         Lottie.asset(
-                          'assets/anime/delivery.json',
+                          'assets/anime/sivo_animation.json',
                           height: 200.h,
                           fit: BoxFit.contain,
                         ),

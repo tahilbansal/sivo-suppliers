@@ -32,7 +32,7 @@ class LoginRedirection extends StatelessWidget {
               height: hieght / 2,
               color: Colors.white,
               child: LottieBuilder.asset(
-                "assets/anime/delivery.json",
+                "assets/anime/sivo_animation.json",
                 width: width,
                 height: hieght / 2,
               ),

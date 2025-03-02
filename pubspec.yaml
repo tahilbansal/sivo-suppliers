@@ -51,6 +51,7 @@ dependencies:
   flutter_easyloading: ^3.0.5
   file_picker: ^8.0.5
 dev_dependencies:
+  flutter_launcher_icons: ^0.13.1
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
@@ -64,3 +65,10 @@ flutter:
     - .env.development
     - .env.production
 
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icons/sivo_logo.png"
+  adaptive_icon_background: "#30b9b2"
+  adaptive_icon_foreground: "assets/icons/sivo_logo.png"

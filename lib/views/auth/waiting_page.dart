@@ -28,7 +28,7 @@ class WaitingPage extends StatelessWidget {
             padding: EdgeInsets.fromLTRB(24.w, 200.h, 24.w, 0),
             child: ListView(
               children: [
-                Lottie.asset('assets/anime/delivery.json'),
+                Lottie.asset('assets/anime/sivo_animation.json'),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
