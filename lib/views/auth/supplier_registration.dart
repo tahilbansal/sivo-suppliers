@@ -310,19 +310,22 @@ class _SupplierRegistrationState extends State<SupplierRegistration> {
                                 borderRadius: BorderRadius.circular(10.r),
                                 border: Border.all(color: kGrayLight)),
                             child: Obx(() => imageUploader.logoUrl == ""
-                                ? Center(
-                                    child: Text(
-                                      "Upload Logo",
-                                      style:
-                                          appStyle(16, kDark, FontWeight.w600),
-                                    ),
+                              ? Center(
+                                  child: Text(
+                                    "Upload Logo",
+                                    style:
+                                        appStyle(16, kDark, FontWeight.w600),
+                                  ),
+                                )
+                              : ClipRRect(
+                                  borderRadius: BorderRadius.circular(10.r),
+                                  child: Image.network(
+                                    imageUploader.logoUrl,
+                                    fit: BoxFit.cover,
                                   )
-                                : ClipRRect(
-                                    borderRadius: BorderRadius.circular(10.r),
-                                    child: Image.network(
-                                      imageUploader.logoUrl,
-                                      fit: BoxFit.cover,
-                                    )))),
+                              )
+                            )
+                        ),
                       ),
                       GestureDetector(
                         onTap: () {
@@ -419,8 +422,7 @@ class _SupplierRegistrationState extends State<SupplierRegistration> {
                           _postalCodeRes.text.isNotEmpty &&
                           _searchController.text.isNotEmpty &&
                           imageUploader.logoUrl.isNotEmpty &&
-                          imageUploader.coverUrl.isNotEmpty &&
-                          _selectedLocation != null) {
+                          imageUploader.coverUrl.isNotEmpty) {
                         SupplierRequest data = SupplierRequest(
                           title: _title.text,
                           time: _time.text,
@@ -431,8 +433,8 @@ class _SupplierRegistrationState extends State<SupplierRegistration> {
                           coords: Coords(
                             id: locationController.generateRandomNumber(
                                 10, 100000),
-                            latitude: _selectedLocation!.latitude,
-                            longitude: _selectedLocation!.longitude,
+                            latitude: _selectedLocation?.latitude ?? 1.0,
+                            longitude: _selectedLocation?.longitude ?? 1.0,
                             address: _searchController.text,
                             title: _title.text,
                           ),

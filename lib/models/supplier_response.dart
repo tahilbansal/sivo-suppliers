@@ -24,7 +24,7 @@ class SupplierResponse {
   final bool isAvailable;
   final String code;
   final String logoUrl;
-  final double rating;
+  final int rating;
   final String ratingCount;
   final String verification;
   final String verificationMessage;
