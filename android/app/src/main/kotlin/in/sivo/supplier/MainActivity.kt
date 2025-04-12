@@ -1,4 +1,4 @@
-package com.rivus.rivus_supplier
+package `in`.sivo.supplier
 
 import io.flutter.embedding.android.FlutterActivity
 
